@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder: Minimalist Classic — Density Resume Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── BASE STYLES ── */
+    :root {
+      --primary: #4F46E5;
+      --beige-light: #F5EFE7;
+      --beige-dark: #8B7355;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --bg-panel: #F8FAFC;
+      --border-color: #E2E8F0;
+      --skeleton-bg: #EDF2F7;
+    }
+
+    .placeholder-active {
+      background-color: #EDF2F7 !important;
+      color: transparent !important;
+      border-radius: 50px;
+      display: inline-block;
+      min-width: 100px;
+      height: 12px;
+      margin: 4px 0;
+    }
+
+    .dashed-placeholder {
+      color: #cbd5e1 !important;
+      background-color: transparent !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text-dark);
+      overflow: hidden;
+    }
+
+    /* ── LAYOUT ── */
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Left Panel: Form */
+    .form-panel {
+      width: 40%;
+      height: 100%;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .form-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border-color);
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .btn-download {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-download:hover {
+      background: #4338ca;
+      transform: translateY(-1px);
+    }
+
+    .form-body {
+      flex: 1;
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    .form-section {
+      margin-bottom: 40px;
+    }
+
+    .form-section h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .input-group textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    /* Error State */
+    .input-error {
+      border-bottom: 2px solid #ef4444 !important;
+      background-color: #fef2f2;
+    }
+
+    /* Right Panel: Preview */
+    .preview-outer {
+      height: 100vh;
+      width: 60%;
+      background: #e2e8f0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .preview-inner {
+      transform-origin: center center;
+    }
+
+    /* ── RESUME STYLING (MINIMALIST CLASSIC) ── */
+    #resume-preview {
+      width: 794px;
+      height: 1123px;
+      background: #fff;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    /* ── HEADER: Name left + Photo right ── */
+    .resume-header {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 28px 32px 14px 32px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .header-left h1 {
+      font-size: 29.8pt;
+      font-weight: 800;
+      color: #111 !important;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .header-left .pv-title-line {
+      font-size: 16pt;
+      font-weight: 600;
+      color: #555 !important;
+      margin: 2px 0 10px;
+    }
+
+    /* 2-column contact row */
+    .header-contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 20px;
+      margin-top: 6px;
+    }
+
+    .hc-item {
+      font-size: 12pt;
+      color: #333;
+      font-weight: 500;
+    }
+
+    /* Profile photo — square, top-right */
+    .profile-img-placeholder {
+      width: 140px;
+      height: 140px;
+      flex-shrink: 0;
+      border: 2px solid #000;
+      background: #ccc;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 20px;
+    }
+
+    .profile-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── BODY ── */
+    .resume-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 0 32px 32px;
+    }
+
+    .resume-side {
+      display: none !important;
+    }
+
+    .resume-main {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .resume-main::before {
+      display: none;
+    }
+
+    /* ── SECTION TITLES ── */
+    .resume-section-title {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #111;
+      text-transform: none;
+      letter-spacing: 0;
+      margin: 14px 0 4px;
+      padding-bottom: 3px;
+      border-bottom: 1.5px solid #333;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .resume-section-title::before {
+      display: none !important;
+    }
+
+    .resume-section-title::after {
+      display: none !important;
+    }
+
+    /* ── PROFILE paragraph ── */
+    .exp-paragraph {
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #333;
+      text-align: justify;
+      margin-top: 6px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-entry {
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+
+    .exp-company-line {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .exp-company-line .exp-role {
+      font-weight: 500;
+      color: #555;
+    }
+
+    .exp-desc {
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: #333;
+      text-align: justify;
+      margin-top: 2px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-entry {
+      margin-top: 6px;
+      font-size: 11pt;
+    }
+
+    .edu-university {
+      font-weight: 700;
+      color: #111;
+    }
+
+    .edu-program {
+      color: #555;
+      font-weight: 500;
+    }
+
+    /* ── LANGUAGES ── */
+    #pv-languages-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 6px;
+    }
+
+    .lang-item {
+      font-size: 11pt;
+      color: #333;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    #pv-languages-list .lang-item::before {
+      content: '•';
+      margin-right: 8px;
+      color: #555;
+    }
+
+    /* ── SKILLS: 2-column card grid ── */
+    #pv-skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin-top: 8px;
+    }
+
+    .skill-card {
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .skill-card-title {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 2px;
+    }
+
+    .skill-card-desc {
+      font-size: 10.5pt;
+      color: #555;
+      line-height: 1.4;
+      text-align: justify;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      @page {
+        margin: 0;
+        size: A4;
+      }
+
+      body,
+      html {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background: white;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #resume-preview,
+      #resume-preview * {
+        visibility: visible;
+      }
+
+      .preview-outer,
+      .preview-inner {
+        position: static !important;
+        transform: none !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      #resume-preview {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        transform: scale(1) !important;
+        overflow: hidden !important;
+        /* Force EXACTLY 1 page cutoff */
+      }
+
+      .form-panel,
+      .form-header {
+        display: none !important;
+      }
+
+      .hide-on-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+    <!-- EDITOR FORM -->
+    <div class="form-panel">
+      <div class="form-header">
+        <a href="templates.html"
+          style="text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 600;">← Back</a>
+        <h2>Minimalist Classic</h2>
+        <button class="btn-download" onclick="validateAndPrint()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download PDF
+        </button>
+      </div>
+
+      <div class="form-body">
+        <div class="form-section">
+          <h3>Personal Info</h3>
+
+          <!-- Square Icon Photo Uploader with Side Button -->
+          <div style="margin-bottom: 24px; display: flex; align-items: center; gap: 20px;">
+            <div
+              style="position: relative; width: 140px; height: 140px; border: 1px solid #cbd5e1; background-color: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0;">
+              <img src="profile-icon.png" alt="Profile Icon" style="width: 140px; height: 140px; object-fit: contain;">
+              <!-- Editor preview -->
+              <img id="editor-photo-preview" src=""
+                style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; pointer-events: none;">
+            </div>
+
+            <div style="position: relative;">
+              <button type="button"
+                style="background: #0D9488; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; color: #fff; cursor: pointer;">
+                Upload photo
+              </button>
+              <input type="file" id="in-photo" accept="image/*" onchange="handlePhotoUpload(this)"
+                title="Upload profile photo"
+                style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Full Name <span style="color: red;">*</span></label>
+            <input type="text" id="in-name" placeholder="FIRST LAST NAME"
+              oninput="updatePreview(); clearErrorOnInput(event)" required>
+          </div>
+          <div class="input-group">
+            <label>Professional Title <span style="color: red;">*</span></label>
+            <input type="text" id="in-title" placeholder="Software Engineer"
+              oninput="updatePreview(); clearErrorOnInput(event)" required>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Contact Detail</h3>
+          <div class="input-group">
+            <label>Phone</label>
+            <input type="text" id="in-phone" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="text" id="in-email" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Address</label>
+            <input type="text" id="in-address" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Website/Link</label>
+            <input type="text" id="in-web" placeholder="" oninput="updatePreview()">
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Profile</h3>
+          <div class="input-group">
+            <label>Summary</label>
+            <textarea id="in-about" oninput="updatePreview()" placeholder=""></textarea>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+            <h3 style="padding: 0;">Experience</h3>
+            <button type="button" onclick="addExperienceField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 6px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">+
+              Add Experience</button>
+          </div>
+          <div id="experience-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <div style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+            <h3 style="padding: 0;">Education</h3>
+            <button type="button" onclick="addEducationField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 6px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">+
+              Add Education</button>
+          </div>
+          <div id="education-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <div style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+            <h3 style="padding: 0;">Languages</h3>
+            <button type="button" onclick="addLanguageField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 6px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">+
+              Add Language</button>
+          </div>
+          <div id="languages-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <div style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+            <h3 style="padding: 0;">Skills</h3>
+            <button type="button" onclick="addSkillField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 6px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">+
+              Add Skill</button>
+          </div>
+          <p style="font-size:11px;color:#64748b;margin-bottom:12px;">Each skill has a title and a short description.
+          </p>
+          <div id="skills-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <h3 style="padding: 0;">References</h3>
+          <div class="input-group">
+            <label>Name</label>
+            <input type="text" id="in-ref-name" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Company/Role</label>
+            <input type="text" id="in-ref-role" placeholder="" oninput="updatePreview()">
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <div class="input-group" style="flex: 1;">
+              <label>Phone</label>
+              <input type="text" id="in-ref-phone" placeholder="+123-456-7890" oninput="updatePreview()">
+            </div>
+            <div class="input-group" style="flex: 1;">
+              <label>Email</label>
+              <input type="text" id="in-ref-email" placeholder="example@mail.com" oninput="updatePreview()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW AREA -->
+    <div class="preview-outer" id="preview-outer">
+      <div class="preview-inner" id="preview-inner">
+        <div id="resume-preview" class="resume-page">
+
+          <!-- ── HEADER ── -->
+          <div class="resume-header">
+            <div class="header-left">
+              <h1 id="pv-name">FIRST LAST NAME</h1>
+              <div id="pv-title" class="pv-title-line">Marketing Assistant</div>
+              <div class="header-contact-row" id="pv-section-contact">
+                <span class="hc-item" id="pv-email"></span>
+                <span class="hc-item" id="pv-phone"></span>
+                <span class="hc-item" id="pv-address"></span>
+                <span class="hc-item" id="pv-web"></span>
+              </div>
+            </div>
+            <div class="profile-img-placeholder">
+              <img id="default-icon" src="profile-icon.png" alt="Profile"
+                style="width:100%;height:100%;object-fit:cover;">
+              <img id="uploaded-photo" src="" alt=""
+                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;">
+            </div>
+          </div>
+
+          <!-- ── BODY ── -->
+          <div class="resume-body">
+            <div class="resume-side"></div>
+            <div class="resume-main">
+
+              <!-- Profile -->
+              <div id="pv-section-about">
+                <h4 class="resume-section-title">Profile</h4>
+                <p id="pv-about" class="exp-paragraph">A short professional summary will appear here.</p>
+              </div>
+
+              <!-- Professional Experience -->
+              <div id="pv-section-experience">
+                <h4 class="resume-section-title">Professional Experience</h4>
+                <div id="pv-experience-list"></div>
+              </div>
+
+              <!-- Education -->
+              <div id="pv-section-education">
+                <h4 class="resume-section-title">Education</h4>
+                <ul id="pv-education-list" style="list-style:none;padding:0;margin-top:6px;"></ul>
+              </div>
+
+              <!-- Languages -->
+              <div id="pv-section-languages">
+                <h4 class="resume-section-title">Languages</h4>
+                <ul id="pv-languages-list"></ul>
+              </div>
+
+              <!-- Skills -->
+              <div id="pv-section-skills">
+                <h4 class="resume-section-title">Skills</h4>
+                <ul id="pv-skills-list"></ul>
+              </div>
+
+              <!-- References -->
+              <div id="pv-section-references">
+                <h4 class="resume-section-title">References</h4>
+                <div style="font-size:11pt;margin-top:6px;">
+                  <strong id="pv-ref-name" style="display:block;">Reference Name</strong>
+                  <span id="pv-ref-role" style="display:block;margin-bottom:4px;color:#555;">Company / Role</span>
+                  <span id="pv-ref-phone" style="display:block;font-size:10.5pt;"></span>
+                  <span id="pv-ref-email" style="display:block;font-size:10.5pt;"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <script>
+    function handlePhotoUpload(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const defaultIcon = document.getElementById('default-icon');
+          const editorPreview = document.getElementById('editor-photo-preview');
+
+          defaultIcon.src = e.target.result;
+          defaultIcon.style.objectFit = 'cover';
+
+          if (editorPreview) {
+            editorPreview.src = e.target.result;
+            editorPreview.style.display = 'block';
+            editorPreview.style.objectFit = 'cover';
+          }
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    let experienceCount = 0;
+
+    function addExperienceField() {
+      experienceCount++;
+      const container = document.getElementById('experience-form-container');
+      const div = document.createElement('div');
+      div.id = `exp-group-${experienceCount}`;
+      div.style.cssText = 'padding:14px;background:#fff;border:1px solid var(--border-color);border-radius:8px;margin-bottom:14px;position:relative;';
+      div.innerHTML = `
+        <button type="button" onclick="removeExperienceField(${experienceCount})" style="position:absolute;top:8px;right:8px;background:#fee2e2;color:#ef4444;border:1px solid #fecaca;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:14px;">&times;</button>
+        <div class="input-group">
+          <label>Company Name</label>
+          <input type="text" id="in-exp-${experienceCount}-company" placeholder="Acme Corporation" oninput="updatePreview()" onfocus="updatePreview()" onblur="updatePreview()">
+        </div>
+        <div class="input-group">
+          <label>Role / Position</label>
+          <input type="text" id="in-exp-${experienceCount}-role" placeholder="Marketing Manager" oninput="updatePreview()" onfocus="updatePreview()" onblur="updatePreview()">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label>Description</label>
+          <textarea id="in-exp-${experienceCount}-desc" placeholder="Describe responsibilities and achievements..." oninput="updatePreview()" onfocus="updatePreview()" onblur="updatePreview()" style="height:70px;resize:none;"></textarea>
+        </div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    function removeExperienceField(id) {
+      const el = document.getElementById(`exp-group-${id}`);
+      if (el) el.remove();
+      updatePreview();
+    }
+
+    let educationCount = 0;
+
+    function addEducationField() {
+      educationCount++;
+      const container = document.getElementById('education-form-container');
+      const div = document.createElement('div');
+      div.id = `edu-group-${educationCount}`;
+      div.style.padding = '16px';
+      div.style.background = '#fff';
+      div.style.border = '1px solid var(--border-color)';
+      div.style.borderRadius = '8px';
+      div.style.marginBottom = '16px';
+      div.style.position = 'relative';
+
+      div.innerHTML = `
+        <button type="button" onclick="removeEducationField(${educationCount})" style="position: absolute; top: 8px; right: 8px; background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 14px;">&times;</button>
+        <div class="input-group">
+          <label>University</label>
+          <input type="text" id="in-edu-${educationCount}-univ" placeholder="University Name" oninput="updatePreview(); clearErrorOnInput(event)" onfocus="updatePreview()" onblur="updatePreview()">
+        </div>
+        <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+          <div class="input-group" style="flex: 1; margin-bottom: 0;">
+            <label>Start Year</label>
+            <input type="text" id="in-edu-${educationCount}-start" placeholder="2025" oninput="updatePreview(); clearErrorOnInput(event)" onfocus="updatePreview()" onblur="updatePreview()">
+          </div>
+          <div class="input-group" style="flex: 1; margin-bottom: 0;">
+            <label>End Year</label>
+            <input type="text" id="in-edu-${educationCount}-end" placeholder="2029" oninput="updatePreview(); clearErrorOnInput(event)" onfocus="updatePreview()" onblur="updatePreview()">
+          </div>
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label>Program Name</label>
+          <input type="text" id="in-edu-${educationCount}-prog" placeholder="Bachelor of Science" oninput="updatePreview(); clearErrorOnInput(event)" onfocus="updatePreview()" onblur="updatePreview()">
+        </div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    function removeEducationField(id) {
+      const el = document.getElementById(`edu-group-${id}`);
+      if (el) el.remove();
+      updatePreview();
+    }
+
+    let skillCount = 0;
+
+    function addSkillField() {
+      skillCount++;
+      const container = document.getElementById('skills-form-container');
+      const div = document.createElement('div');
+      div.id = `skill-group-${skillCount}`;
+      div.style.cssText = 'padding:12px;background:#fff;border:1px solid var(--border-color);border-radius:8px;margin-bottom:12px;position:relative;';
+      div.innerHTML = `
+        <button type="button" onclick="removeSkillField(${skillCount})" style="position:absolute;top:6px;right:6px;background:#fee2e2;color:#ef4444;border:1px solid #fecaca;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:14px;">&times;</button>
+        <div class="input-group">
+          <label>Skill Title</label>
+          <input type="text" id="in-skill-${skillCount}-title" placeholder="Market Research" oninput="updatePreview()" onfocus="updatePreview()" onblur="updatePreview()">
+        </div>
+        <div class="input-group" style="margin-bottom:0;">
+          <label>Description</label>
+          <textarea id="in-skill-${skillCount}-desc" placeholder="Brief description..." oninput="updatePreview()" onfocus="updatePreview()" onblur="updatePreview()" style="height:60px;resize:none;"></textarea>
+        </div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    function removeSkillField(id) {
+      const el = document.getElementById(`skill-group-${id}`);
+      if (el) el.remove();
+      updatePreview();
+    }
+
+    let languageCount = 0;
+
+    function addLanguageField() {
+      languageCount++;
+      const container = document.getElementById('languages-form-container');
+      const div = document.createElement('div');
+      div.className = 'input-group';
+      div.id = `lang-group-${languageCount}`;
+      div.style.marginBottom = '12px';
+      div.innerHTML = `
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="in-lang-${languageCount}" placeholder="e.g. English" oninput="updatePreview()" onfocus="updatePreview()" onblur="updatePreview()" style="flex: 1;">
+          <button type="button" onclick="removeLanguageField(${languageCount})" style="background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 0 8px; border-radius: 4px; cursor: pointer;">&times;</button>
+        </div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    function removeLanguageField(id) {
+      const el = document.getElementById(`lang-group-${id}`);
+      if (el) el.remove();
+      updatePreview();
+    }
+
+    function adjustScale() {
+      const inner = document.getElementById('preview-inner');
+      const outer = document.getElementById('preview-outer');
+      if (!inner || !outer) return;
+      const scale = Math.min((outer.clientWidth - 80) / 794, (outer.clientHeight - 80) / 1123);
+      inner.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', adjustScale);
+    window.addEventListener('load', () => {
+      adjustScale();
+
+      // Add initial fields on first visit
+      addExperienceField();
+      addEducationField();
+      addSkillField();
+      addLanguageField();
+
+      updatePreview();
+    });
+
+    function updatePreview() {
+      adjustScale();
+      const activeElement = document.activeElement;
+
+      const updateEl = (inputId, previewId, usePlaceholderFallback = false) => {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        if (!input || !preview) return;
+        const isFocused = (activeElement === input);
+
+        if (input.value.trim()) {
+          preview.innerText = input.value;
+          preview.classList.remove('placeholder-active', 'dashed-placeholder');
+        } else {
+          if (usePlaceholderFallback) {
+            preview.innerText = input.placeholder || '';
+            preview.classList.remove('placeholder-active', 'dashed-placeholder');
+          } else if (isFocused) {
+            preview.innerText = '------------------------';
+            preview.classList.remove('placeholder-active');
+            preview.classList.add('dashed-placeholder');
+          } else {
+            preview.innerText = '';
+            preview.classList.add('placeholder-active');
+            preview.classList.remove('dashed-placeholder');
+          }
+        }
+      };
+
+      // Identity
+      updateEl('in-name', 'pv-name', true);
+      updateEl('in-title', 'pv-title', true);
+
+      // Contact
+      updateEl('in-phone', 'pv-phone');
+      updateEl('in-email', 'pv-email');
+      updateEl('in-address', 'pv-address');
+      updateEl('in-web', 'pv-web');
+
+      // Content
+      updateEl('in-about', 'pv-about');
+
+      // Experience
+      const expPreviewContainer = document.getElementById('pv-experience-list');
+      expPreviewContainer.innerHTML = '';
+      const expGroups = document.querySelectorAll('#experience-form-container > div');
+      expGroups.forEach(group => {
+        const id = group.id.match(/\d+/)[0];
+        const company = document.getElementById(`in-exp-${id}-company`).value.trim();
+        const role = document.getElementById(`in-exp-${id}-role`).value.trim();
+        const desc = document.getElementById(`in-exp-${id}-desc`).value.trim();
+
+        const entry = document.createElement('div');
+        entry.className = 'exp-entry';
+        entry.innerHTML = `
+          <div class="exp-company-line">
+            ${company ? `<strong>${company}</strong>` : '<span class="placeholder-active" style="min-width:120px;">&nbsp;</span>'}
+            ${company && role ? ', ' : ''}
+            ${role ? `<span class="exp-role">${role}</span>` : ''}
+          </div>
+          <p class="exp-desc ${!desc ? 'placeholder-active' : ''}">${desc || '&nbsp;'}</p>
+        `;
+        expPreviewContainer.appendChild(entry);
+      });
+
+      // Education
+      const eduPreviewContainer = document.getElementById('pv-education-list');
+      eduPreviewContainer.innerHTML = '';
+      const eduGroups = document.querySelectorAll('#education-form-container > div');
+      eduGroups.forEach(group => {
+        const id = group.id.match(/\d+/)[0];
+        const univ = document.getElementById(`in-edu-${id}-univ`).value.trim();
+        const prog = document.getElementById(`in-edu-${id}-prog`).value.trim();
+        const start = document.getElementById(`in-edu-${id}-start`).value.trim();
+        const end = document.getElementById(`in-edu-${id}-end`).value.trim();
+
+        const li = document.createElement('li');
+        li.className = 'edu-entry';
+        li.innerHTML = `
+          <span class="edu-university ${!univ ? 'placeholder-active' : ''}" style="${!univ ? 'min-width:150px;' : ''}">${univ || '&nbsp;'}</span>
+          ${(univ && prog) ? ', ' : ''}
+          <span class="edu-program">${prog}</span>
+          ${(univ || prog) && (start || end) ? ' | ' : ''}
+          <span>${start}${start && end ? ' - ' : ''}${end}</span>
+        `;
+        eduPreviewContainer.appendChild(li);
+      });
+
+      // Languages
+      const langPreviewContainer = document.getElementById('pv-languages-list');
+      langPreviewContainer.innerHTML = '';
+      const langGroups = document.querySelectorAll('#languages-form-container input');
+      langGroups.forEach(input => {
+        if (input.value.trim()) {
+          const li = document.createElement('li');
+          li.className = 'lang-item';
+          li.innerText = input.value.trim();
+          langPreviewContainer.appendChild(li);
+        }
+      });
+
+      // Skills
+      const skillPreviewContainer = document.getElementById('pv-skills-list');
+      skillPreviewContainer.innerHTML = '';
+      const skillGroups = document.querySelectorAll('#skills-form-container > div');
+      skillGroups.forEach(group => {
+        const id = group.id.match(/\d+/)[0];
+        const title = document.getElementById(`in-skill-${id}-title`).value.trim();
+        const desc = document.getElementById(`in-skill-${id}-desc`).value.trim();
+
+        if (title || desc) {
+          const li = document.createElement('li');
+          li.className = 'skill-card';
+          li.innerHTML = `
+            <div class="skill-card-title ${!title ? 'placeholder-active' : ''}">${title || '&nbsp;'}</div>
+            <div class="skill-card-desc ${!desc ? 'placeholder-active' : ''}">${desc || '&nbsp;'}</div>
+          `;
+          skillPreviewContainer.appendChild(li);
+        }
+      });
+
+      updateEl('in-ref-name', 'pv-ref-name', true);
+      updateEl('in-ref-role', 'pv-ref-role', true);
+      updateEl('in-ref-phone', 'pv-ref-phone');
+      updateEl('in-ref-email', 'pv-ref-email');
+
+      // ── SMART HIDE (PRINT ONLY) ──
+      // This toggles a class that is only hidden via @media print CSS.
+      const togglePrintHide = (sectionId, hasContent) => {
+        const el = document.getElementById(sectionId);
+        if (!el) return;
+        if (hasContent) {
+          el.classList.remove('hide-on-print');
+        } else {
+          el.classList.add('hide-on-print');
+        }
+      };
+
+      // Contact Items
+      ['phone', 'email', 'address', 'web'].forEach(key => {
+        const inputVal = (document.getElementById(`in-${key}`) || {}).value?.trim();
+        togglePrintHide(`pv-${key}`, !!inputVal);
+      });
+
+      // Sections
+      togglePrintHide('pv-section-about', !!(document.getElementById('in-about') || {}).value?.trim());
+
+      const hasExp = document.querySelectorAll('#experience-form-container > div').length > 0 &&
+        Array.from(document.querySelectorAll('#experience-form-container input, #experience-form-container textarea'))
+          .some(i => i.value.trim());
+      togglePrintHide('pv-section-experience', hasExp);
+
+      const hasEdu = document.querySelectorAll('#education-form-container > div').length > 0 &&
+        Array.from(document.querySelectorAll('#education-form-container input'))
+          .some(i => i.value.trim());
+      togglePrintHide('pv-section-education', hasEdu);
+
+      const hasLang = Array.from(document.querySelectorAll('#languages-form-container input'))
+        .some(i => i.value.trim());
+      togglePrintHide('pv-section-languages', hasLang);
+
+      const hasSkill = Array.from(document.querySelectorAll('#skills-form-container input, #skills-form-container textarea'))
+        .some(i => i.value.trim());
+      togglePrintHide('pv-section-skills', hasSkill);
+
+      const refName = (document.getElementById('in-ref-name') || {}).value?.trim();
+      const refRole = (document.getElementById('in-ref-role') || {}).value?.trim();
+      togglePrintHide('pv-section-references', !!(refName || refRole));
+    }
+
+    function clearErrorOnInput(e) {
+      e.target.classList.remove('input-error');
+    }
+
+    function validateAndPrint() {
+      const requiredFields = document.querySelectorAll('input[required]');
+      let firstError = null;
+      requiredFields.forEach(f => {
+        if (!f.value.trim()) {
+          f.classList.add('input-error');
+          if (!firstError) firstError = f;
+        }
+      });
+      if (firstError) {
+        firstError.focus();
+        alert('Please fill in required fields.');
+      } else {
+        window.print();
+      }
+    }
+
+    window.onload = updatePreview;
+  </script>
+</body>
+
+</html>

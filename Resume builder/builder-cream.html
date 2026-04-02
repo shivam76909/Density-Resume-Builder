@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder: Contemporary Cream — Density Resume Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── BASE STYLES ── */
+    :root {
+      --primary: #B8860B;
+      --beige-light: #FFFDF0;
+      --beige-dark: #8B4513;
+      --text-dark: #3E2723;
+      --text-muted: #5D4037;
+      --bg-panel: #EFEBE9;
+      --border-color: #D7CCC8;
+      --skeleton-bg: #CFD8DC;
+    }
+
+    .placeholder-active {
+      background-color: #EDF2F7 !important;
+      color: transparent !important;
+      border-radius: 50px;
+      display: inline-block;
+      min-width: 100px;
+      height: 12px;
+      margin: 4px 0;
+    }
+
+    .header-right h1.placeholder-active,
+    .header-right p.placeholder-active {
+      background-color: transparent !important;
+      color: #000 !important;
+      height: auto !important;
+      display: block !important;
+      /* Keep header text visible and correctly sized */
+    }
+
+    .dashed-placeholder {
+      color: #cbd5e1 !important;
+      background-color: transparent !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text-dark);
+      overflow: hidden;
+    }
+
+    /* ── LAYOUT ── */
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Left Panel: Form */
+    .form-panel {
+      width: 40%;
+      height: 100%;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .form-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border-color);
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .btn-download {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-download:hover {
+      background: #4338ca;
+      transform: translateY(-1px);
+    }
+
+    .form-body {
+      flex: 1;
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    .form-section {
+      margin-bottom: 40px;
+    }
+
+    .form-section h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .input-group textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    /* Error State */
+    .input-error {
+      border-bottom: 2px solid #ef4444 !important;
+      background-color: #fef2f2;
+    }
+
+    /* Right Panel: Preview */
+    .preview-outer {
+      height: 100vh;
+      width: 60%;
+      background: #e2e8f0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .preview-inner {
+      transform-origin: center center;
+    }
+
+    /* ── RESUME STYLING ── */
+    .resume-page {
+      width: 210mm;
+      min-height: 297mm;
+      background-color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+    }
+
+    /* Solid Background Elements */
+    .theme-sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 240px;
+      background: #fdf5e6;
+      /* Cream sidebar */
+      z-index: 1;
+      border-right: 2px solid #000;
+    }
+
+    .theme-header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 14px;
+      background: #c7c7c7;
+      /* Light grey accent bar */
+      z-index: 3;
+    }
+
+    .theme-top-stripe {
+      position: absolute;
+      top: 0.37cm;
+      left: 0;
+      width: 21cm;
+      height: 5.45cm;
+      background: #f4fbff;
+      z-index: 2;
+      border-top: 2px solid #000;
+      border-bottom: 2px solid #000;
+    }
+
+    /* Top Header Section */
+    .resume-header {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 220px;
+      padding-top: 60px;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+      background: transparent;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      padding-top: 20px;
+    }
+
+    .header-right h1 {
+      font-size: 32pt;
+      font-weight: 500;
+      color: #000;
+      margin-bottom: 2px;
+      font-family: 'Times New Roman', Times, serif;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+
+    .header-right p {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0.05em;
+      margin-top: 6px;
+    }
+
+    /* Main Content Body */
+    .resume-body {
+      display: flex;
+      flex: 1;
+      position: relative;
+      z-index: 10;
+    }
+
+    .resume-side {
+      width: 240px;
+      padding: 40px 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .resume-main {
+      flex: 1;
+      padding: 40px 40px 40px 35px;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+    }
+
+    /* Section Sub-headings — base */
+    .resume-section-title {
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      padding-bottom: 4px;
+      width: 100%;
+    }
+
+    .resume-side .resume-section-title {
+      font-size: 14pt;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #000;
+      margin-bottom: 6px;
+    }
+
+    .resume-main .resume-section-title {
+      font-size: 16pt;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #000;
+      display: block;
+      width: 100%;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12pt;
+    }
+
+    .info-item {
+      line-height: 1.4;
+      color: #333;
+      font-size: 12pt;
+    }
+
+    .contact-info-item {
+      color: #333;
+      font-size: 12pt;
+    }
+
+    .skills-grid {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skill-item {
+      font-size: 12pt;
+      line-height: 1.3;
+      color: #333;
+    }
+
+    .exp-paragraph {
+      margin-bottom: 6px;
+      font-size: 12pt;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .pv-about {
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 12pt;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      @page {
+        margin: 0;
+        size: A4;
+      }
+
+      body,
+      html {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background: white;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #resume-preview,
+      #resume-preview * {
+        visibility: visible;
+      }
+
+      .preview-outer,
+      .preview-inner {
+        position: static !important;
+        transform: none !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      #resume-preview {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        transform: scale(1) !important;
+        overflow: hidden !important;
+        /* Force EXACTLY 1 page cutoff */
+      }
+
+      .form-panel,
+      .form-header {
+        display: none !important;
+      }
+
+      .hide-on-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+    <!-- EDITOR FORM -->
+    <div class="form-panel">
+      <div class="form-header">
+        <a href="templates.html"
+          style="text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 600;">← Back</a>
+        <h2>Contemporary Cream</h2>
+        <button class="btn-download" onclick="validateAndPrint()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download PDF
+        </button>
+      </div>
+
+      <div class="form-body">
+        <div class="form-section">
+          <h3>Personal Info</h3>
+
+          <div class="input-group">
+            <label>Full Name <span style="color: red;">*</span></label>
+            <input type="text" id="in-name" placeholder="FIRST LAST NAME"
+              oninput="updatePreview(); clearErrorOnInput(event)" required>
+          </div>
+          <div class="input-group">
+            <label>Professional Title <span style="color: red;">*</span></label>
+            <input type="text" id="in-title" placeholder="Software Engineer"
+              oninput="updatePreview(); clearErrorOnInput(event)" required>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Contact Detail</h3>
+          <div class="input-group">
+            <label>Phone</label>
+            <input type="text" id="in-phone" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="text" id="in-email" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Address</label>
+            <input type="text" id="in-address" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Website/Link</label>
+            <input type="text" id="in-web" placeholder="" oninput="updatePreview()">
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>About Me</h3>
+          <div class="input-group">
+            <label>Summary</label>
+            <textarea id="in-about" oninput="updatePreview()" placeholder=""></textarea>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin-bottom: 0; border: none; padding: 0;">Experience</h3>
+            <button type="button" onclick="addExperienceField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">+
+              Add Experience</button>
+          </div>
+          <div id="experience-form-container">
+            <!-- Dynamic experience fields will go here -->
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin-bottom: 0; border: none; padding: 0;">Education</h3>
+            <button type="button" onclick="addEducationField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">+
+              Add Education</button>
+          </div>
+          <div id="education-form-container">
+            <!-- Dynamic education fields will go here -->
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin-bottom: 0; border: none; padding: 0;">Skills</h3>
+            <button type="button" onclick="addSkillField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">+
+              Add Skill</button>
+          </div>
+          <div id="skills-form-container">
+            <!-- Dynamic skills fields will go here -->
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin-bottom: 0; border: none; padding: 0;">Awards</h3>
+            <button type="button" onclick="addAwardField()"
+              style="background: #0D9488; color: #fff; border: none; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer;">+
+              Add Award</button>
+          </div>
+          <div id="awards-form-container">
+            <!-- Dynamic awards fields will go here -->
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>References</h3>
+          <div class="input-group">
+            <label>Name</label>
+            <input type="text" id="in-ref-name" placeholder="" oninput="updatePreview()">
+          </div>
+          <div class="input-group">
+            <label>Company/Role</label>
+            <input type="text" id="in-ref-role" placeholder="" oninput="updatePreview()">
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <div class="input-group" style="flex: 1;">
+              <label>Phone</label>
+              <input type="text" id="in-ref-phone" placeholder="+123-456-7890" oninput="updatePreview()">
+            </div>
+            <div class="input-group" style="flex: 1;">
+              <label>Email</label>
+              <input type="text" id="in-ref-email" placeholder="example@mail.com" oninput="updatePreview()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW AREA -->
+    <div class="preview-outer" id="preview-outer">
+      <div class="preview-inner" id="preview-inner">
+        <div id="resume-preview" class="resume-page">
+          <div class="theme-header-bar"></div>
+          <div class="theme-sidebar"></div>
+          <div class="theme-top-stripe"></div>
+
+          <!-- Header -->
+          <div class="resume-header">
+            <div class="header-right">
+              <h1 id="pv-name">FIRST LAST NAME</h1>
+              <p id="pv-title">Software Engineer</p>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="resume-body">
+            <div class="resume-side">
+              <!-- Contact -->
+              <div id="pv-section-contact">
+                <h4 class="resume-section-title">Contact</h4>
+                <div class="info-list">
+                  <span id="pv-item-phone" class="contact-info-item"></span>
+                  <span id="pv-item-email" class="contact-info-item"></span>
+                  <span id="pv-item-address" class="contact-info-item"></span>
+                  <span id="pv-item-web" class="contact-info-item"></span>
+                </div>
+              </div>
+
+              <!-- Education -->
+              <div id="pv-section-education">
+                <h4 class="resume-section-title">Education</h4>
+                <ul id="pv-education-list" class="info-list">
+                  <li class="placeholder-active" style="width: 100%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 80%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 90%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 70%; height: 12px;"></li>
+                </ul>
+              </div>
+
+              <!-- Skills -->
+              <div id="pv-section-skills">
+                <h4 class="resume-section-title">Skills</h4>
+                <ul id="pv-skills-list" class="skills-grid">
+                  <li class="placeholder-active" style="width: 100%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 90%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 85%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 95%; height: 12px;"></li>
+                </ul>
+              </div>
+
+              <!-- Awards -->
+              <div id="pv-section-awards">
+                <h4 class="resume-section-title">Awards</h4>
+                <ul id="pv-awards-list" class="skills-grid">
+                  <li class="placeholder-active" style="width: 100%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 85%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 90%; height: 12px; margin-bottom: 8px;"></li>
+                  <li class="placeholder-active" style="width: 80%; height: 12px;"></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="resume-main">
+              <!-- Profile -->
+              <div id="pv-section-about">
+                <h4 class="resume-section-title">Profile</h4>
+                <p id="pv-about" class="exp-paragraph">Professional summary will appear here.</p>
+              </div>
+
+              <!-- Experience -->
+              <div id="pv-section-experience">
+                <h4 class="resume-section-title">Work Experience</h4>
+                <div id="pv-experience-list"></div>
+              </div>
+
+              <!-- References -->
+              <div id="pv-section-references">
+                <h4 class="resume-section-title">References</h4>
+                <div style="font-size: 14px;">
+                  <strong id="pv-ref-name" style="display: block; font-size: 16px;">Reference Name</strong>
+                  <span id="pv-ref-role" style="display: block; margin-bottom: 4px; color:#555;">Company / Role</span>
+                  <span id="pv-ref-phone" style="display:block; font-size:12px;"></span>
+                  <span id="pv-ref-email" style="display:block; font-size:12px;"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handlePhotoUpload(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const defaultIcon = document.getElementById('default-icon');
+          if (defaultIcon) {
+            defaultIcon.src = e.target.result;
+            defaultIcon.style.objectFit = 'cover';
+          }
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    let experienceCount = 0;
+    function addExperienceField() {
+      experienceCount++;
+      const container = document.getElementById('experience-form-container');
+      const div = document.createElement('div');
+      div.className = 'input-group';
+      div.id = `exp-group-${experienceCount}`;
+      div.style.marginBottom = '12px';
+      div.innerHTML = `
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="in-exp-${experienceCount}" placeholder="Job responsibility..." oninput="updatePreview()" style="flex: 1;">
+          <button type="button" onclick="document.getElementById('exp-group-${experienceCount}').remove(); updatePreview();" style="background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; padding: 0 8px; border-radius: 4px; cursor: pointer;">&times;</button>
+        </div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    let educationCount = 0;
+    function addEducationField() {
+      educationCount++;
+      const container = document.getElementById('education-form-container');
+      const div = document.createElement('div');
+      div.id = `edu-group-${educationCount}`;
+      div.style.cssText = 'padding:14px;background:#fff;border:1px solid var(--border-color);border-radius:8px;margin-bottom:14px;position:relative;';
+      div.innerHTML = `
+        <button type="button" onclick="document.getElementById('edu-group-${educationCount}').remove(); updatePreview();" style="position:absolute;top:8px;right:8px;background:#fee2e2;color:#ef4444;border:none;padding:2px 8px;border-radius:4px;cursor:pointer;">&times;</button>
+        <div class="input-group"><label>University</label><input type="text" id="in-edu-${educationCount}-univ" oninput="updatePreview()"></div>
+        <div class="input-group"><label>Program</label><input type="text" id="in-edu-${educationCount}-prog" oninput="updatePreview()"></div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    let skillCount = 0;
+    function addSkillField() {
+      skillCount++;
+      const container = document.getElementById('skills-form-container');
+      const div = document.createElement('div');
+      div.id = `skill-group-${skillCount}`;
+      div.className = 'input-group';
+      div.innerHTML = `
+        <div style="display: flex; gap: 8px; margin-bottom:8px;">
+          <input type="text" id="in-skill-${skillCount}" placeholder="Skill..." oninput="updatePreview()" style="flex: 1;">
+          <button type="button" onclick="document.getElementById('skill-group-${skillCount}').remove(); updatePreview();" style="background: #fee2e2; color: #ef4444; border:none; padding: 0 8px; border-radius: 4px; cursor: pointer;">&times;</button>
+        </div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    let awardCount = 0;
+    function addAwardField() {
+      awardCount++;
+      const container = document.getElementById('awards-form-container');
+      const div = document.createElement('div');
+      div.id = `award-group-${awardCount}`;
+      div.className = 'input-group';
+      div.innerHTML = `
+        <div style="display: flex; gap: 8px; margin-bottom:8px;">
+          <input type="text" id="in-award-${awardCount}" placeholder="Award..." oninput="updatePreview()" style="flex: 1;">
+          <button type="button" onclick="document.getElementById('award-group-${awardCount}').remove(); updatePreview();" style="background: #fee2e2; color: #ef4444; border:none; padding: 0 8px; border-radius: 4px; cursor: pointer;">&times;</button>
+        </div>
+      `;
+      container.appendChild(div);
+      updatePreview();
+    }
+
+    function updatePreview() {
+      scalePreview();
+      const name = document.getElementById('in-name').value.trim();
+      const title = document.getElementById('in-title').value.trim();
+      const phone = document.getElementById('in-phone').value.trim();
+      const email = document.getElementById('in-email').value.trim();
+      const addr = document.getElementById('in-address').value.trim();
+      const web = document.getElementById('in-web').value.trim();
+      const about = document.getElementById('in-about').value.trim();
+
+      const pvName = document.getElementById('pv-name');
+      const pvTitle = document.getElementById('pv-title');
+      const pvPhone = document.getElementById('pv-item-phone');
+      const pvEmail = document.getElementById('pv-item-email');
+      const pvAddr = document.getElementById('pv-item-address');
+      const pvWeb = document.getElementById('pv-item-web');
+      const pvAbout = document.getElementById('pv-about');
+      const pvSectionAbout = document.getElementById('pv-section-about');
+      const pvSectionContact = document.getElementById('pv-section-contact');
+
+      pvName.textContent = name || "FIRST LAST NAME";
+      pvName.classList.toggle('placeholder-active', !name);
+      pvTitle.textContent = title || "Software Engineer";
+      pvTitle.classList.toggle('placeholder-active', !title);
+
+      if (!phone && !email && !addr && !web) {
+        pvSectionContact.classList.add('hide-on-print');
+        pvPhone.textContent = "phone placeholder"; pvPhone.classList.add('placeholder-active'); pvPhone.classList.remove('hide-on-print');
+        pvEmail.textContent = "email placeholder"; pvEmail.classList.add('placeholder-active'); pvEmail.classList.remove('hide-on-print');
+        pvAddr.textContent = ""; pvAddr.classList.remove('placeholder-active');
+        pvWeb.textContent = ""; pvWeb.classList.remove('placeholder-active');
+      } else {
+        pvSectionContact.classList.remove('hide-on-print');
+
+        pvPhone.textContent = phone;
+        pvPhone.classList.toggle('placeholder-active', false);
+        pvPhone.classList.toggle('hide-on-print', !phone);
+
+        pvEmail.textContent = email;
+        pvEmail.classList.toggle('placeholder-active', false);
+        pvEmail.classList.toggle('hide-on-print', !email);
+
+        pvAddr.textContent = addr;
+        pvAddr.classList.toggle('placeholder-active', false);
+        pvAddr.classList.toggle('hide-on-print', !addr);
+
+        pvWeb.textContent = web;
+        pvWeb.classList.toggle('placeholder-active', false);
+        pvWeb.classList.toggle('hide-on-print', !web);
+      }
+
+      if (!about) {
+        pvAbout.textContent = "A short professional summary...";
+        pvAbout.classList.add('placeholder-active');
+        pvSectionAbout.classList.add('hide-on-print');
+      } else {
+        pvAbout.textContent = about;
+        pvAbout.classList.remove('placeholder-active');
+        pvSectionAbout.classList.remove('hide-on-print');
+      }
+
+      // Lists
+      const expList = document.getElementById('pv-experience-list');
+      const pvSectionExp = document.getElementById('pv-section-experience');
+      expList.innerHTML = '';
+      const expInputs = document.querySelectorAll('#experience-form-container input');
+      let expFilledCount = 0;
+      expInputs.forEach(input => {
+        if (input.value.trim()) {
+          expFilledCount++;
+          const p = document.createElement('p');
+          p.className = 'exp-paragraph';
+          p.innerText = '• ' + input.value.trim();
+          expList.appendChild(p);
+        }
+      });
+      if (expFilledCount === 0) {
+        pvSectionExp.classList.add('hide-on-print');
+        for (let i = 0; i < 3; i++) {
+          const div = document.createElement('div');
+          div.className = 'placeholder-active';
+          div.style.width = '100%';
+          div.style.height = '12px';
+          div.style.marginBottom = '8px';
+          expList.appendChild(div);
+        }
+      } else {
+        pvSectionExp.classList.remove('hide-on-print');
+      }
+
+      const eduList = document.getElementById('pv-education-list');
+      const pvSectionEdu = document.getElementById('pv-section-education');
+      eduList.innerHTML = '';
+      let eduFilledCount = 0;
+      document.querySelectorAll('#education-form-container > div').forEach(group => {
+        const id = group.id.split('-').pop();
+        const univ = document.getElementById(`in-edu-${id}-univ`).value.trim();
+        const prog = document.getElementById(`in-edu-${id}-prog`).value.trim();
+        if (univ || prog) {
+          eduFilledCount++;
+          const li = document.createElement('li');
+          li.className = 'info-item';
+          li.innerHTML = `<strong style="display:block; margin-bottom: 2px;">${univ}</strong>${prog}`;
+          eduList.appendChild(li);
+        }
+      });
+      if (eduFilledCount === 0) {
+        pvSectionEdu.classList.add('hide-on-print');
+        for (let i = 0; i < 2; i++) {
+          const div = document.createElement('div');
+          div.className = 'placeholder-active';
+          div.style.width = '100%';
+          div.style.height = '12px';
+          div.style.marginBottom = '8px';
+          eduList.appendChild(div);
+        }
+      } else {
+        pvSectionEdu.classList.remove('hide-on-print');
+      }
+
+      const skillList = document.getElementById('pv-skills-list');
+      const pvSectionSkills = document.getElementById('pv-section-skills');
+      skillList.innerHTML = '';
+      let skillFilledCount = 0;
+      document.querySelectorAll('#skills-form-container input').forEach(input => {
+        if (input.value.trim()) {
+          skillFilledCount++;
+          const li = document.createElement('li');
+          li.className = 'skill-item';
+          li.innerText = input.value.trim();
+          skillList.appendChild(li);
+        }
+      });
+      if (skillFilledCount === 0) {
+        pvSectionSkills.classList.add('hide-on-print');
+        for (let i = 0; i < 3; i++) {
+          const div = document.createElement('div');
+          div.className = 'placeholder-active';
+          div.style.width = '100px';
+          div.style.height = '12px';
+          div.style.marginBottom = '8px';
+          skillList.appendChild(div);
+        }
+      } else {
+        pvSectionSkills.classList.remove('hide-on-print');
+      }
+
+      const awardList = document.getElementById('pv-awards-list');
+      const pvSectionAwards = document.getElementById('pv-section-awards');
+      awardList.innerHTML = '';
+      let awardsFilledCount = 0;
+      document.querySelectorAll('#awards-form-container input').forEach(input => {
+        if (input.value.trim()) {
+          awardsFilledCount++;
+          const li = document.createElement('li');
+          li.className = 'skill-item';
+          li.innerText = input.value.trim();
+          awardList.appendChild(li);
+        }
+      });
+      if (awardsFilledCount === 0) {
+        pvSectionAwards.classList.add('hide-on-print');
+        awardList.innerHTML = `
+          <li class="placeholder-active" style="width: 100%; height: 12px; margin-bottom: 8px;"></li>
+          <li class="placeholder-active" style="width: 85%; height: 12px; margin-bottom: 8px;"></li>
+          <li class="placeholder-active" style="width: 90%; height: 12px; margin-bottom: 8px;"></li>`;
+      } else {
+        pvSectionAwards.classList.remove('hide-on-print');
+      }
+
+      const rName = document.getElementById('in-ref-name').value.trim();
+      const rRole = document.getElementById('in-ref-role').value.trim();
+      const rPhone = document.getElementById('in-ref-phone').value.trim();
+      const rEmail = document.getElementById('in-ref-email').value.trim();
+      const pvSectionRef = document.getElementById('pv-section-references');
+      const pvRName = document.getElementById('pv-ref-name');
+      const pvRRole = document.getElementById('pv-ref-role');
+      const pvRPhone = document.getElementById('pv-ref-phone');
+      const pvREmail = document.getElementById('pv-ref-email');
+
+      if (!rName && !rRole && !rPhone && !rEmail) {
+        pvSectionRef.classList.add('hide-on-print');
+        pvRName.textContent = "Reference Name"; pvRName.classList.add('placeholder-active');
+        pvRRole.textContent = "Company / Role"; pvRRole.classList.add('placeholder-active');
+      } else {
+        pvSectionRef.classList.remove('hide-on-print');
+        pvRName.textContent = rName || "Reference Name";
+        pvRName.classList.toggle('placeholder-active', !rName);
+        pvRRole.textContent = rRole || "Company / Role";
+        pvRRole.classList.toggle('placeholder-active', !rRole);
+        pvRPhone.textContent = rPhone;
+        pvREmail.textContent = rEmail;
+      }
+    }
+
+    function scalePreview() {
+      const outer = document.getElementById('preview-outer');
+      const inner = document.getElementById('preview-inner');
+      const resume = document.getElementById('resume-preview');
+      if (!outer || !inner || !resume) return;
+
+      const padding = 80;
+      const availableWidth = outer.offsetWidth - padding;
+      const availableHeight = outer.offsetHeight - padding;
+
+      const scaleX = availableWidth / 794;
+      const scaleY = availableHeight / 1123;
+      const scale = Math.min(scaleX, scaleY);
+
+      inner.style.transform = `scale(${scale})`;
+    }
+
+    function validateAndPrint() {
+      window.print();
+    }
+
+    window.onload = function () {
+      addExperienceField();
+      addEducationField();
+      addSkillField();
+      addAwardField();
+      updatePreview();
+      scalePreview();
+    };
+
+    window.onresize = scalePreview;
+  </script>
+</body>
+
+</html>

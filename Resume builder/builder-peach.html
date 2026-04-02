@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder: Creative Peach — Density Resume Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── BASE STYLES ── */
+    :root {
+      --primary: #4F46E5;
+      /* Professional Indigo */
+      --primary-hover: #4338CA;
+      --secondary: #0D9488;
+      /* Professional Teal */
+      --secondary-hover: #0F766E;
+      --bg-panel: #F8FAFC;
+      /* Clean off-white */
+      --border-color: #E2E8F0;
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --resume-peach: #ffdfbe;
+      --resume-sidebar: #919191;
+    }
+
+    .btn-add {
+      background: var(--secondary);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-add:hover {
+      background: var(--secondary-hover);
+      transform: translateY(-1px);
+    }
+
+    .placeholder-active {
+      background-color: #EDF2F7 !important;
+      color: transparent !important;
+      border-radius: 50px;
+      display: inline-block;
+      min-width: 100px;
+      height: 12px;
+      margin: 4px 0;
+    }
+
+    .dashed-placeholder {
+      color: #cbd5e1 !important;
+      background-color: transparent !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text-dark);
+      overflow: hidden;
+    }
+
+    /* ── LAYOUT ── */
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Left Panel: Form */
+    .form-panel {
+      width: 40%;
+      height: 100%;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .form-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border-color);
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .btn-download {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-download:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1.5px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+
+    .form-body {
+      flex: 1;
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .form-section h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      display: block;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    .form-section h3::after {
+      display: none;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .form-body input,
+    .form-body textarea {
+      width: 100%;
+      padding: 16px 20px;
+      /* Even more padding */
+      border: 1px solid var(--border-color);
+      background: #fdfdfd;
+      border-radius: 12px;
+      /* More rounded corners */
+      font-family: inherit;
+      font-size: 16px;
+      /* Larger font */
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .form-body input:focus,
+    .form-body textarea:focus {
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(240, 98, 146, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .form-body textarea {
+      height: 160px;
+      resize: none;
+    }
+
+    /* Right Panel: Preview */
+    .preview-outer {
+      height: 100vh;
+      width: 60%;
+      background: #e2e8f0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .preview-inner {
+      transform-origin: center center;
+    }
+
+    /* ── RESUME STYLING (CREATIVE PEACH) ── */
+    #resume-preview {
+      width: 794px;
+      height: 1123px;
+      background: #fff;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      font-family: 'Inter', sans-serif !important;
+      color: #000;
+      overflow: hidden;
+    }
+
+    /* Decorative Sidebar Stripe */
+    .theme-sidebar {
+      position: absolute;
+      top: 0;
+      left: 0.98cm;
+      width: 6.3cm;
+      height: 29.7cm;
+      background: var(--resume-sidebar);
+      z-index: 1;
+    }
+
+    /* Accent Header Bar */
+    .theme-top-bar {
+      position: absolute;
+      left: 0.98cm;
+      top: 2.1cm;
+      width: 19.36cm;
+      height: 1.84cm;
+      background: var(--resume-peach);
+      z-index: 5;
+    }
+
+    .resume-header {
+      position: absolute;
+      top: 2.1cm;
+      left: 0;
+      height: 1.84cm;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      z-index: 10;
+      padding-left: 1.1cm;
+      /* Aligned with sidebar margin */
+    }
+
+    .header-center {
+      text-align: left;
+    }
+
+    .header-center h1 {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 36pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      /* Tracked out */
+      margin-bottom: 0px;
+      line-height: 1;
+    }
+
+    .resume-body {
+      display: flex;
+      flex: 1;
+      padding-top: 4.1cm;
+      /* Push below the peach bar (2.1cm top + 1.84cm height + gap) */
+    }
+
+    .resume-side-decorative {
+      width: 7.28cm;
+      flex-shrink: 0;
+      z-index: 2;
+      padding: 20px 18px 40px 1.3cm;
+      color: #fff;
+    }
+
+    .sidebar-section {
+      margin-bottom: 22px;
+    }
+
+    .sidebar-section-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 4px;
+    }
+
+    .sidebar-item {
+      font-size: 11px;
+      line-height: 1.6;
+      color: #f0f0f0;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-item svg {
+      flex-shrink: 0;
+      width: 12px;
+      height: 12px;
+      stroke: #fff;
+      margin-top: 2px;
+    }
+
+    .sidebar-edu-item {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #f0f0f0;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-edu-item strong {
+      display: block;
+      color: #fff;
+      font-size: 11px;
+    }
+
+    .sidebar-skill-item {
+      font-size: 11px;
+      line-height: 1.8;
+      color: #f0f0f0;
+      display: block;
+    }
+
+    .resume-main {
+      flex: 1;
+      padding: 20px 60px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      z-index: 2;
+    }
+
+    .resume-section-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 15px;
+      display: block;
+      border-bottom: 1px solid #999;
+      padding-bottom: 8px;
+    }
+
+    .sidebar-section-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 4px;
+    }
+
+    .exp-paragraph,
+    .edu-item,
+    .skill-item,
+    .ref-item,
+    .contact-list-item {
+      font-size: 14px !important;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .sidebar-item,
+    .sidebar-edu-item,
+    .sidebar-skill-item {
+      font-size: 11px;
+      line-height: 1.6;
+      color: #f0f0f0;
+      display: block;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 5px;
+    }
+
+    .contact-list-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-icon {
+      width: 14px;
+      height: 14px;
+      stroke: #000;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      @page {
+        margin: 0;
+        size: A4;
+      }
+
+      body,
+      html {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background: white;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #resume-preview,
+      #resume-preview * {
+        visibility: visible;
+      }
+
+      .preview-outer,
+      .preview-inner {
+        position: static !important;
+        transform: none !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      #resume-preview {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        transform: scale(1) !important;
+        overflow: hidden !important;
+      }
+
+      .form-panel,
+      .form-header {
+        display: none !important;
+      }
+
+      .placeholder-active,
+      .hide-on-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+    <div class="form-panel">
+      <div class="form-header">
+        <a href="templates.html"
+          style="text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 600;">← Back</a>
+        <h2>Creative Peach</h2>
+        <button class="btn-download" onclick="window.print()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download PDF
+        </button>
+      </div>
+
+      <div class="form-body">
+        <div class="form-section">
+          <h3>Personal Info</h3>
+          <div class="input-group">
+            <label>Full Name <span style="color: red;">*</span></label>
+            <input type="text" id="in-name" placeholder="FIRST LAST NAME" oninput="updatePreview()" required>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Contact Detail</h3>
+          <div class="input-group"><label>Phone</label><input type="text" id="in-phone" oninput="updatePreview()"
+              placeholder="+123-456-7890"></div>
+          <div class="input-group"><label>Email</label><input type="text" id="in-email" oninput="updatePreview()"
+              placeholder="hello@reallygreatsite.com"></div>
+          <div class="input-group"><label>Address</label><input type="text" id="in-address" oninput="updatePreview()"
+              placeholder="9123 Anywhere St., Any City"></div>
+          <div class="input-group"><label>Website/Link</label><input type="text" id="in-web" oninput="updatePreview()"
+              placeholder="www.reallygreatsite.com"></div>
+        </div>
+
+        <div class="form-section">
+          <h3>Profile</h3>
+          <div class="input-group"><textarea id="in-about" oninput="updatePreview()"
+              placeholder="A brief summary..."></textarea></div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Professional Experience</h3>
+            <button type="button" onclick="addExperienceField()" class="btn-add">+ Add Point</button>
+          </div>
+          <div id="experience-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Education</h3>
+            <button type="button" onclick="addEducationField()" class="btn-add">+ Add Education</button>
+          </div>
+          <div id="education-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Skills</h3>
+            <button type="button" onclick="addSkillField()" class="btn-add">+ Add Skill</button>
+          </div>
+          <div id="skills-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Languages</h3>
+            <button type="button" onclick="addLanguageField()" class="btn-add">+ Add Language</button>
+          </div>
+          <div id="languages-form-container"></div>
+        </div>
+
+        <div class="form-section">
+          <h3>References</h3>
+          <div class="input-group"><label>Name</label><input type="text" id="in-ref-name" oninput="updatePreview()">
+          </div>
+          <div class="input-group"><label>Role</label><input type="text" id="in-ref-role" oninput="updatePreview()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-outer" id="preview-outer">
+      <div class="preview-inner" id="preview-inner">
+        <div id="resume-preview" class="resume-page">
+          <div class="theme-sidebar"></div>
+          <div class="theme-top-bar"></div>
+
+          <div class="resume-header">
+            <div class="header-center">
+              <h1 id="pv-name">FIRST LAST NAME</h1>
+            </div>
+          </div>
+
+          <div class="resume-body">
+            <div class="resume-side-decorative">
+              <!-- Contact in Sidebar -->
+              <div class="sidebar-section" id="pv-section-contact">
+                <div class="sidebar-section-title">Contact</div>
+                <div id="pv-item-phone" class="sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.11-2.11a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                  <span id="pv-phone"></span>
+                </div>
+                <div id="pv-item-email" class="sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <span id="pv-email"></span>
+                </div>
+                <div id="pv-item-address" class="sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span id="pv-address"></span>
+                </div>
+                <div id="pv-item-web" class="sidebar-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                  </svg>
+                  <span id="pv-web"></span>
+                </div>
+              </div>
+
+              <!-- Education in Sidebar -->
+              <div class="sidebar-section" id="pv-section-education">
+                <div class="sidebar-section-title">Education</div>
+                <div id="pv-education-list"></div>
+              </div>
+
+              <!-- Skills in Sidebar -->
+              <div class="sidebar-section" id="pv-section-skills">
+                <div class="sidebar-section-title">Skills</div>
+                <div id="pv-skills-list"></div>
+              </div>
+
+              <!-- Languages in Sidebar -->
+              <div class="sidebar-section" id="pv-section-languages">
+                <div class="sidebar-section-title">Languages</div>
+                <div id="pv-languages-list"></div>
+              </div>
+            </div>
+
+            <div class="resume-main">
+              <div id="pv-section-about">
+                <h4 class="resume-section-title">Profile</h4>
+                <p id="pv-about" class="exp-paragraph"></p>
+              </div>
+
+              <div id="pv-section-experience">
+                <h4 class="resume-section-title">Professional Experience</h4>
+                <div id="pv-experience-list"></div>
+              </div>
+
+              <div id="pv-section-references">
+                <h4 class="resume-section-title">References</h4>
+                <div id="pv-ref-item">
+                  <p id="pv-ref-name" style="font-weight: 800;"></p>
+                  <p id="pv-ref-role" style="color: #555;"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updatePreview() {
+      adjustScale();
+      const name = document.getElementById('in-name').value.trim();
+
+      const pvName = document.getElementById('pv-name');
+
+      if (!name) { pvName.textContent = "FIRST LAST NAME"; pvName.classList.remove('placeholder-active'); }
+      else { pvName.textContent = name; pvName.classList.remove('placeholder-active'); }
+
+
+
+      const phone = document.getElementById('in-phone').value.trim();
+      const email = document.getElementById('in-email').value.trim();
+      const addr = document.getElementById('in-address').value.trim();
+      const web = document.getElementById('in-web').value.trim();
+      const pvPhone = document.getElementById('pv-phone');
+      const pvEmail = document.getElementById('pv-email');
+      const pvAddr = document.getElementById('pv-address');
+      const pvWeb = document.getElementById('pv-web');
+
+      const pvSectionContact = document.getElementById('pv-section-contact');
+
+      if (!phone) { pvPhone.textContent = "+123-456-7890"; pvPhone.classList.add('placeholder-active'); document.getElementById('pv-item-phone').classList.add('hide-on-print'); }
+      else { pvPhone.textContent = phone; pvPhone.classList.remove('placeholder-active'); document.getElementById('pv-item-phone').classList.remove('hide-on-print'); }
+
+      if (!email) { pvEmail.textContent = "hello@reallygreatsite.com"; pvEmail.classList.add('placeholder-active'); document.getElementById('pv-item-email').classList.add('hide-on-print'); }
+      else { pvEmail.textContent = email; pvEmail.classList.remove('placeholder-active'); document.getElementById('pv-item-email').classList.remove('hide-on-print'); }
+
+      if (!addr) { pvAddr.textContent = "City, Country"; pvAddr.classList.add('placeholder-active'); document.getElementById('pv-item-address').classList.add('hide-on-print'); }
+      else { pvAddr.textContent = addr; pvAddr.classList.remove('placeholder-active'); document.getElementById('pv-item-address').classList.remove('hide-on-print'); }
+
+      if (!web) { pvWeb.textContent = "website.com"; pvWeb.classList.add('placeholder-active'); document.getElementById('pv-item-web').classList.add('hide-on-print'); }
+      else { pvWeb.textContent = web; pvWeb.classList.remove('placeholder-active'); document.getElementById('pv-item-web').classList.remove('hide-on-print'); }
+
+      if (!phone && !email && !addr && !web) pvSectionContact.classList.add('hide-on-print');
+      else pvSectionContact.classList.remove('hide-on-print');
+
+      const about = document.getElementById('in-about').value.trim();
+      const pvAbout = document.getElementById('pv-about');
+      const pvSectionAbout = document.getElementById('pv-section-about');
+      if (!about) {
+        pvAbout.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+        pvAbout.classList.add('placeholder-active');
+        pvSectionAbout.classList.add('hide-on-print');
+      } else {
+        pvAbout.textContent = about;
+        pvAbout.classList.remove('placeholder-active');
+        pvSectionAbout.classList.remove('hide-on-print');
+      }
+
+      // Experience
+      const expList = document.getElementById('pv-experience-list');
+      const pvSectionExp = document.getElementById('pv-section-experience');
+      expList.innerHTML = '';
+      const expInputs = document.querySelectorAll('#experience-form-container input');
+      let expFilledCount = 0;
+
+      expInputs.forEach(input => {
+        if (input.value.trim()) {
+          expFilledCount++;
+          const p = document.createElement('p');
+          p.className = 'exp-paragraph';
+          p.textContent = "• " + input.value;
+          expList.appendChild(p);
+        }
+      });
+
+      if (expFilledCount === 0) {
+        pvSectionExp.classList.add('hide-on-print');
+        for (let i = 0; i < 3; i++) {
+          const div = document.createElement('div');
+          div.className = 'placeholder-active';
+          div.style.width = '100%';
+          div.style.height = '14px';
+          div.style.marginBottom = '8px';
+          div.textContent = " ";
+          expList.appendChild(div);
+        }
+      } else {
+        pvSectionExp.classList.remove('hide-on-print');
+      }
+
+      // Education
+      const eduList = document.getElementById('pv-education-list');
+      const pvSectionEdu = document.getElementById('pv-section-education');
+      eduList.innerHTML = '';
+      const eduGroups = document.querySelectorAll('#education-form-container > div');
+      let eduFilledCount = 0;
+
+      eduGroups.forEach(group => {
+        const id = group.id.split('-').pop();
+        const univ = document.getElementById(`in-edu-${id}-univ`).value.trim();
+        const start = document.getElementById(`in-edu-${id}-start`).value.trim();
+        const end = document.getElementById(`in-edu-${id}-end`).value.trim();
+        const prog = document.getElementById(`in-edu-${id}-prog`).value.trim();
+
+        if (univ || prog) {
+          eduFilledCount++;
+          const div = document.createElement('div');
+          div.className = 'sidebar-edu-item';
+          div.innerHTML = `<strong>${start}${start && end ? ' - ' : ''}${end}</strong>${univ}<br><em>${prog}</em>`;
+          eduList.appendChild(div);
+        }
+      });
+
+      if (eduFilledCount === 0) {
+        pvSectionEdu.classList.add('hide-on-print');
+        for (let i = 0; i < 2; i++) {
+          const div = document.createElement('div');
+          div.className = 'placeholder-active';
+          div.style.width = '100%';
+          div.style.height = '14px';
+          div.style.marginBottom = '8px';
+          div.textContent = " ";
+          eduList.appendChild(div);
+        }
+      } else {
+        pvSectionEdu.classList.remove('hide-on-print');
+      }
+
+      // Skills
+      const skillList = document.getElementById('pv-skills-list');
+      const pvSectionSkills = document.getElementById('pv-section-skills');
+      skillList.innerHTML = '';
+      const skillInputs = document.querySelectorAll('#skills-form-container input');
+      let skillFilledCount = 0;
+
+      skillInputs.forEach(input => {
+        if (input.value.trim()) {
+          skillFilledCount++;
+          const span = document.createElement('span');
+          span.className = 'sidebar-skill-item';
+          span.textContent = '• ' + input.value;
+          skillList.appendChild(span);
+        }
+      });
+
+      if (skillFilledCount === 0) {
+        pvSectionSkills.classList.add('hide-on-print');
+        for (let i = 0; i < 3; i++) {
+          const div = document.createElement('div');
+          div.className = 'placeholder-active';
+          div.style.width = '80px';
+          div.style.height = '14px';
+          div.textContent = " ";
+          skillList.appendChild(div);
+        }
+      } else {
+        pvSectionSkills.classList.remove('hide-on-print');
+      }
+
+      // Languages
+      const langList = document.getElementById('pv-languages-list');
+      const pvSectionLang = document.getElementById('pv-section-languages');
+      langList.innerHTML = '';
+      const langInputs = document.querySelectorAll('#languages-form-container input');
+      let langFilledCount = 0;
+
+      langInputs.forEach(input => {
+        if (input.value.trim()) {
+          langFilledCount++;
+          const span = document.createElement('span');
+          span.className = 'sidebar-skill-item';
+          span.textContent = '• ' + input.value;
+          langList.appendChild(span);
+        }
+      });
+
+      if (langFilledCount === 0) {
+        pvSectionLang.classList.add('hide-on-print');
+        for (let i = 0; i < 2; i++) {
+          const div = document.createElement('div');
+          div.className = 'placeholder-active';
+          div.style.width = '80px';
+          div.style.height = '14px';
+          div.textContent = " ";
+          langList.appendChild(div);
+        }
+      } else {
+        pvSectionLang.classList.remove('hide-on-print');
+      }
+
+      // References
+      const rName = document.getElementById('in-ref-name').value.trim();
+      const rRole = document.getElementById('in-ref-role').value.trim();
+      const pvRName = document.getElementById('pv-ref-name');
+      const pvRRole = document.getElementById('pv-ref-role');
+      const pvSectionRef = document.getElementById('pv-section-references');
+
+      if (!rName && !rRole) {
+        pvSectionRef.classList.add('hide-on-print');
+        pvRName.textContent = "Reference Name"; pvRName.classList.add('placeholder-active');
+        pvRRole.textContent = "Role / Company"; pvRRole.classList.add('placeholder-active');
+      } else {
+        pvSectionRef.classList.remove('hide-on-print');
+        pvRName.textContent = rName || "Reference Name";
+        pvRName.classList.toggle('placeholder-active', !rName);
+        pvRRole.textContent = rRole || "Role / Company";
+        pvRRole.classList.toggle('placeholder-active', !rRole);
+      }
+    }
+
+    let expCount = 0;
+    function addExperienceField() {
+      expCount++;
+      const div = document.createElement('div');
+      div.id = `exp-group-${expCount}`;
+      div.style.display = 'flex'; div.style.gap = '10px'; div.style.marginBottom = '10px';
+      div.innerHTML = `<input type="text" oninput="updatePreview()" placeholder="Experience point..." style="flex:1; width:100%;"><button type="button" onclick="this.parentElement.remove(); updatePreview()" style="color:red; background:none; border:none; cursor:pointer;">&times;</button>`;
+      document.getElementById('experience-form-container').appendChild(div);
+    }
+
+    let eduCount = 0;
+    function addEducationField() {
+      eduCount++;
+      const div = document.createElement('div');
+      div.id = `edu-group-${eduCount}`;
+      div.style.border = '1px solid #ddd'; div.style.padding = '10px'; div.style.marginBottom = '10px'; div.style.borderRadius = '4px';
+      div.innerHTML = `
+        <div class="input-group"><label>University</label><input type="text" id="in-edu-${eduCount}-univ" oninput="updatePreview()"></div>
+        <div style="display:flex; gap:10px;">
+          <div class="input-group" style="flex:1;"><label>Start</label><input type="text" id="in-edu-${eduCount}-start" oninput="updatePreview()"></div>
+          <div class="input-group" style="flex:1;"><label>End</label><input type="text" id="in-edu-${eduCount}-end" oninput="updatePreview()"></div>
+        </div>
+        <div class="input-group"><label>Degree</label><input type="text" id="in-edu-${eduCount}-prog" oninput="updatePreview()"></div>
+        <button type="button" onclick="this.parentElement.remove(); updatePreview()" style="color:red; font-size:12px; cursor:pointer; background:none; border:none;">Remove</button>
+      `;
+      document.getElementById('education-form-container').appendChild(div);
+    }
+
+    let skillCount = 0;
+    function addSkillField() {
+      skillCount++;
+      const div = document.createElement('div');
+      div.style.display = 'flex'; div.style.gap = '10px'; div.style.marginBottom = '10px';
+      div.innerHTML = `<input type="text" oninput="updatePreview()" placeholder="Skill..." style="flex:1; width:100%;"><button type="button" onclick="this.parentElement.remove(); updatePreview()" style="color:red; background:none; border:none; cursor:pointer;">&times;</button>`;
+      document.getElementById('skills-form-container').appendChild(div);
+    }
+
+    let langCount = 0;
+    function addLanguageField() {
+      langCount++;
+      const div = document.createElement('div');
+      div.style.display = 'flex'; div.style.gap = '10px'; div.style.marginBottom = '10px';
+      div.innerHTML = `<input type="text" oninput="updatePreview()" placeholder="e.g. English" style="flex:1; width:100%;"><button type="button" onclick="this.parentElement.remove(); updatePreview()" style="color:red; background:none; border:none; cursor:pointer;">&times;</button>`;
+      document.getElementById('languages-form-container').appendChild(div);
+    }
+
+    function adjustScale() {
+      const inner = document.getElementById('preview-inner');
+      const outer = document.getElementById('preview-outer');
+      if (!inner || !outer) return;
+      const scale = Math.min((outer.clientWidth - 80) / 794, (outer.clientHeight - 80) / 1123);
+      inner.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', adjustScale);
+    window.addEventListener('load', adjustScale);
+    setTimeout(adjustScale, 100);
+
+    // Start with one default row per section
+    addExperienceField();
+    addEducationField();
+    addSkillField();
+    addLanguageField();
+    updatePreview();
+  </script>
+</body>
+
+</html>

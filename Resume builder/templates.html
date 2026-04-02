@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choose Your Template — Density Resume Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-hover: #6d28d9;
+      --bg-lavender: #f5f3ff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --glass-bg: rgba(255, 255, 255, 0.8);
+      --glass-border: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── BASE STYLES ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      height: 64px;
+      padding: 0 32px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 1px 1px rgba(0,0,0,0.02), 0 2px 10px rgba(0,0,0,0.04);
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #000;
+      transition: opacity 0.2s;
+    }
+    .brand-logo:hover { opacity: 0.8; }
+    .brand-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .brand-logo span { font-size: 1.15rem; font-weight: 650; letter-spacing: -0.01em; }
+    .brand-logo strong { font-weight: 800; }
+
+    /* ── PREMIUM HEADER ── */
+    .hero-header {
+      margin-top: 64px;
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      padding: 100px 32px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-header h1 {
+      font-size: 64px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      letter-spacing: -0.04em;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-header h1 span {
+      background: linear-gradient(to right, #7c3aed, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-header p {
+      font-size: 21px;
+      color: var(--text-muted);
+      font-weight: 500;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.5;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    /* ── GALLERY GRID ── */
+    .gallery-container {
+      padding: 40px 32px 160px;
+      max-width: 1400px;
+      margin: 0 auto;
+      margin-top: -60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1200px) {
+      .templates-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .templates-grid { grid-template-columns: 1fr; }
+    }
+
+    /* NO ROUNDED EDGES */
+    .template-card {
+      background: #ffffff;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+      border: 1px solid #f1f5f9;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    .template-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+    }
+
+    .preview-box {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      background: #f8fafc;
+      position: relative;
+      border-radius: 0;
+    }
+
+    /* Hover overlay on image */
+    .preview-box::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(12, 15, 25, 0);
+      transition: background 0.4s;
+    }
+
+    .template-card:hover .preview-box::after {
+      background: rgba(12, 15, 25, 0.4);
+    }
+
+    .preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .template-card:hover .preview-box img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 24px;
+      background: #fff;
+    }
+
+    .card-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .card-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
+
+    /* ── OVERLAY BUTTON - NO ROUNDED EDGES ── */
+    .btn-action {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -10%);
+      z-index: 10;
+      display: inline-block;
+      width: 70%;
+      padding: 14px;
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      
+      /* HIDE BY DEFAULT */
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .template-card:hover .btn-action {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+    }
+
+    .btn-action:hover {
+      background: var(--primary-hover);
+      transform: translate(-50%, -55%);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .badge-pop {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 0;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 5;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-pop.featured { background: var(--primary); color: #fff; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer {
+      width: 100%;
+      height: 60px;
+      background: #fff;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 32px;
+    }
+    .footer span { font-size: 13px; color: #94a3b8; font-weight: 500; }
+
+    /* STAGGERED ANIMATIONS */
+    .template-card:nth-child(n) { animation-delay: calc(0.1s * var(--i, 0)); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <img src="img/logo.png" alt="Density Logo">
+      <span>Density <strong>Resume Builder</strong></span>
+    </a>
+  </nav>
+
+  <!-- PREMIUM HEADER -->
+  <section class="hero-header">
+    <h1>Choose Your <span>Template</span></h1>
+    <p>Hand-crafted, ATS-optimized designs optimized to help you land your dream job.</p>
+  </section>
+
+  <!-- GALLERY -->
+  <main class="gallery-container">
+    <div class="templates-grid">
+      
+      <!-- Row 1 -->
+      <div class="template-card" style="--i:1;">
+        <span class="badge-pop featured">Top Pick</span>
+        <div class="preview-box">
+          <img src="img/template2.png" alt="Professional Teal Template">
+          <a href="builder-teal.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Professional Teal</h3>
+          <p>Dual-column with sleek teal accents.</p>
+        </div>
+      </div>
+
+      <div class="template-card" style="--i:2;">
+        <div class="preview-box">
+          <img src="img/template3.jpg" alt="Dark Sidebar Template">
+          <a href="builder-dark.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Executive Dark</h3>
+          <p>High-contrast strategic design.</p>
+        </div>
+      </div>
+
+      <div class="template-card" style="--i:3;">
+        <div class="preview-box">
+          <img src="img/template4.jpg" alt="Modern Beige Template">
+          <a href="builder-modern.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Modern Beige</h3>
+          <p>Sophisticated and contemporary tones.</p>
+        </div>
+      </div>
+
+    <div class="template-card" style="--i:4;">
+        <div class="preview-box">
+          <img src="img/template1.jpg" alt="Minimalist Template">
+          <a href="builder-minimalist.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Minimalist Classic</h3>
+          <p>Clean and efficient one-column layout.</p>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="template-card" style="--i:5;">
+        <div class="preview-box">
+          <img src="img/template5.jpg" alt="Monochrome Resume">
+          <a href="builder-monochrome.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Monochrome Clean</h3>
+          <p>Classic gray-scale professional layout.</p>
+        </div>
+      </div>
+
+      <div class="template-card" style="--i:6;">
+        <div class="preview-box">
+          <img src="img/template6.jpg" alt="Peach Sidebar Resume">
+          <a href="builder-peach.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Creative Peach</h3>
+          <p>Modern touch with subtle warm accents.</p>
+        </div>
+      </div>
+
+      <div class="template-card" style="--i:7;">
+        <div class="preview-box">
+          <img src="img/template7.jpg" alt="Beige Sidebar Resume">
+          <a href="builder-cream.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Contemporary Cream</h3>
+          <p>Elegant beige sidebar for a refined look.</p>
+        </div>
+      </div>
+
+      <div class="template-card" style="--i:8;">
+        <div class="preview-box">
+          <img src="img/template8.jpg" alt="Textual Resume">
+          <a href="builder-textual.html" class="btn-action">Build with this</a>
+        </div>
+        <div class="card-content">
+          <h3>Modern Textual</h3>
+          <p>Spacious layout focused on readability.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>© 2026 Density Resume Builder • Designed for Success</span>
+  </footer>
+
+</body>
+</html>
