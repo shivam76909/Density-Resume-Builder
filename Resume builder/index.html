@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Density Resume Builder — Build Your Future</title>
-  <link rel="icon" type="image/png" sizes="512x512" href="img/logo.png">
-  <link rel="apple-touch-icon" href="img/logo.png">
   <meta name="description" content="Density crafts job-winning CVs in minutes. No templates, just results."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -35,6 +33,7 @@
     .navbar {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       height: 64px;
       padding: 0 32px;
       background: rgba(248, 250, 252, 0.8);
@@ -45,6 +44,19 @@
       top: 0; width: 100%;
       z-index: 1000;
     }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #475569;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #4F46E5; }
 
     .brand-logo {
       display: flex;
@@ -163,6 +175,11 @@
       <img src="img/logo.png" alt="Density Logo">
       <span>Density <strong>Resume Builder</strong></span>
     </a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy</a>
+    </div>
   </nav>
 
   <!-- HERO SECTION -->
@@ -175,6 +192,11 @@
   <!-- BOTTOM BAR -->
   <div class="bottom-bar">
     <span>© 2026 Density Resume Builder • Designed for Success</span>
+    <span style="margin-left:auto; display:flex; gap:16px;">
+      <a href="about.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">About</a>
+      <a href="contact.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">Contact</a>
+      <a href="privacy-policy.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">Privacy Policy</a>
+    </span>
   </div>
 
 </body>
