@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — Density Resume Builder</title>
+  <meta name="description" content="Read the Privacy Policy for Density Resume Builder. Learn how we collect, use, and protect your personal data."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --bg-light: #F8FAFC;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      height: 64px;
+      padding: 0 32px;
+      background: rgba(248, 250, 252, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px -2px rgba(0,0,0,0.06);
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #000;
+    }
+    .brand-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .brand-logo span { font-size: 1.15rem; font-weight: 650; letter-spacing: -0.01em; }
+    .brand-logo strong { font-weight: 800; }
+
+    /* ── PAGE CONTENT ── */
+    .page-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 104px 32px 80px;
+    }
+
+    /* Hero banner */
+    .page-hero {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-bottom: 48px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50%;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -20px;
+      width: 160px; height: 160px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .page-hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .page-hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+    .page-hero p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 400;
+    }
+
+    /* Content card */
+    .content-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
+
+    /* Section */
+    .policy-section {
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid #f1f5f9;
+      animation: fadeInUp 0.5s ease backwards;
+    }
+    .policy-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px; height: 30px;
+      background: #EEF2FF;
+      color: var(--primary);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .policy-section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 12px;
+    }
+    .policy-section p {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .policy-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+    .policy-section ul li {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.7;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .policy-section ul li::before {
+      content: '•';
+      color: var(--primary);
+      font-size: 18px;
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: #EEF2FF;
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 12px;
+    }
+    .highlight-box p {
+      color: #3730A3 !important;
+      font-size: 14px !important;
+      margin: 0 !important;
+    }
+
+    /* Contact link */
+    a.inline-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a.inline-link:hover { text-decoration: underline; }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar {
+      width: 100%;
+      height: 48px;
+      background: #fff;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 20px;
+    }
+    .bottom-bar span {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 400;
+    }
+    .bottom-bar a {
+      font-size: 11px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .bottom-bar a:hover { text-decoration: underline; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <img src="img/logo.png" alt="Density Logo">
+      <span>Density <strong>Resume Builder</strong></span>
+    </a>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-wrapper">
+
+    <!-- Hero Banner -->
+    <div class="page-hero">
+      <div class="badge">Legal</div>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: April 5, 2026 &nbsp;•&nbsp; Effective immediately</p>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+
+      <!-- 1 -->
+      <div class="policy-section" style="animation-delay:0.05s">
+        <div class="section-num">1</div>
+        <h2>Introduction</h2>
+        <p>Welcome to <strong>Density Resume Builder</strong> ("we", "our", or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+        <div class="highlight-box">
+          <p>By using Density Resume Builder, you agree to the collection and use of information in accordance with this policy.</p>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="policy-section" style="animation-delay:0.1s">
+        <div class="section-num">2</div>
+        <h2>Information We Collect</h2>
+        <p>We may collect the following types of information:</p>
+        <ul>
+          <li><strong>Resume Data:</strong> Name, contact details, work experience, education, and skills you enter into the builder — stored locally in your browser only.</li>
+          <li><strong>Usage Data:</strong> Pages visited, time spent, browser type, operating system, and referring URLs (via Google Analytics).</li>
+          <li><strong>Cookies:</strong> Small data files placed on your device to improve your experience and serve relevant advertisements.</li>
+        </ul>
+      </div>
+
+      <!-- 3 -->
+      <div class="policy-section" style="animation-delay:0.15s">
+        <div class="section-num">3</div>
+        <h2>How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Operate and maintain the resume builder tool</li>
+          <li>Improve, personalize, and expand our website features</li>
+          <li>Understand and analyze how you use our site</li>
+          <li>Display personalized advertisements via Google AdSense</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+      </div>
+
+      <!-- 4 -->
+      <div class="policy-section" style="animation-delay:0.2s">
+        <div class="section-num">4</div>
+        <h2>Google AdSense & Cookies</h2>
+        <p>We use <strong>Google AdSense</strong> to display advertisements on our website. Google may use cookies to serve ads based on your prior visits to our site or other websites on the internet.</p>
+        <ul>
+          <li>Google's use of advertising cookies enables it to serve ads based on your browsing history.</li>
+          <li>You may opt out of personalized advertising by visiting <a class="inline-link" href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>.</li>
+          <li>For more information, see the <a class="inline-link" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Advertising Policies</a>.</li>
+        </ul>
+      </div>
+
+      <!-- 5 -->
+      <div class="policy-section" style="animation-delay:0.25s">
+        <div class="section-num">5</div>
+        <h2>Data Storage & Security</h2>
+        <p>All resume data you enter is stored <strong>locally in your browser</strong> (localStorage) and is never transmitted to our servers. We implement appropriate technical measures to protect any usage data we do collect against unauthorized access, alteration, or destruction.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="policy-section" style="animation-delay:0.3s">
+        <div class="section-num">6</div>
+        <h2>Third-Party Links</h2>
+        <p>Our website may contain links to external sites. We are not responsible for the content or privacy practices of these sites and encourage you to review their individual privacy policies.</p>
+      </div>
+
+      <!-- 7 -->
+      <div class="policy-section" style="animation-delay:0.35s">
+        <div class="section-num">7</div>
+        <h2>Children's Privacy</h2>
+        <p>Density Resume Builder is not directed to individuals under the age of <strong>13</strong>. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us immediately.</p>
+      </div>
+
+      <!-- 8 -->
+      <div class="policy-section" style="animation-delay:0.4s">
+        <div class="section-num">8</div>
+        <h2>Changes to This Policy</h2>
+        <p>We reserve the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated effective date. Continued use of the site after changes constitutes your acceptance of the revised policy.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="policy-section" style="animation-delay:0.45s">
+        <div class="section-num">9</div>
+        <h2>Contact Us</h2>
+        <p>If you have questions or concerns about this Privacy Policy, please reach out to us via our <a class="inline-link" href="contact.html">Contact page</a>.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <span>© 2026 Density Resume Builder</span>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+</body>
+</html>
