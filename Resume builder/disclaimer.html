@@ -1,1 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disclaimer — Density Resume Builder</title>
+  <meta name="description" content="Read the Disclaimer for Density Resume Builder — understand the limitations and scope of our free resume creation tool."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --bg-light: #F8FAFC;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      height: 64px;
+      padding: 0 32px;
+      background: rgba(248, 250, 252, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px -2px rgba(0,0,0,0.06);
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #000;
+    }
+    .brand-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .brand-logo span { font-size: 1.15rem; font-weight: 650; letter-spacing: -0.01em; }
+    .brand-logo strong { font-weight: 800; }
+
+    /* ── PAGE WRAPPER ── */
+    .page-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 104px 32px 80px;
+    }
+
+    /* ── HERO BANNER ── */
+    .page-hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
+      border-radius: 20px;
+      padding: 56px 48px;
+      margin-bottom: 48px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(79,70,229,0.4) 0%, transparent 70%);
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%);
+    }
+    .page-hero .badge {
+      display: inline-block;
+      background: rgba(79,70,229,0.4);
+      color: #A5B4FC;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .page-hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .page-hero h1 span { color: #818CF8; }
+    .page-hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.7);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .page-hero .last-updated {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+    }
+
+    /* ── CONTENT CARD ── */
+    .content-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      margin-bottom: 24px;
+      animation: fadeInUp 0.5s ease backwards;
+    }
+    .content-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .content-card h2 .icon {
+      width: 40px; height: 40px;
+      background: #EEF2FF;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .content-card p {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .content-card p:last-child { margin-bottom: 0; }
+    .content-card ul {
+      margin: 12px 0 12px 20px;
+    }
+    .content-card ul li {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: #FFF7ED;
+      border-left: 4px solid #F59E0B;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+    .highlight-box p {
+      font-size: 14px;
+      color: #92400E;
+      line-height: 1.7;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* ── INFO BOX  ── */
+    .info-box {
+      background: #EEF2FF;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+    .info-box p {
+      font-size: 14px;
+      color: #3730A3;
+      line-height: 1.7;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* ── CTA ── */
+    .cta-card {
+      background: linear-gradient(135deg, var(--primary) 0%, #7C3AED 100%);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+      animation: fadeInUp 0.5s ease 0.3s backwards;
+    }
+    .cta-card h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+    .cta-card p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar {
+      width: 100%;
+      height: 48px;
+      background: #fff;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 20px;
+    }
+    .bottom-bar span { font-size: 11px; color: #64748b; }
+    .bottom-bar a { font-size: 11px; color: var(--primary); text-decoration: none; font-weight: 500; }
+    .bottom-bar a:hover { text-decoration: underline; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      <img src="img/logo.png" alt="Density Logo">
+      <span>Density <strong>Resume Builder</strong></span>
+    </a>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <div class="page-hero">
+      <div class="badge">Legal</div>
+      <h1><span>Disclaimer</span></h1>
+      <p>Important information about the scope, limitations, and intended use of Density Resume Builder.</p>
+      <span class="last-updated">Last updated: April 10, 2026</span>
+    </div>
+
+    <!-- General Disclaimer -->
+    <div class="content-card" style="animation-delay:0.05s">
+      <h2><span class="icon">📋</span> General Disclaimer</h2>
+      <p>The information and tools provided by Density Resume Builder are for general informational and personal use only. While we strive to offer high-quality resume templates and an excellent user experience, we make no representations or warranties of any kind regarding the accuracy, completeness, or suitability of the Service for any specific purpose.</p>
+      <div class="highlight-box">
+        <p>⚠️ Density Resume Builder is a self-service tool. The quality and accuracy of the final resume depend entirely on the information you provide. We are not responsible for the content of resumes created using our Service.</p>
+      </div>
+    </div>
+
+    <!-- No Employment Guarantee -->
+    <div class="content-card" style="animation-delay:0.1s">
+      <h2><span class="icon">💼</span> No Employment Guarantee</h2>
+      <p>Density Resume Builder is a tool designed to help you present your professional experience in a compelling format. However, we make <strong>no guarantees</strong> regarding employment outcomes, including but not limited to:</p>
+      <ul>
+        <li>Securing job interviews or employment offers.</li>
+        <li>Passing Applicant Tracking Systems (ATS) for any specific employer or role.</li>
+        <li>Achieving salary increases, promotions, or career advancement.</li>
+        <li>Suitability of any resume template for a particular industry or role.</li>
+      </ul>
+      <p>Career outcomes depend on many factors beyond resume formatting, including your qualifications, experience, and the job market conditions at the time of application.</p>
+    </div>
+
+    <!-- No Professional Advice -->
+    <div class="content-card" style="animation-delay:0.15s">
+      <h2><span class="icon">🎓</span> No Professional Career Advice</h2>
+      <p>Nothing on this website or within the Service constitutes professional career counseling, HR advice, or legal employment advice. Any suggestions, tips, or guidance provided within the tool (such as section labels or placeholder text) are general in nature.</p>
+      <p>We strongly recommend consulting a qualified career advisor, HR professional, or recruiter for personalized career guidance, especially for specialized industries or executive-level positions.</p>
+      <div class="info-box">
+        <p>💡 For industry-specific resume guidance, consider consulting a certified professional resume writer (CPRW) or a career coach with expertise in your field.</p>
+      </div>
+    </div>
+
+    <!-- Accuracy of Content -->
+    <div class="content-card" style="animation-delay:0.2s">
+      <h2><span class="icon">✏️</span> Accuracy of Your Content</h2>
+      <p>You are solely responsible for the accuracy, truthfulness, and legality of all content you include in your resume. This includes but is not limited to:</p>
+      <ul>
+        <li>Your personal and contact information.</li>
+        <li>Work experience, job titles, and dates of employment.</li>
+        <li>Educational qualifications and certifications.</li>
+        <li>Skills, languages, and other personal attributes.</li>
+        <li>References and their contact details.</li>
+      </ul>
+      <p>Providing false or misleading information on a resume may have serious professional and legal consequences. Density Resume Builder accepts no liability for any consequences arising from inaccurate or misleading content submitted by users.</p>
+    </div>
+
+    <!-- Third-Party Links -->
+    <div class="content-card" style="animation-delay:0.25s">
+      <h2><span class="icon">🔗</span> Third-Party Content & Links</h2>
+      <p>Our Service may occasionally reference or link to third-party websites, resources, or services for informational purposes. We have no control over the content, privacy policies, or practices of any third-party sites and do not endorse them.</p>
+      <p>We accept no responsibility for any loss or damage arising from your use of, or reliance on, third-party content or websites linked from our Service. We encourage you to review the privacy policies and terms of any third-party sites you visit.</p>
+    </div>
+
+    <!-- Browser-Based Tool -->
+    <div class="content-card" style="animation-delay:0.3s">
+      <h2><span class="icon">🌐</span> Browser-Based Tool</h2>
+      <p>Density Resume Builder operates entirely in your web browser. All data processing occurs locally on your device. While this provides excellent privacy, it also means:</p>
+      <ul>
+        <li>Your resume data is not automatically saved to a cloud service — save your document regularly.</li>
+        <li>Clearing your browser's local storage or cache may result in loss of data.</li>
+        <li>The appearance of your resume may vary slightly between browsers and operating systems.</li>
+        <li>PDF export quality depends on your browser's print functionality.</li>
+      </ul>
+      <p>We recommend using Google Chrome for the best experience and most accurate PDF export results.</p>
+    </div>
+
+    <!-- Limitation of Liability -->
+    <div class="content-card" style="animation-delay:0.35s">
+      <h2><span class="icon">🛡️</span> Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, Density Resume Builder, its creators, contributors, and affiliated parties shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of the Service.</p>
+      <p>This includes, without limitation, damages for loss of profits, loss of data, loss of goodwill, service interruptions, or computer failures — even if we have been advised of the possibility of such damages.</p>
+    </div>
+
+    <!-- Changes -->
+    <div class="content-card" style="animation-delay:0.4s">
+      <h2><span class="icon">🔄</span> Changes to This Disclaimer</h2>
+      <p>We reserve the right to update or modify this Disclaimer at any time. Any changes will be reflected on this page with a revised "Last updated" date. Your continued use of the Service after changes are posted constitutes your acceptance of the updated Disclaimer.</p>
+      <p>If you have any questions about this Disclaimer, please <a href="contact.html" style="color:var(--primary);font-weight:600;text-decoration:none;">contact us</a>.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-card">
+      <h2>Ready to Build Your Resume?</h2>
+      <p>Start creating a professional, job-winning resume for free — no sign-up needed.</p>
+      <a href="templates.html" class="cta-btn">Browse Templates →</a>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <span>© 2026 Density Resume Builder</span>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+</body>
+</html>
 
