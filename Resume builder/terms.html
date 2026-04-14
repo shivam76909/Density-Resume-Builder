@@ -12,28 +12,30 @@
     :root {
       --primary: #4F46E5;
       --primary-hover: #4338CA;
-      --bg-light: #F8FAFC;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg-light);
+      background: linear-gradient(to bottom, #F0F7FF 0%, #DCEEFF 100%);
+      min-height: 100vh;
       color: #0F172A;
       -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── NAVBAR ── */
     .navbar {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       height: 64px;
       padding: 0 32px;
-      background: rgba(248, 250, 252, 0.9);
+      background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid #e2e8f0;
-      box-shadow: 0 4px 12px -2px rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
       position: fixed;
       top: 0; width: 100%;
       z-index: 1000;
@@ -43,182 +45,120 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: #000;
+      color: #0F172A;
     }
     .brand-logo img { width: 32px; height: 32px; object-fit: contain; }
     .brand-logo span { font-size: 1.15rem; font-weight: 650; letter-spacing: -0.01em; }
     .brand-logo strong { font-weight: 800; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: #475569; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--primary); }
 
-    /* ── PAGE WRAPPER ── */
-    .page-wrapper {
-      max-width: 860px;
+    /* ── PAGE CONTENT ── */
+    .page-container {
+      max-width: 800px;
       margin: 0 auto;
-      padding: 104px 32px 80px;
+      padding: 140px 24px 100px;
+      flex: 1;
     }
 
-    /* ── HERO BANNER ── */
-    .page-hero {
-      background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
-      border-radius: 20px;
-      padding: 56px 48px;
-      margin-bottom: 48px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
+    .page-header {
       text-align: center;
+      margin-bottom: 40px;
     }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(79,70,229,0.4) 0%, transparent 70%);
-    }
-    .page-hero::after {
-      content: '';
-      position: absolute;
-      bottom: -60px; left: -40px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%);
-    }
-    .page-hero .badge {
-      display: inline-block;
-      background: rgba(79,70,229,0.4);
-      color: #A5B4FC;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 20px;
-    }
-    .page-hero h1 {
-      font-size: 40px;
+    .page-header h1 {
+      font-size: 36px;
       font-weight: 800;
-      letter-spacing: -0.03em;
+      color: #0F172A;
+      letter-spacing: -0.02em;
       margin-bottom: 14px;
     }
-    .page-hero h1 span { color: #818CF8; }
-    .page-hero p {
-      font-size: 17px;
-      color: rgba(255,255,255,0.7);
-      max-width: 540px;
-      margin: 0 auto;
-      line-height: 1.65;
-    }
-    .page-hero .last-updated {
-      display: inline-block;
-      margin-top: 18px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.45);
+    .page-header p {
+      font-size: 13px;
+      color: #64748b;
       font-weight: 500;
     }
 
-    /* ── CONTENT CARD ── */
-    .content-card {
-      background: #fff;
+    /* ── TERMS CARD ── */
+    .terms-card {
+      background: #FFFFFF;
       border-radius: 16px;
-      border: 1px solid #e2e8f0;
-      padding: 40px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
-      margin-bottom: 24px;
-      animation: fadeInUp 0.5s ease backwards;
+      padding: 48px 56px;
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
     }
-    .content-card h2 {
-      font-size: 20px;
+
+    .term-section {
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .term-section:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .term-section h2 {
+      font-size: 18px;
       font-weight: 700;
       color: #0F172A;
       margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
-    .content-card h2 .icon {
-      width: 40px; height: 40px;
-      background: #EEF2FF;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-    .content-card p {
-      font-size: 15px;
-      color: #475569;
-      line-height: 1.8;
-      margin-bottom: 12px;
-    }
-    .content-card p:last-child { margin-bottom: 0; }
-    .content-card ul {
-      margin: 12px 0 12px 20px;
-    }
-    .content-card ul li {
-      font-size: 15px;
-      color: #475569;
-      line-height: 1.8;
-      margin-bottom: 6px;
-    }
-
-    /* ── HIGHLIGHT BOX ── */
-    .highlight-box {
-      background: #EEF2FF;
-      border-left: 4px solid var(--primary);
-      border-radius: 0 10px 10px 0;
-      padding: 16px 20px;
-      margin: 16px 0;
-    }
-    .highlight-box p {
+    .term-section p {
       font-size: 14px;
-      color: #3730A3;
-      line-height: 1.7;
-      margin: 0;
-      font-weight: 500;
+      color: #64748B;
+      line-height: 1.6;
     }
 
-    /* ── CTA ── */
-    .cta-card {
-      background: linear-gradient(135deg, var(--primary) 0%, #7C3AED 100%);
-      border-radius: 16px;
-      padding: 40px;
+    /* ── HELP FOOTER ── */
+    .help-text {
       text-align: center;
-      color: #fff;
-      animation: fadeInUp 0.5s ease 0.3s backwards;
+      margin-top: 32px;
+      font-size: 13px;
+      color: #64748b;
     }
-    .cta-card h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
-    .cta-card p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
-    .cta-btn {
-      display: inline-block;
-      background: #fff;
-      color: var(--primary);
-      padding: 14px 36px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 700;
+    .help-text a {
+      color: #3b82f6;
       text-decoration: none;
-      transition: all 0.2s;
+      font-weight: 600;
+      margin-left: 4px;
     }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .help-text a:hover {
+      text-decoration: underline;
+    }
 
-    /* ── BOTTOM BAR ── */
+    /* ── GLOBAL BOTTOM BAR ── */
     .bottom-bar {
       width: 100%;
       height: 48px;
-      background: #fff;
-      border-top: 1px solid #f1f5f9;
+      background: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(255,255,255,0.6);
       display: flex;
       align-items: center;
       padding: 0 32px;
-      gap: 20px;
     }
-    .bottom-bar span { font-size: 11px; color: #64748b; }
-    .bottom-bar a { font-size: 11px; color: var(--primary); text-decoration: none; font-weight: 500; }
-    .bottom-bar a:hover { text-decoration: underline; }
+    .bottom-bar span {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 400;
+    }
+    .bottom-links {
+      margin-left: auto;
+      display: flex;
+      gap: 16px;
+    }
+    .bottom-links a {
+      font-size: 11px;
+      color: #4F46E5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .bottom-links a:hover { text-decoration: underline; }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @media (max-width: 600px) {
+      .terms-card { padding: 32px 24px; }
+      .nav-links { display: none; }
+      .bottom-links { display: none; }
     }
   </style>
 </head>
@@ -230,121 +170,73 @@
       <img src="img/logo.png" alt="Density Logo">
       <span>Density <strong>Resume Builder</strong></span>
     </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </nav>
 
-  <div class="page-wrapper">
-
-    <!-- Hero -->
-    <div class="page-hero">
-      <div class="badge">Legal</div>
-      <h1>Terms &amp; <span>Conditions</span></h1>
-      <p>Please read these terms carefully before using Density Resume Builder. By accessing our service, you agree to be bound by these terms.</p>
-      <span class="last-updated">Last updated: April 10, 2026</span>
+  <!-- PAGE CONTENT -->
+  <main class="page-container">
+    
+    <div class="page-header">
+      <h1>Terms & Conditions</h1>
+      <p>Last updated: 2026</p>
     </div>
 
-    <!-- Acceptance -->
-    <div class="content-card" style="animation-delay:0.05s">
-      <h2><span class="icon">✅</span> Acceptance of Terms</h2>
-      <p>By accessing and using Density Resume Builder ("the Service"), you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to these terms, please do not use our Service.</p>
-      <div class="highlight-box">
-        <p>Using Density Resume Builder constitutes your acceptance of these Terms & Conditions in full. If you disagree with any part of these terms, you must not use our Service.</p>
+    <div class="terms-card">
+      
+      <!-- Section 1 -->
+      <div class="term-section">
+        <h2>Introduction</h2>
+        <p>Welcome to Density Resume Builder. By accessing our platform, you agree to follow these terms and use the service responsibly.</p>
       </div>
+
+      <!-- Section 2 -->
+      <div class="term-section">
+        <h2>Use of Service</h2>
+        <p>You may use our platform to create resumes for personal or professional use. Any misuse or illegal activity is strictly prohibited.</p>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="term-section">
+        <h2>User Responsibility</h2>
+        <p>You are responsible for the accuracy of the information you provide. We are not liable for any incorrect or misleading content.</p>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="term-section">
+        <h2>Intellectual Property</h2>
+        <p>All templates, designs, and content belong to Density Resume Builder and cannot be copied or redistributed.</p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="term-section">
+        <h2>Limitation of Liability</h2>
+        <p>Density Resume Builder is provided "as-is." We do not guarantee that the service will be error-free or uninterrupted at all times.</p>
+      </div>
+
     </div>
 
-    <!-- Use of Service -->
-    <div class="content-card" style="animation-delay:0.1s">
-      <h2><span class="icon">🛠️</span> Use of the Service</h2>
-      <p>Density Resume Builder is a free, browser-based tool designed to help you create professional resumes. You may use the Service for personal, non-commercial purposes subject to the following conditions:</p>
-      <ul>
-        <li>You must be at least 13 years of age to use this Service.</li>
-        <li>You agree not to use the Service for any unlawful or prohibited purpose.</li>
-        <li>You must not attempt to disrupt, damage, or gain unauthorized access to the Service or its underlying systems.</li>
-        <li>You must not use automated tools, scripts, or bots to scrape or misuse the Service.</li>
-        <li>You are solely responsible for the content you enter into your resume.</li>
-      </ul>
+    <div class="help-text">
+      Need help? <a href="contact.html">Contact Density Support</a>
     </div>
 
-    <!-- Intellectual Property -->
-    <div class="content-card" style="animation-delay:0.15s">
-      <h2><span class="icon">©️</span> Intellectual Property</h2>
-      <p>The Service and its original content, features, templates, and functionality are owned by Density Resume Builder and are protected by applicable intellectual property laws.</p>
-      <p>The resume content you create belongs to you. You retain full ownership of any personal information and text you enter into the builder. We do not claim any rights over the resumes you create.</p>
-      <p>You may not copy, modify, distribute, sell, or lease any part of our Service or templates without explicit written permission from us.</p>
-    </div>
-
-    <!-- No Warranties -->
-    <div class="content-card" style="animation-delay:0.2s">
-      <h2><span class="icon">⚠️</span> Disclaimer of Warranties</h2>
-      <p>The Service is provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied, including but not limited to:</p>
-      <ul>
-        <li>Warranties of merchantability or fitness for a particular purpose.</li>
-        <li>Guarantees that the Service will be uninterrupted, error-free, or secure.</li>
-        <li>Guarantees that resumes created will result in job placement or interview success.</li>
-        <li>Accuracy or completeness of any information provided through the Service.</li>
-      </ul>
-      <p>We do not warrant that defects in the Service will be corrected, or that the Service or the servers that make it available are free of viruses or other harmful components.</p>
-    </div>
-
-    <!-- Limitation of Liability -->
-    <div class="content-card" style="animation-delay:0.25s">
-      <h2><span class="icon">🛡️</span> Limitation of Liability</h2>
-      <p>To the fullest extent permitted by applicable law, Density Resume Builder shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
-      <ul>
-        <li>Loss of data, profits, or business opportunities.</li>
-        <li>Failure to obtain employment or achieve desired career outcomes.</li>
-        <li>Any errors or omissions in the content of resumes created using the Service.</li>
-        <li>Unauthorized access to or use of our servers or personal information stored therein.</li>
-      </ul>
-      <p>Our total liability to you for any claims arising under these terms shall not exceed the amount you paid to use the Service (which is zero, as the Service is free).</p>
-    </div>
-
-    <!-- Privacy -->
-    <div class="content-card" style="animation-delay:0.3s">
-      <h2><span class="icon">🔒</span> Privacy & Data</h2>
-      <p>Your privacy is extremely important to us. Density Resume Builder is designed so that all resume data you enter is processed entirely within your browser — we do not upload, store, or transmit your personal information to any server.</p>
-      <p>Our use of cookies and any other data collection practices are described in detail in our <a href="privacy-policy.html" style="color:var(--primary);font-weight:600;text-decoration:none;">Privacy Policy</a>, which forms part of these Terms & Conditions.</p>
-    </div>
-
-    <!-- Modifications -->
-    <div class="content-card" style="animation-delay:0.35s">
-      <h2><span class="icon">🔄</span> Modifications to Terms</h2>
-      <p>We reserve the right to modify these Terms & Conditions at any time. Changes will be effective immediately upon posting to this page. The "Last updated" date at the top of this page will be revised accordingly.</p>
-      <p>Your continued use of the Service after any changes constitutes your acceptance of the new terms. We encourage you to periodically review this page.</p>
-    </div>
-
-    <!-- Governing Law -->
-    <div class="content-card" style="animation-delay:0.4s">
-      <h2><span class="icon">⚖️</span> Governing Law</h2>
-      <p>These Terms & Conditions shall be governed by and construed in accordance with applicable laws. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the competent courts.</p>
-      <p>If any provision of these terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force.</p>
-    </div>
-
-    <!-- Contact -->
-    <div class="content-card" style="animation-delay:0.45s">
-      <h2><span class="icon">✉️</span> Contact Us</h2>
-      <p>If you have any questions or concerns about these Terms & Conditions, please don't hesitate to reach out to us. We're happy to clarify anything.</p>
-      <p>Visit our <a href="contact.html" style="color:var(--primary);font-weight:600;text-decoration:none;">Contact page</a> to get in touch with our team.</p>
-    </div>
-
-    <!-- CTA -->
-    <div class="cta-card">
-      <h2>Ready to Build Your Resume?</h2>
-      <p>Start creating a professional, job-winning resume for free — no sign-up needed.</p>
-      <a href="templates.html" class="cta-btn">Browse Templates →</a>
-    </div>
-
-  </div>
+  </main>
 
   <!-- BOTTOM BAR -->
   <div class="bottom-bar">
-    <span>© 2026 Density Resume Builder</span>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms & Conditions</a>
-    <a href="disclaimer.html">Disclaimer</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
+    <span>© 2026 Density Resume Builder • Designed for Success</span>
+    <div class="bottom-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
   </div>
 
 </body>
 </html>
-
