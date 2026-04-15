@@ -3,11 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Density Resume Builder — Build Your Future</title>
-  <meta name="description" content="Density crafts job-winning CVs in minutes. No templates, just results."/>
+  <title>Free ATS Friendly Resume Builder 2026 | Professional CV Maker Online — Density</title>
+  <meta name="description" content="Build an ATS-optimized, job-winning resume for free online. Density is a precision-engineered resume builder that ensures 100% readability for recruiters. No sign-up, no hidden fees."/>
+  <meta name="keywords" content="ATS friendly resume, free resume builder online, professional CV maker, resume for freshers, job-winning resume templates, best online CV maker India"/>
+  <meta name="author" content="Density Resume Builder"/>
+  <link rel="canonical" href="https://www.densityresumebuilder.in/" />
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- SCHEMA MARKUP (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Density Resume Builder",
+    "url": "https://www.densityresumebuilder.in/",
+    "description": "Precision-engineered, free ATS friendly resume builder. Create professional, job-winning CVs in minutes with high-score templates.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "ATS friendly templates",
+      "No sign-up required",
+      "Real-time preview",
+      "High-density layouts",
+      "Free PDF download"
+    ],
+    "author": {
+      "@type": "Organization",
+      "name": "Density"
+    }
+  }
+  </script>
   <style>
     :root {
       --primary: #4F46E5;
@@ -18,15 +50,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      height: 100%;
       width: 100%;
       margin: 0;
       padding: 0;
-      overflow: hidden; 
       font-family: 'Inter', sans-serif;
       background: var(--bg-light); 
-      color: #000;
+      color: #0F172A;
       -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
 
     /* ── PREMIUM NAVBAR ── */
@@ -36,7 +67,7 @@
       justify-content: space-between;
       height: 64px;
       padding: 0 32px;
-      background: rgba(248, 250, 252, 0.8);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid #e2e8f0;
       box-shadow: 0 4px 12px -2px rgba(0,0,0,0.06);
@@ -56,7 +87,7 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: #4F46E5; }
+    .nav-links a:hover { color: var(--primary); }
 
     .brand-logo {
       display: flex;
@@ -72,99 +103,97 @@
     /* ── HERO SECTION ── */
     .hero {
       position: relative;
-      background: var(--bg-light); 
-      height: 100vh;
+      background: #fff;
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      overflow: hidden;
+      padding: 120px 24px 60px;
     }
-
-    /* Animated background elements */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 20%;
-      left: 10%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(79, 70, 229, 0.04) 0%, transparent 70%);
-      animation: float 10s infinite alternate ease-in-out;
-    }
-
     .hero h1 {
-      font-size: 64px;
+      font-size: clamp(40px, 8vw, 64px);
       font-weight: 800;
       color: #0F172A;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       letter-spacing: -0.04em;
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
+    .hero h1 span { color: var(--primary); }
     .hero p {
-      font-size: 24px;
+      font-size: clamp(18px, 4vw, 24px);
       color: #475569;
-      max-width: 600px;
+      max-width: 700px;
       margin-bottom: 40px;
-      font-weight: 500;
-      line-height: 1.4;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+      line-height: 1.5;
     }
-
     .build-btn {
       display: inline-block;
       background-color: var(--primary);
       color: #fff; 
-      padding: 16px 48px;
+      padding: 18px 56px;
       border-radius: 12px;
       text-decoration: none;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
       box-shadow: 0 10px 25px -3px rgba(79, 70, 229, 0.4);
       transition: all 0.3s;
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
-
     .build-btn:hover {
       background-color: var(--primary-hover);
       transform: translateY(-4px);
       box-shadow: 0 20px 30px -4px rgba(79, 70, 229, 0.5);
     }
 
-    /* ── GLOBAL BOTTOM BAR ── */
-    .bottom-bar {
-      width: 100%;
-      height: 48px;
-      background: #fff; 
-      border-top: 1px solid #f1f5f9;
-      display: flex;
-      align-items: center;
-      padding: 0 32px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      z-index: 1000;
-    }
-    .bottom-bar span {
-      font-size: 11px;
-      color: #64748b;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-    }
+    /* ── SECTION STYLING ── */
+    section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; color: #0F172A; }
+    .section-header p { font-size: 18px; color: #64748b; max-width: 700px; margin: 0 auto; }
 
-    /* ANIMATIONS */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* ── FEATURES GRID ── */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .feature-card { background: #fff; padding: 40px; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .feature-card p { font-size: 15px; color: #64748b; line-height: 1.6; }
 
-    @keyframes float {
-      from { transform: translate(0, 0); }
-      to { transform: translate(40px, 40px); }
+    /* ── HOW IT WORKS ── */
+    .steps-container { display: flex; flex-direction: column; gap: 40px; }
+    .step { display: flex; gap: 32px; align-items: flex-start; }
+    .step-num { width: 48px; height: 48px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
+    .step-content h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .step-content p { font-size: 15px; color: #64748b; }
+
+    /* ── FAQ ── */
+    .faq-container { max-width: 800px; margin: 0 auto; }
+    .faq-item { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e2e8f0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+    .faq-item p { font-size: 15px; color: #64748b; line-height: 1.6; }
+
+    /* ── ABOUT THE TOOL ── */
+    .about-tool { background: #fff; border-radius: 24px; padding: 60px; border: 1px solid #e2e8f0; }
+    .about-tool h2 { font-size: 32px; font-weight: 800; margin-bottom: 24px; }
+    .about-tool p { font-size: 16px; color: #475569; line-height: 1.8; margin-bottom: 20px; }
+
+    /* ── FOOTER ── */
+    .footer { background: #fff; border-top: 1px solid #e2e8f0; padding: 80px 24px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 48px; max-width: 1100px; margin: 0 auto; }
+    .footer-col h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px; color: #64748b; }
+    .footer-col ul { list-style: none; padding: 0; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a { text-decoration: none; color: #475569; font-size: 14px; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--primary); }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar { padding: 24px 32px; border-top: 1px solid #f1f5f9; text-align: center; }
+    .bottom-bar span { font-size: 13px; color: #94a3b8; }
+
+    @media (max-width: 768px) {
+      section { padding: 60px 20px; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+      .nav-links { display: none; }
     }
-    
   </style>
 </head>
 <body>
@@ -176,31 +205,167 @@
       <span>Density <strong>Resume Builder</strong></span>
     </a>
     <div class="nav-links">
+      <a href="templates.html">Templates</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
-      <a href="disclaimer.html">Disclaimer</a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Build Resume</h1>
-    <p>Density crafts job-winning CVs in minutes. No templates, just results.</p>
-    <a href="templates.html" class="build-btn">Build Resume</a>
+  <header class="hero">
+    <h1>Create an <span>ATS Friendly Resume</span> for Free</h1>
+    <p>Ensure a 100% ATS score with Density. Our precision-engineered builder helps you craft a professional summary and skills section that gets you hired. No sign-up, no cost.</p>
+    <a href="templates.html" class="build-btn">Build My Resume</a>
+  </header>
+
+  <!-- ABOUT THE TOOL -->
+  <section id="about" class="about-tool">
+    <h2>The Leading Free ATS Resume Builder for 2026</h2>
+    <p>Density is built for the modern job market. We focus on <strong>ATS compatibility</strong> and structural integrity, ensuring your document passes every automated screening bot used by top companies. Unlike other builders, we don't store your data on servers—everything stays in your browser for total privacy.</p>
+    <p>Whether you need a powerful <strong>resume objective for freshers</strong> or a detailed professional summary for a senior role, our tool guides you through the process of highlighting your most valuable skills and achievements.</p>
   </section>
 
-  <!-- BOTTOM BAR -->
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-header">
+      <h2>Advanced Project Features</h2>
+      <p>Everything you need to build a resume that actually works.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>100% ATS-Friendly</h3>
+        <p>Our templates are rigorously tested against popular ATS software to ensure your document never gets rejected by an automated bot.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Privacy First</h3>
+        <p>We don't store your data. Everything you type remains in your browser's local storage. Your privacy is our absolute priority.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Instant PDF Export</h3>
+        <p>Generate a professional-grade PDF with one click. No watermarks, no hidden fees, just your resume ready to send.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Modern Custom Layouts</h3>
+        <p>Choose from professional, minimalist, and creative templates hand-crafted by designers to meet 2026 hiring standards.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Completely Free</h3>
+        <p>No subscriptions, no "premium" features. Every template and every feature on Density is available to everyone for free.</p>
+      </div>
+      <div class="feature-card">
+        <h3>No Sign-Up Required</h3>
+        <p>Start building immediately. We value your time, so we removed the friction of creating accounts and verifying emails.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works">
+    <div class="section-header">
+      <h2>How It Works</h2>
+      <p>Three simple steps to your next job interview.</p>
+    </div>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Pick a Template</h3>
+          <p>Browse our collection of professional, ATS-optimized templates and choose the one that fits your industry style.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Fill in Your Details</h3>
+          <p>Enter your professional summary, work experience, education, and skills into our intuitive editor. We handle the formatting automatically.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Download & Apply</h3>
+          <p>Preview your high-density resume and download your PDF instantly. You're now ready to apply to your dream company.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" style="background: #EEF2FF; border-radius: 32px; margin: 40px auto; padding: 80px 40px; text-align: center; max-width: 1000px;">
+    <div class="section-header">
+      <h2>Transparent Pricing</h2>
+      <p>No credit cards, no subscriptions, no surprises.</p>
+    </div>
+    <div style="background: #fff; padding: 40px; border-radius: 24px; border: 2px solid var(--primary); display: inline-block; min-width: 300px; box-shadow: 0 20px 40px rgba(79, 70, 229, 0.1);">
+       <h3 style="font-size: 24px; color: var(--primary); margin-bottom: 8px;">Free Forever Plan</h3>
+       <div style="font-size: 48px; font-weight: 800; margin-bottom: 24px;">$0 <span style="font-size: 16px; color: #64748b; font-weight: 400;">/ life</span></div>
+       <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 32px;">
+         <li style="margin-bottom: 12px; display: flex; gap: 10px; font-size: 15px;">✅ Unlimited Resume Downloads</li>
+         <li style="margin-bottom: 12px; display: flex; gap: 10px; font-size: 15px;">✅ All Premium Templates Included</li>
+         <li style="margin-bottom: 12px; display: flex; gap: 10px; font-size: 15px;">✅ No Density Watermarks</li>
+         <li style="margin-bottom: 12px; display: flex; gap: 10px; font-size: 15px;">✅ Fully ATS-Compliant PDFs</li>
+       </ul>
+       <a href="templates.html" class="build-btn" style="padding: 14px 40px; font-size: 16px; width: 100%;">Get Started Free</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-container">
+      <div class="faq-item">
+        <h3>Is Density Resume Builder really free?</h3>
+        <p>Yes, 100%. We do not have any premium tiers, hidden charges, or watermarks. Our mission is to make professional resume building accessible to every student and job seeker.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is an ATS-friendly resume?</h3>
+        <p>Most large companies use Applicant Tracking Systems to scan resumes for keywords. An ATS-friendly resume uses standard headings and simple formatting that these systems can easily parse, ensuring your CV reaches a human recruiter.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my data safe with Density?</h3>
+        <p>Yes. Density is a client-side tool. This means your data is never uploaded to our servers. It stays in your browser's local memory until you clear it or download your PDF.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need to create an account?</h3>
+        <p>No. You can start building your resume immediately without providing any personal email or creating a password.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="templates.html">Resume Templates</a></li>
+          <li><a href="templates.html">ATS Resume Builder</a></li>
+          <li><a href="about.html">About Density</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Help Center</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="about.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
   <div class="bottom-bar">
-    <span>© 2026 Density Resume Builder • Designed for Success</span>
-    <span style="margin-left:auto; display:flex; gap:16px;">
-      <a href="about.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">About</a>
-      <a href="contact.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">Contact</a>
-      <a href="privacy-policy.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">Privacy Policy</a>
-      <a href="terms.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">Terms &amp; Conditions</a>
-      <a href="disclaimer.html" style="font-size:11px;color:#4F46E5;text-decoration:none;font-weight:500;">Disclaimer</a>
-    </span>
+    <span>© 2026 Density Resume Builder • Empowering Job Seekers Globally</span>
   </div>
 
 </body>
