@@ -737,10 +737,82 @@
       .hero {
         flex-direction: column;
         padding: 40px 24px;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        margin-bottom: 50px;
+      }
+
+      .hero-content h1 {
+        text-align: center !important;
+      }
+
+      .hero-btns,
+      .hero-pills {
+        justify-content: center;
       }
 
       .main-sections {
         grid-template-columns: 1fr;
+        padding: 40px 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        height: auto;
+        padding: 16px 24px;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .nav-links {
+        display: none;
+        /* Hide secondary links on mobile for simplicity */
+      }
+
+      .nav-links.active {
+        display: flex;
+        /* Future toggle support */
+      }
+
+      .brand-logo {
+        margin-left: 0 !important;
+      }
+
+      .hero-content h1 {
+        font-size: 36px;
+      }
+
+      .hero-line {
+        height: 48px;
+        white-space: normal;
+        line-height: 1.2;
+      }
+
+      .hero-image {
+        min-width: 100%;
+        transform: scale(0.85);
+        /* Scale down for mobile */
+      }
+
+      .features-list {
+        grid-template-columns: 1fr;
+      }
+
+      .template-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer {
+        padding: 40px 24px;
       }
     }
   </style>
