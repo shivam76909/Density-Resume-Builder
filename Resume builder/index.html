@@ -21,7 +21,6 @@
   <style>
     :root {
       --primary: #1d4ed8;
-      /* Blue button color */
       --primary-hover: #1e40af;
       --bg-light: #f8fafc;
       --text-main: #0f172a;
@@ -228,7 +227,7 @@
       width: 450px;
       height: 450px;
       border-radius: 50%;
-      background: #F1F5F9; /* Requested Slate-grey tint color */
+      background: #F1F5F9;
       animation: aurora-float 15s infinite alternate ease-in-out;
     }
 
@@ -842,12 +841,12 @@
 
     /* --- Resume Grader Section --- */
     .grader-section {
-      padding: 60px 0 120px 0; /* Reduced top padding */
+      padding: 60px 0 120px 0;
       background: #f8fafc;
       color: #0f172a;
       position: relative;
       overflow: hidden;
-      margin: 0 0 20px 0; /* Reduced bottom margin */
+      margin: 0 0 20px 0;
     }
 
     .grader-section::before {
@@ -1256,10 +1255,10 @@
 
     /* Footer */
     .footer {
-      background: #fff;
-      border-top: 1px solid #e2e8f0;
-      padding: 60px 48px;
-      margin-top: 80px;
+      background: #0f172a;
+      border-top: 1px solid #1e293b;
+      padding: 80px 48px 40px;
+      margin-top: 0;
     }
 
     .footer-grid {
@@ -1271,12 +1270,12 @@
     }
 
     .footer-col h4 {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       margin-bottom: 24px;
-      color: var(--text-muted);
+      color: #94a3b8;
     }
 
     .footer-col ul {
@@ -1289,21 +1288,22 @@
 
     .footer-col ul li a {
       text-decoration: none;
-      color: var(--text-muted);
-      font-size: 14px;
+      color: #cbd5e1;
+      font-size: 15px;
+      transition: color 0.2s;
     }
 
     .footer-col ul li a:hover {
-      color: var(--primary);
+      color: #ffffff;
     }
 
     .bottom-bar {
       text-align: center;
-      padding: 24px;
-      border-top: 1px solid #e2e8f0;
-      margin-top: 40px;
-      font-size: 13px;
-      color: var(--text-muted);
+      padding: 32px 0;
+      border-top: 1px solid #1e293b;
+      margin-top: 60px;
+      font-size: 14px;
+      color: #64748b;
     }
 
     @media (max-width: 1024px) {
@@ -1451,7 +1451,7 @@
 
     /* Roadmap Section */
     .roadmap-section {
-      background: #0f172a;
+      background: #ffffff;
       padding: 80px 48px;
       width: 100%;
     }
@@ -1467,28 +1467,29 @@
     }
 
     .roadmap-label {
-      display: inline-block;
-      background: rgba(99, 102, 241, 0.15);
-      color: #818cf8;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 99px;
-      padding: 6px 16px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f1f5f9;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
       margin-bottom: 16px;
     }
 
     .roadmap-header h2 {
       font-size: 36px;
       font-weight: 800;
-      color: #ffffff;
+      color: #0f172a;
       margin-bottom: 12px;
+      letter-spacing: -0.03em;
     }
 
     .roadmap-header p {
-      color: #94a3b8;
+      color: #64748b;
       font-size: 16px;
       max-width: 520px;
       margin: 0 auto;
@@ -1511,34 +1512,13 @@
     }
 
     .roadmap-card {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 16px;
       padding: 28px;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .roadmap-card:hover {
-      border-color: #6366f1;
-      transform: translateY(-4px);
-    }
-
-    .roadmap-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #6366f1, #00CC76);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .roadmap-card:hover::before {
-      opacity: 1;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
     }
 
     .roadmap-card-header {
@@ -1559,51 +1539,27 @@
       flex-shrink: 0;
     }
 
-    .icon-ai {
-      background: rgba(99, 102, 241, 0.15);
-    }
-
-    .icon-career {
-      background: rgba(0, 204, 118, 0.12);
-    }
-
-    .icon-niche {
-      background: rgba(251, 146, 60, 0.12);
-    }
-
-    .icon-jobs {
-      background: rgba(59, 130, 246, 0.12);
-    }
+    .icon-ai   { background: #ede9fe; }
+    .icon-career { background: #dcfce7; }
+    .icon-niche  { background: #fff7ed; }
+    .icon-jobs   { background: #eff6ff; }
 
     .soon-badge {
-      background: rgba(99, 102, 241, 0.15);
-      color: #818cf8;
-      border: 1px solid rgba(99, 102, 241, 0.25);
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
       border-radius: 99px;
       padding: 4px 10px;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      animation: pulseBadge 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulseBadge {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: 0.45
-      }
     }
 
     .roadmap-card h3 {
       font-size: 18px;
       font-weight: 700;
-      color: #f1f5f9;
+      color: #0f172a;
       margin-bottom: 16px;
     }
 
@@ -1644,16 +1600,148 @@
 
     .feature-item p {
       font-size: 13.5px;
-      color: #94a3b8;
+      color: #64748b;
       line-height: 1.5;
       margin: 0;
     }
 
     .feature-item p strong {
-      color: #cbd5e1;
+      color: #0f172a;
       font-weight: 600;
       display: block;
       margin-bottom: 2px;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 80px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .testimonial-card p {
+      color: #475569;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #fff;
+      font-size: 18px;
+    }
+    .testimonial-author-info h4 {
+      margin: 0 0 4px 0;
+      font-size: 15px;
+      color: #0f172a;
+      font-weight: 700;
+    }
+    .testimonial-author-info span {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 48px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 24px 0;
+    }
+    .faq-question {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.6;
+      margin-top: 12px;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    /* Bottom CTA Section */
+    .bottom-cta-section {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 100px 24px;
+      border-radius: 24px;
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom-cta-section h2 {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .bottom-cta-section p {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-glow {
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    @media (max-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .bottom-cta-section h2 { font-size: 32px; }
+      .testimonials-section, .faq-section { padding: 40px 24px; }
     }
   </style>
 </head>
@@ -1952,7 +2040,36 @@
         <div class="suggestion-stack">
           <div class="suggestion-card" style="transition-delay: 0.8s;">
             <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="background: #FEF08A; padding: 6px; border-radius: 8px; color: #1a1a1a; font-size: 16px;">💡</div>
+              <div style="background: linear-gradient(135deg, #fef9c3, #fef08a); padding: 7px; border-radius: 10px; display:flex; align-items:center; justify-content:center; box-shadow: 0 2px 8px rgba(234,179,8,0.3);">
+                <svg width="22" height="22" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Bulb glass body -->
+                  <path d="M32 6C21.5 6 13 14.5 13 25C13 31.8 16.5 37.8 21.8 41.5C23.2 42.5 24 44.1 24 45.8V50H40V45.8C40 44.1 40.8 42.5 42.2 41.5C47.5 37.8 51 31.8 51 25C51 14.5 42.5 6 32 6Z" fill="url(#glassGrad)" stroke="#d4af37" stroke-width="1.5"/>
+                  <!-- Base bands -->
+                  <rect x="24" y="50" width="16" height="3" rx="1.5" fill="#d4af37" opacity="0.8"/>
+                  <rect x="25" y="54" width="14" height="3" rx="1.5" fill="#d4af37" opacity="0.6"/>
+                  <rect x="27" y="57" width="10" height="3" rx="1.5" fill="#d4af37" opacity="0.4"/>
+                  <!-- Golden 8-pointed star -->
+                  <path d="M32 13 L33.8 20.5 L40.5 18 L36.5 24 L44 25.5 L36.5 27 L40.5 33 L33.8 30.5 L32 38 L30.2 30.5 L23.5 33 L27.5 27 L20 25.5 L27.5 24 L23.5 18 L30.2 20.5 Z" fill="url(#starGrad)" stroke="#b8860b" stroke-width="0.5"/>
+                  <!-- Inner star shine -->
+                  <path d="M32 18 L33.1 22.8 L37.5 21.2 L34.8 25 L39 26 L34.8 27 L37.5 30.8 L33.1 29.2 L32 34 L30.9 29.2 L26.5 30.8 L29.2 27 L25 26 L29.2 25 L26.5 21.2 L30.9 22.8 Z" fill="#fff176" opacity="0.7"/>
+                  <!-- AI text -->
+                  <text x="32" y="29" text-anchor="middle" font-size="7" font-weight="800" fill="#7c2d00" font-family="sans-serif">AI</text>
+                  <!-- Glass shine overlay -->
+                  <path d="M22 16C24 12 28 9 32 9C28 11 24 15 22 16Z" fill="white" opacity="0.35"/>
+                  <defs>
+                    <linearGradient id="glassGrad" x1="13" y1="6" x2="51" y2="54" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#f0f9ff" stop-opacity="0.95"/>
+                      <stop offset="60%" stop-color="#e0f2fe" stop-opacity="0.7"/>
+                      <stop offset="100%" stop-color="#bae6fd" stop-opacity="0.5"/>
+                    </linearGradient>
+                    <linearGradient id="starGrad" x1="20" y1="13" x2="44" y2="38" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#fef08a"/>
+                      <stop offset="40%" stop-color="#eab308"/>
+                      <stop offset="100%" stop-color="#b45309"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
               <div>
                 <div style="font-weight: 700; font-size: 13px; color: #0f172a; margin-bottom: 4px;">AI Suggestion</div>
                 <div style="font-size: 11px; color: #64748b;">Use data-driven verbs like "spearheaded" to quantify achievements.</div>
@@ -2215,7 +2332,6 @@
   <section class="roadmap-section">
     <div class="roadmap-inner">
       <div class="roadmap-header">
-        <div class="roadmap-label">🚀 Product Roadmap</div>
         <h2>What's Coming to Density</h2>
         <p>We're building the most intelligent career platform in India. Here's a preview of the powerful tools
           launching soon.</p>
@@ -2223,12 +2339,10 @@
       <div class="roadmap-grid">
 
         <!-- Card 1: AI Features (LIVE) -->
-        <div class="roadmap-card" style="border-color:#6366f1;">
+        <div class="roadmap-card" style="background: #f5f3ff; border-color: #ddd6fe;">
           <div class="roadmap-card-header">
-            <div class="roadmap-icon-wrap icon-ai">🤖</div>
             <a href="ai-rewriter.html"
-              style="background:rgba(99,102,241,0.2);color:#a5b4fc;border:1px solid rgba(99,102,241,0.4);border-radius:99px;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;">🟢
-              Live Now</a>
+              style="background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;border-radius:99px;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;">🟢 Live Now</a>
           </div>
           <h3>Actionable AI Writing Suite</h3>
           <div class="feature-item">
@@ -2249,9 +2363,8 @@
         </div>
 
         <!-- Card 2: Career Suite -->
-        <div class="roadmap-card">
+        <div class="roadmap-card" style="background: #eff6ff; border-color: #dbeafe;">
           <div class="roadmap-card-header">
-            <div class="roadmap-icon-wrap icon-career">🎯</div>
             <span class="soon-badge">Coming Soon</span>
           </div>
           <h3>The Career Suite</h3>
@@ -2273,9 +2386,8 @@
         </div>
 
         <!-- Card 3: Niche Modes -->
-        <div class="roadmap-card">
+        <div class="roadmap-card" style="background: #fff7ed; border-color: #ffedd5;">
           <div class="roadmap-card-header">
-            <div class="roadmap-icon-wrap icon-niche">⚡</div>
             <span class="soon-badge">Coming Soon</span>
           </div>
           <h3>Hyper-Niche Industry Modes</h3>
@@ -2297,9 +2409,8 @@
         </div>
 
         <!-- Card 4: Job Matching -->
-        <div class="roadmap-card">
+        <div class="roadmap-card" style="background: #f0fdf4; border-color: #dcfce7;">
           <div class="roadmap-card-header">
-            <div class="roadmap-icon-wrap icon-jobs">🔍</div>
             <span class="soon-badge">Coming Soon</span>
           </div>
           <h3>Smart Job Matching (Reverse Search)</h3>
@@ -2318,6 +2429,118 @@
       </div>
     </div>
   </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <h2 class="section-title">What Our Users Say</h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div style="display:flex; gap:4px; margin-bottom:16px;">
+          <span style="color:#f59e0b; font-size:18px;">★★★★★</span>
+        </div>
+        <p>"I was getting zero callbacks. I used Density's AI grader, fixed my resume in 20 minutes, and had 3 interview calls within the week. Absolute game-changer."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div class="testimonial-author-info">
+            <h4>Aman Verma</h4>
+            <span>Software Engineer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card" style="border-color: #6366f1; box-shadow: 0 8px 32px rgba(99,102,241,0.1);">
+        <div style="display:flex; gap:4px; margin-bottom:16px;">
+          <span style="color:#f59e0b; font-size:18px;">★★★★★</span>
+        </div>
+        <p>"The ATS scoring feature showed me exactly which keywords I was missing. My score went from 62% to 94% in one session. I'm now a Product Manager at a top startup."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: #6366f1;">P</div>
+          <div class="testimonial-author-info">
+            <h4>Priya Sharma</h4>
+            <span>Product Manager · Bangalore</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div style="display:flex; gap:4px; margin-bottom:16px;">
+          <span style="color:#f59e0b; font-size:18px;">★★★★★</span>
+        </div>
+        <p>"As a fresher, I didn't know how to write a resume. Density's templates and AI suggestions did 80% of the work. Landed my first job within 2 months of graduating!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background: #00CC76;">R</div>
+          <div class="testimonial-author-info">
+            <h4>Rahul Gupta</h4>
+            <span>Data Analyst · Fresher, Delhi</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="background: #f8fafc; padding: 40px 0;">
+    <div class="faq-section">
+      <h2 class="section-title" style="margin-bottom: 48px;">Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          Is Density Resume Builder really free?
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-answer">Yes! Building and downloading your resume is completely free. You get access to all core features including AI suggestions, ATS scoring, and 50+ professional templates at no cost.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          Does it actually pass ATS systems?
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-answer">Absolutely. All our templates are built with clean, machine-readable HTML that ATS systems parse perfectly. Our AI grader also checks your resume against the exact algorithms used by top ATS platforms like Taleo and Greenhouse.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          Can I export my resume to PDF?
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-answer">Yes! You can export your resume as a clean, high-resolution PDF with one click. The PDF is perfectly formatted and printer-ready, so it looks just as good on paper as it does on screen.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          How does the AI Resume Grader work?
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-answer">Upload your resume and our AI scans it across 40+ criteria — keyword density, action verb strength, quantified achievements, formatting, and ATS compatibility. You get an instant score out of 100 with specific, actionable improvements.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          Can I create multiple versions of my resume?
+          <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-answer">Yes! You can create and save multiple tailored versions of your resume for different roles or industries. We recommend creating one per job type (e.g., one for "Software Engineer" roles, another for "Product Manager" roles).</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <div style="padding: 80px 48px 0;">
+    <div class="bottom-cta-section">
+      <div class="cta-glow"></div>
+        <div style="position: relative; z-index: 2;">
+        <h2>Ready to Land Your<br>Dream Job?</h2>
+        <p>Build a recruiter-approved, ATS-optimized resume in under 5 minutes. It's completely free to start.</p>
+        <a href="templates.html" style="display: inline-block; background: #00CC76; color: #fff; padding: 18px 48px; border-radius: 8px; font-size: 18px; font-weight: 700; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.background='#00B368'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#00CC76'; this.style.transform='translateY(0)'">
+          Create My Resume — Free
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
