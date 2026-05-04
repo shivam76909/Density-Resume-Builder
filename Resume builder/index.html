@@ -4,14 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Density Resume Builder | Professional CV Maker Online</title>
-  <meta name="description" content="Build a Density-Focused, Recruiter-Approved Resume in Minutes." />
-  <meta name="keywords" content="ATS friendly resume, free resume builder, Density Resume" />
+  <title>Density Resume Builder | Best ATS-Friendly CV Maker India | Free AI Resume Generator</title>
+  <meta name="description"
+    content="Build a professional, recruiter-approved resume in minutes with Density. Use our free AI resume generator and 50+ ATS-friendly templates to win more job interviews. Perfect for freshers and professionals." />
+  <meta name="keywords"
+    content="ATS friendly resume, free resume builder India, professional CV maker online, AI resume generator, recruiter approved resume templates, job winning CV designs, download resume PDF, career focused resume builder, modern CV maker, best online resume builder for freshers and professionals" />
   <meta name="author" content="Density Resume Builder" />
   <link rel="canonical" href="https://www.densityresumebuilder.in/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+    rel="stylesheet" />
   <script src="js/loader.js"></script>
 
   <style>
@@ -88,6 +92,8 @@
       padding: 8px;
       font-size: 13px;
       font-weight: 500;
+      position: relative;
+      z-index: 1001;
     }
 
     .top-banner a {
@@ -106,6 +112,8 @@
       background: #fff;
       width: 100%;
       border-bottom: 1px solid #f1f5f9;
+      position: relative;
+      z-index: 1000;
     }
 
     .brand-logo {
@@ -128,8 +136,10 @@
     }
 
     .brand-title span:first-child {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: 20px;
+      letter-spacing: -0.02em;
     }
 
     .brand-title span:last-child {
@@ -199,6 +209,54 @@
       align-items: center;
     }
 
+    /* --- Aurora Gradient Behind Templates --- */
+    .aurora-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 130%;
+      height: 130%;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(70px);
+      opacity: 0.9;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: #F1F5F9; /* Requested Slate-grey tint color */
+      animation: aurora-float 15s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+      top: -5%;
+      left: 15%;
+    }
+
+    .blob-2 {
+      bottom: -5%;
+      right: 15%;
+      animation-delay: -5s;
+    }
+
+    .blob-3 {
+      top: 25%;
+      right: 5%;
+      animation-delay: -10s;
+    }
+
+    @keyframes aurora-float {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+
     .hero-bg-template {
       position: absolute;
       width: 365px;
@@ -239,26 +297,19 @@
     }
 
     .hero-content h1 {
-      font-size: 56px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 52px;
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 24px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-content h1 {
-      font-size: 56px;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.04em;
       text-align: left;
     }
 
     .hero-line {
       display: block;
       white-space: nowrap;
-      height: 62px;
+      height: 58px;
       /* Fixed height to prevent vertical jitter */
     }
 
@@ -268,22 +319,24 @@
       color: #0d172a;
       position: relative;
       vertical-align: bottom;
-      border-right: 3px solid #0d172a;
       white-space: nowrap;
-      animation: blink 0.7s step-end infinite;
       min-height: 1.2em;
     }
 
-    @keyframes blink {
+    .typing-text::after {
+      content: '';
+      display: inline-block;
+      width: 3.5px;
+      height: 0.9em;
+      background-color: #0d172a;
+      margin-left: 6px;
+      vertical-align: middle;
+      transform: translateY(-0.05em); /* Nudge up to align with caps */
+      animation: cursor-blink 0.7s step-end infinite;
+    }
 
-      from,
-      to {
-        border-color: transparent
-      }
-
-      50% {
-        border-color: #0d172a;
-      }
+    @keyframes cursor-blink {
+      50% { opacity: 0; }
     }
 
     .hero-content p {
@@ -521,24 +574,25 @@
       width: 70%;
     }
 
-    .mock-cube {
+    .mock-badge {
       position: absolute;
-      background: #00CC76;
-      border: 2px solid #00B368;
-      border-radius: 6px;
-      width: 50px;
-      height: 50px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 2px;
-      padding: 4px;
-      box-shadow: 0 10px 15px -3px rgba(0, 204, 118, 0.3);
+      background: white;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
       z-index: 10;
-      animation: floatCube 4s ease-in-out infinite;
+      animation: floatBadge 4s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
     }
 
-    @keyframes floatCube {
+    @keyframes floatBadge {
 
       0%,
       100% {
@@ -546,30 +600,25 @@
       }
 
       50% {
-        transform: translateY(-12px);
+        transform: translateY(-8px);
       }
     }
 
-    .mock-cube span {
-      background: white;
-      border-radius: 1px;
-    }
-
-    .cube-1 {
-      top: 15%;
-      left: -25px;
+    .badge-1 {
+      top: 20%;
+      left: -45px;
       animation-delay: 0s;
     }
 
-    .cube-2 {
-      top: 5%;
-      right: -25px;
+    .badge-2 {
+      top: 10%;
+      right: -30px;
       animation-delay: -1.3s;
     }
 
-    .cube-3 {
-      bottom: 15%;
-      right: -15px;
+    .badge-3 {
+      bottom: 25%;
+      right: -20px;
       animation-delay: -2.7s;
     }
 
@@ -577,109 +626,633 @@
     .main-sections {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      padding: 20px 48px 20px; /* Greatly reduced top padding */
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
     }
 
     .section-title {
-      font-size: 28px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 36px;
       font-weight: 800;
-      margin-bottom: 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      letter-spacing: -0.03em;
     }
 
     .features-list {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 0;
+      position: relative;
+      align-items: start;
+    }
+
+    .feature-connection-line {
+      position: absolute;
+      top: 65px;
+      left: 23%;
+      right: 23%;
+      height: 1.5px;
+      background: #d1d5db;
+      z-index: 0;
     }
 
     .feature-card {
-      background: #bbf7d0;
-      border-radius: 16px;
-      padding: 24px 16px;
+      background: transparent;
+      padding: 24px 24px 40px;
       text-align: center;
-      transition: transform 0.2s;
+      position: relative;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: none;
+      box-shadow: none;
     }
 
-    .feature-card:nth-child(2) {
-      background: #bae6fd;
-    }
-
-    .feature-card:nth-child(3) {
-      background: #a7f3d0;
-    }
-
-    .feature-card:hover {
+    .feature-card:hover .feature-icon {
       transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+
+
+
+
+
+
+
+
+
+    .feature-icon-container {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin-bottom: 28px;
+      z-index: 2;
+    }
+
+    /* Middle icon slightly larger */
+    .feature-card.blue .feature-icon-container {
+      width: 105px;
+      height: 105px;
     }
 
     .feature-icon {
-      width: 80px;
-      height: 80px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 12px;
-      margin: 0 auto 16px;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09), 0 2px 6px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+
+
+    .sparkles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
     }
 
     .feature-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      line-height: 1.2;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #0f172a;
+      position: relative;
+      z-index: 2;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-divider {
+      width: 40px;
+      height: 4px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .green .feature-divider {
+      background: #00CC76;
+    }
+
+    .blue .feature-divider {
+      background: #3b82f6;
+    }
+
+    .purple .feature-divider {
+      background: #8b5cf6;
     }
 
     .feature-card p {
+      font-size: 15px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 0;
+      max-width: 200px;
+      position: relative;
+      z-index: 2;
+    }
+
+
+
+
+
+    /* Templates Horizontal Scroll Section */
+    .templates-section {
+      padding: 40px 0 80px; /* Reduced top padding */
+      overflow: hidden;
+    }
+
+    .templates-header {
+      max-width: 1200px;
+      margin: 0 auto 16px; /* Reduced margin */
+      padding: 0 48px;
+      text-align: center;
+    }
+
+    .templates-container {
+      display: flex;
+      gap: 50px; /* Generous gap like resume.io */
+      overflow-x: auto;
+      padding: 30px 40vw 60px; /* Reduced top padding */
+      scroll-snap-type: none; /* Smooth continuous move */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      align-items: flex-end;
+      width: 100%;
+      scroll-snap-type: x mandatory; /* Re-enabled for one-by-one */
+      /* Fading edges for "smooth" visual transition */
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .templates-container::-webkit-scrollbar {
+      display: none;
+      /* Chrome/Safari */
+    }
+
+    .template-item {
+      flex: 0 0 230px;
+      scroll-snap-align: center; /* Re-enabled */
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+    }
+
+    .template-item img {
+      width: 100%;
+      height: 325px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 0; /* Sharp edges */
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border: 1.5px solid #cbd5e1; /* Darker, more defined edges */
+      background: white;
+    }
+
+    .template-item:hover img {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary);
+    }
+
+    .template-info {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* --- Resume Grader Section --- */
+    .grader-section {
+      padding: 60px 0 120px 0; /* Reduced top padding */
+      background: #f8fafc;
+      color: #0f172a;
+      position: relative;
+      overflow: hidden;
+      margin: 0 0 20px 0; /* Reduced bottom margin */
+    }
+
+    .grader-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1000px;
+      height: 1000px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .grader-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+
+    .grader-visuals {
+      flex: 1.2;
+      position: relative;
+      height: 500px; /* Reduced height */
+      perspective: 2000px;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(0, 0, 0, 0.12);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .ats-gauge-card {
+      position: absolute;
+      top: 40px;
+      left: -60px;
+      width: 220px;
+      z-index: 30;
+      transform: rotate(-2deg);
+    }
+
+    .improvement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #ecfdf5;
+      color: #059669;
+      padding: 4px 8px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .gauge-wrap {
+      width: 140px;
+      height: 70px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .gauge-bg {
+      width: 140px;
+      height: 140px;
+      border: 14px solid rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+    }
+
+    .gauge-fill {
+      width: 140px;
+      height: 140px;
+      border: 14px solid #10b981;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      transform: rotate(-135deg);
+      transition: transform 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .grader-section.active .gauge-fill {
+      transform: rotate(45deg);
+    }
+
+    .chart-card {
+      position: absolute;
+      bottom: -10px;
+      left: -20px;
+      width: 260px;
+      z-index: 30;
+      transform: rotate(1deg);
+    }
+
+    .line-chart-svg {
+      width: 100%;
+      height: 80px;
+      margin-top: 15px;
+    }
+
+    .chart-path {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      transition: stroke-dashoffset 2s ease-out;
+    }
+
+    .grader-section.active .chart-path {
+      stroke-dashoffset: 0;
+    }
+
+    .resume-mockup {
+      width: 380px;
+      height: 480px;
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      border: 1.5px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+      transform: rotateY(-20deg) rotateX(10deg);
+      margin-left: 80px;
+      color: #1e293b;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 14px;
+      background: #3b82f6;
+      margin-left: 2px;
+      animation: blink 0.8s infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .suggestion-stack {
+      position: absolute;
+      right: -20px; /* Adjusted position */
+      top: 60px; /* Adjusted position */
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 20;
+    }
+
+    .suggestion-card {
+      width: 300px;
+      padding: 20px;
+      background: white;
+      border: 1.5px solid rgba(0, 0, 0, 0.12);
+      border-radius: 16px;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.07);
+    }
+
+    .apply-btn {
+      margin-top: 12px;
+      padding: 6px 16px;
+      background: #f1f5f9;
+      color: #0f172a;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .apply-btn:hover {
+      background: #e2e8f0;
+      transform: scale(1.05);
+    }
+
+    .grader-section.active .suggestion-card {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .grader-text {
+      flex: 0.8;
+    }
+
+    .grader-text h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .trust-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .trust-item-small {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 13px;
-      color: var(--text-muted);
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .grader-text p {
+      font-size: 18px;
+      color: #64748b;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* Numbered Bullet Points */
+    .grader-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .grader-bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      transition: background 0.4s ease;
+      cursor: pointer;
+    }
+
+    .grader-bullet-item.active {
+      background: #EEF2FF;
+    }
+
+    .grader-bullet-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grader-bullet-desc {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+      line-height: 1.5;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease;
+      /* Height is always reserved — no max-height trick */
+    }
+
+    .grader-bullet-item.active .grader-bullet-desc {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .grader-bullet-num {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: #10b981;
+      color: white;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .grader-bullet-num::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: rgba(0,0,0,0.15);
+      transition: height linear;
+    }
+
+    .grader-bullet-item.active .grader-bullet-num::after {
+      height: 100%;
+    }
+
+    .grader-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .template-info h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500; /* Not bold */
+      color: #0f172a;
+      margin-bottom: 0;
+    }
+
+    .use-template-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1d4ed8;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 700;
+      opacity: 0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.3);
+      z-index: 5;
+    }
+
+    .template-item.is-centered .use-template-btn {
+      opacity: 1;
+    }
+
+    .template-item:hover .use-template-btn {
+      opacity: 1;
+    }
+
+    .template-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+
+    /* Decorative arrows for scroll hint */
+    .scroll-hint {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+      color: #94a3b8;
+    }
+
+    .scroll-hint-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .scroll-hint-btn:hover {
+      background: #f1f5f9;
+      color: var(--primary);
+      border-color: var(--primary);
     }
 
     /* Standard Cards */
-    .templates-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
 
-    .template-card {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 16px;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
-
-    .template-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      border: 1px solid #f1f5f9;
-      margin-bottom: 12px;
-    }
-
-    .template-card h4 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .template-colors {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .color-dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 1px solid #cbd5e1;
-    }
 
     /* Footer */
     .footer {
@@ -815,6 +1388,273 @@
         padding: 40px 24px;
       }
     }
+
+    .trust-strip {
+      background: #0f172a;
+      border-top: 1px solid #1e293b;
+      border-bottom: 1px solid #1e293b;
+      padding: 32px 0;
+      margin-bottom: 0; /* Removed bottom margin */
+      width: 100%;
+      position: relative;
+      z-index: 10; /* Ensure it stays above hero gradients */
+    }
+
+    .trust-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      color: #e2e8f0;
+    }
+
+    .trust-item strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .trust-icon {
+      width: 22px;
+      height: 22px;
+      stroke: #00CC76;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 32px;
+      background: #334155;
+    }
+
+    @media (max-width: 768px) {
+      .trust-strip-inner {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 0 32px;
+      }
+
+      .trust-divider {
+        display: none;
+      }
+    }
+
+    /* Roadmap Section */
+    .roadmap-section {
+      background: #0f172a;
+      padding: 80px 48px;
+      width: 100%;
+    }
+
+    .roadmap-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .roadmap-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .roadmap-label {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .roadmap-header h2 {
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .roadmap-header p {
+      color: #94a3b8;
+      font-size: 16px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .roadmap-section {
+        padding: 60px 24px;
+      }
+    }
+
+    .roadmap-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .roadmap-card:hover {
+      border-color: #6366f1;
+      transform: translateY(-4px);
+    }
+
+    .roadmap-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #6366f1, #00CC76);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .roadmap-card:hover::before {
+      opacity: 1;
+    }
+
+    .roadmap-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .roadmap-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .icon-ai {
+      background: rgba(99, 102, 241, 0.15);
+    }
+
+    .icon-career {
+      background: rgba(0, 204, 118, 0.12);
+    }
+
+    .icon-niche {
+      background: rgba(251, 146, 60, 0.12);
+    }
+
+    .icon-jobs {
+      background: rgba(59, 130, 246, 0.12);
+    }
+
+    .soon-badge {
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 99px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      animation: pulseBadge 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulseBadge {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.45
+      }
+    }
+
+    .roadmap-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 16px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .feature-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .dot-ai {
+      background: #6366f1;
+    }
+
+    .dot-career {
+      background: #00CC76;
+    }
+
+    .dot-niche {
+      background: #fb923c;
+    }
+
+    .dot-jobs {
+      background: #3b82f6;
+    }
+
+    .feature-item p {
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .feature-item p strong {
+      color: #cbd5e1;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
   </style>
 </head>
 
@@ -849,6 +1689,7 @@
     </a>
     <div class="nav-links">
       <a href="templates.html">Resume Templates</a>
+      <a href="ai-rewriter.html" style="color:#6366f1; font-weight:600;">✨ AI Re-writer</a>
       <a href="#">Cover Letter Builder</a>
       <a href="#">AI Resume Review</a>
       <a href="about.html">FAQ</a>
@@ -865,8 +1706,7 @@
         <span class="hero-line">Friendly Resume</span>
         <span class="hero-line">for Free</span>
       </h1>
-      <p>Optimize your resume's content density for maximum impact and visibility. Choose from 50+ professional
-        templates.</p>
+      <p>Optimize your resume's content density for maximum visibility. Start with a recruiter-approved layout and land your dream job faster.</p>
       <div class="hero-btns">
         <a href="templates.html" class="btn-primary btn-growth">Create new resume</a>
         <a href="templates.html" class="btn-primary btn-outline">Optimize my resume</a>
@@ -893,6 +1733,13 @@
       </div>
     </div>
     <div class="hero-image">
+      <!-- Aurora Gradient Background -->
+      <div class="aurora-bg">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+      </div>
+      
       <img src="img/C O N T A C T.jpg" class="hero-bg-template-2" alt="Background Template Bottom">
       <img src="img/template7.jpg" class="hero-bg-template" alt="Background Template Middle">
       <div class="mockup-container">
@@ -967,109 +1814,510 @@
           </div>
         </div>
 
-        <div class="mock-cube cube-1"><span></span><span></span><span></span></div>
-        <div class="mock-cube cube-2"><span></span><span></span><span></span><span></span></div>
-        <div class="mock-cube cube-3"><span></span><span></span><span></span></div>
+        <div class="mock-badge badge-1"><span style="color:#00CC76;">✓</span> ATS Perfect</div>
+        <div class="mock-badge badge-2">✨ AI Suggestions</div>
+        <div class="mock-badge badge-3"><span style="color:#1d4ed8;">⚡</span> Clean Export</div>
       </div>
     </div>
   </section>
 
-  <!-- Main Sections Grid -->
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <div style="display: flex; flex-direction: column; line-height: 1.3;">
+          <span><strong>ATS-Friendly Resume Builder</strong></span>
+          <span style="font-size:13px; color:#94a3b8;">Pass software seamlessly</span>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <div style="display: flex; flex-direction: column; line-height: 1.3;">
+          <span><strong>Free Resume Templates</strong></span>
+          <span style="font-size:13px; color:#94a3b8;">Easy to edit & customize</span>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <div style="display: flex; flex-direction: column; line-height: 1.3;">
+          <span><strong>Professional CV Maker</strong></span>
+          <span style="font-size:13px; color:#94a3b8;">Recruiter-focused designs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Resume Grader Section -->
+  <section class="grader-section" id="grader-trigger">
+    <div class="grader-container">
+      <div class="grader-visuals">
+        <!-- ATS Score Gauge -->
+        <div class="ats-gauge-card glass-panel">
+          <div style="font-size: 12px; color: #94a3b8; margin-bottom: 12px; font-weight: 600;">ATS Score</div>
+          <div class="gauge-wrap">
+            <div class="gauge-bg"></div>
+            <div class="gauge-fill"></div>
+          </div>
+          <div style="text-align: center; margin-top: -15px;">
+            <span style="font-size: 28px; font-weight: 800;">94%</span>
+            <div style="font-size: 10px; color: #10b981; font-weight: 700; text-transform: uppercase;">Excellent</div>
+          </div>
+        </div>
+
+        <!-- Improvement Chart -->
+        <div class="chart-card glass-panel">
+          <div style="font-size: 12px; color: #94a3b8; font-weight: 600;">Impact Tracking</div>
+          <div class="bars-container">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          <div style="margin-top: 12px; font-size: 11px; color: #60a5fa; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            Increasing Resonance
+          </div>
+        </div>
+
+        <!-- Resume Mockup -->
+        <div class="resume-mockup">
+          <!-- Header -->
+          <div style="margin-bottom: 10px;">
+            <div style="font-weight: 800; font-size: 18px; color: #0f172a;">Taylor Foster</div>
+            <div style="color: #3b82f6; font-size: 9px; font-weight: 600; letter-spacing: 0.5px;">SENIOR PROJECT MANAGER</div>
+            <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap;">
+              <span style="font-size: 8px; color: #64748b;">📧 taylor@email.com</span>
+              <span style="font-size: 8px; color: #64748b;">📞 +1 (555) 234-5678</span>
+              <span style="font-size: 8px; color: #64748b;">📍 San Francisco, CA</span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div style="border-top: 1.5px solid #3b82f6; margin-bottom: 8px;"></div>
+
+          <!-- Experience -->
+          <div style="font-weight: 800; color: #0f172a; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-size: 8px;">Professional Experience</div>
+          <div style="background: rgba(59, 130, 246, 0.05); padding: 8px 10px; border-radius: 4px; border-left: 2px solid #3b82f6; margin-bottom: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <div style="font-weight: 700; font-size: 10px; color: #0f172a;">Lead Project Manager</div>
+              <div style="font-size: 8px; color: #000000;">2021 – Present</div>
+            </div>
+            <div style="font-size: 8.5px; color: #000000; margin-bottom: 4px;">Acme Corp · San Francisco</div>
+            <div id="grader-typing" style="min-height: 36px; font-size: 8.5px; color: #000000; line-height: 1.5;"></div>
+          </div>
+          <div style="padding: 6px 10px; border-radius: 4px; border-left: 2px solid #e2e8f0; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <div style="font-weight: 700; font-size: 10px; color: #0f172a;">Project Coordinator</div>
+              <div style="font-size: 8px; color: #000000;">2018 – 2021</div>
+            </div>
+            <div style="font-size: 8.5px; color: #000000; margin-bottom: 4px;">Beta Inc · New York</div>
+            <div style="font-size: 8.5px; color: #000000; line-height: 1.5;">• Coordinated cross-functional teams across 3 time zones<br>• Reduced project delays by 40% through process improvement</div>
+          </div>
+
+          <!-- Skills -->
+          <div style="font-weight: 800; color: #0f172a; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-size: 8px;">Key Skills</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;">
+            <span style="background: #eff6ff; color: #000000; font-size: 7.5px; padding: 2px 7px; border-radius: 99px; font-weight: 600;">Agile / Scrum</span>
+            <span style="background: #f0fdf4; color: #000000; font-size: 7.5px; padding: 2px 7px; border-radius: 99px; font-weight: 600;">Jira & Confluence</span>
+            <span style="background: #faf5ff; color: #000000; font-size: 7.5px; padding: 2px 7px; border-radius: 99px; font-weight: 600;">Stakeholder Mgmt</span>
+            <span style="background: #fff7ed; color: #000000; font-size: 7.5px; padding: 2px 7px; border-radius: 99px; font-weight: 600;">Risk Analysis</span>
+          </div>
+
+          <!-- Education -->
+          <div style="font-weight: 800; color: #0f172a; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-size: 8px;">Education</div>
+          <div style="display: flex; justify-content: space-between;">
+            <div>
+              <div style="font-weight: 700; font-size: 9px; color: #0f172a;">B.S. Business Administration</div>
+              <div style="font-size: 8px; color: #64748b;">Stanford University</div>
+            </div>
+            <div style="font-size: 8px; color: #94a3b8;">2014 – 2018</div>
+          </div>
+        </div>
+
+        <!-- AI Suggestions Stack -->
+        <div class="suggestion-stack">
+          <div class="suggestion-card" style="transition-delay: 0.8s;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="background: #FEF08A; padding: 6px; border-radius: 8px; color: #1a1a1a; font-size: 16px;">💡</div>
+              <div>
+                <div style="font-weight: 700; font-size: 13px; color: #0f172a; margin-bottom: 4px;">AI Suggestion</div>
+                <div style="font-size: 11px; color: #64748b;">Use data-driven verbs like "spearheaded" to quantify achievements.</div>
+              </div>
+            </div>
+          </div>
+          <div class="suggestion-card" style="transition-delay: 1.2s;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="background: rgba(16,185,129,0.2); padding: 6px; border-radius: 8px; color: #34d399;">📈</div>
+              <div>
+                <div style="font-weight: 700; font-size: 13px; color: #0f172a; margin-bottom: 4px;">Score Impact</div>
+                <div style="font-size: 11px; color: #64748b;">Quantifying impact with data points can increase ATS score by 15%.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grader-text">
+        <div class="grader-badge">Powered by AI</div>
+        <h2 style="color: #0f172a;">Analyze & Optimize in Real-Time</h2>
+        <div class="grader-bullets" id="grader-bullets">
+          <div class="grader-bullet-item" data-index="0">
+            <div class="grader-bullet-num">1</div>
+            <div class="grader-bullet-content">
+              <div class="grader-bullet-title">Scans 50+ recruiter metrics instantly</div>
+              <div class="grader-bullet-desc">Our AI engine checks your resume against 50+ criteria used by top recruiters and hiring systems worldwide.</div>
+            </div>
+          </div>
+          <div class="grader-bullet-item" data-index="1">
+            <div class="grader-bullet-num">2</div>
+            <div class="grader-bullet-content">
+              <div class="grader-bullet-title">Bypass ATS filters with smart suggestions</div>
+              <div class="grader-bullet-desc">Get AI-driven rewrites that make your resume pass automated screening with confidence.</div>
+            </div>
+          </div>
+          <div class="grader-bullet-item" data-index="2">
+            <div class="grader-bullet-num">3</div>
+            <div class="grader-bullet-content">
+              <div class="grader-bullet-title">Improve impact with quantified achievements</div>
+              <div class="grader-bullet-desc">Turn vague statements into powerful data-driven bullets that catch a recruiter's eye in seconds.</div>
+            </div>
+          </div>
+          <div class="grader-bullet-item" data-index="3">
+            <div class="grader-bullet-num">4</div>
+            <div class="grader-bullet-content">
+              <div class="grader-bullet-title">Land more interviews, faster</div>
+              <div class="grader-bullet-desc">Users who optimize with Density see 3x more interview callbacks within the first 2 weeks.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Sections Grid (Moved below Grader) -->
   <div class="main-sections">
     <!-- Features -->
     <div>
       <h2 class="section-title">Why Choose Density Builder?</h2>
       <div class="features-list">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2">
-              <path d="M3 3v18h18" />
-              <path d="m19 9-5 5-4-4-3 3" />
-            </svg>
+        <div class="feature-connection-line"></div>
+        <!-- Content Density AI -->
+        <div class="feature-card green">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <!-- Content Density AI Exact Recreation -->
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M10 8V38H40" stroke="#2c3e50" stroke-width="4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M16 30L24 22L30 26L38 18" stroke="#00CC76" stroke-width="4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <circle cx="16" cy="30" r="3" fill="#00CC76" />
+                <circle cx="24" cy="22" r="3" fill="#00CC76" />
+                <circle cx="30" cy="26" r="3" fill="#00CC76" />
+                <circle cx="38" cy="18" r="4" fill="#00CC76" />
+              </svg>
+            </div>
           </div>
           <h3>Content Density AI</h3>
+          <div class="feature-divider"></div>
+
           <p>Analyze your resume to maximize your resonance impact.</p>
+
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <line x1="3" y1="9" x2="21" y2="9" />
-              <line x1="9" y1="21" x2="9" y2="9" />
-            </svg>
+
+        <!-- Modern Templates -->
+        <div class="feature-card blue">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <!-- Modern Templates Exact Recreation -->
+              <svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+                <rect x="8" y="8" width="32" height="32" rx="4" stroke="#2c3e50" stroke-width="3" />
+                <path d="M8 18H40" stroke="#2c3e50" stroke-width="3" />
+                <rect x="8" y="8" width="32" height="10" rx="4" fill="#3b82f6" fill-opacity="0.8" />
+                <line x1="24" y1="18" x2="24" y2="40" stroke="#2c3e50" stroke-width="3" />
+                <rect x="12" y="24" width="8" height="10" rx="2" fill="#00CC76" />
+                <rect x="28" y="24" width="8" height="10" rx="2" fill="#f59e0b" />
+              </svg>
+            </div>
           </div>
           <h3>Modern Templates</h3>
+          <div class="feature-divider"></div>
+
           <p>50+ expertly designed, ATS-ready layouts.</p>
+
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10 9 9 9 8 9" />
-            </svg>
+
+        <!-- AI Cover Letter -->
+        <div class="feature-card purple">
+          <div class="feature-icon-container">
+            <div class="feature-icon">
+              <!-- AI Cover Letter Exact Recreation -->
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M12 10H28L36 18V38H12V10Z" stroke="#2c3e50" stroke-width="3" stroke-linejoin="round" />
+                <path d="M28 10V18H36" stroke="#2c3e50" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M28 10L36 18" fill="#8b5cf6" fill-opacity="0.6" />
+                <path d="M28 10V18H36Z" fill="#8b5cf6" />
+                <line x1="18" y1="24" x2="30" y2="24" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" />
+                <line x1="18" y1="28" x2="30" y2="28" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" />
+                <line x1="18" y1="32" x2="24" y2="32" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" />
+                <path d="M28 32 Q30 31 31 32 Q32 33 30 34 Q29 35 31 36" stroke="#ec4899" stroke-width="1.5"
+                  stroke-linecap="round" />
+              </svg>
+            </div>
           </div>
           <h3>AI Cover Letter</h3>
+          <div class="feature-divider"></div>
           <p>Instantly generate high-quality cover letters.</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Templates -->
-    <div>
-      <h2 class="section-title" style="text-align: right;">Featured Resume Templates</h2>
-      <div class="templates-list">
-        <div class="template-card">
-          <div
-            style="height: 180px; background: white; border-radius: 8px; margin-bottom: 12px; border: 1px solid #e2e8f0; display: flex; overflow: hidden;">
-            <div
-              style="width: 32%; background: #1c2b4b; padding: 10px 4px; display: flex; flex-direction: column; align-items: center;">
-              <div
-                style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid white; background: url('img/shivam.jpeg') no-repeat; background-size: 115%; background-position: center 10%; margin-bottom: 10px; background-color: white;">
-              </div>
-              <div style="height: 3px; background: rgba(255,255,255,0.2); width: 80%; margin-bottom: 4px;"></div>
-              <div style="height: 3px; background: rgba(255,255,255,0.2); width: 60%;"></div>
-            </div>
-            <div style="flex: 1; padding: 10px;">
-              <div style="height: 8px; background: #e2e8f0; width: 60%; margin-bottom: 5px;"></div>
-              <div style="height: 4px; background: #f1f5f9; width: 100%; margin-bottom: 3px;"></div>
-              <div style="height: 4px; background: #f1f5f9; width: 100%; margin-bottom: 10px;"></div>
-              <div style="height: 6px; background: #e2e8f0; width: 40%; margin-bottom: 5px;"></div>
-              <div style="height: 3px; background: #f1f5f9; width: 100%;"></div>
-            </div>
+  <!-- Horizontal Templates Carousel -->
+  <section class="templates-section">
+    <div class="templates-header">
+      <h2 class="section-title">Job-Winning Resume Templates</h2>
+    </div>
+
+    <div class="templates-container" id="template-scroll">
+      <a href="builder-teal.html" class="template-item">
+        <img src="img/template2.png" alt="Professional Teal">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Professional Teal</h4>
+        </div>
+      </a>
+      <a href="builder-dark.html" class="template-item">
+        <img src="img/template3.jpg" alt="Executive Dark">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Executive Dark</h4>
+        </div>
+      </a>
+      <a href="builder-modern.html" class="template-item">
+        <img src="img/template4.jpg" alt="Modern Beige">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Modern Beige</h4>
+        </div>
+      </a>
+      <a href="builder-minimalist.html" class="template-item">
+        <img src="img/template1.jpg" alt="Minimalist Classic">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Minimalist Classic</h4>
+        </div>
+      </a>
+      <a href="builder-monochrome.html" class="template-item">
+        <img src="img/template5.jpg" alt="Monochrome Clean">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Monochrome Clean</h4>
+        </div>
+      </a>
+      <a href="builder-peach.html" class="template-item">
+        <img src="img/template6.jpg" alt="Creative Peach">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Creative Peach</h4>
+        </div>
+      </a>
+      <a href="builder-cream.html" class="template-item">
+        <img src="img/template7.jpg" alt="Contemporary Cream">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Contemporary Cream</h4>
+        </div>
+      </a>
+      <a href="builder-textual.html" class="template-item">
+        <img src="img/template8.jpg" alt="Modern Textual">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Modern Textual</h4>
+        </div>
+      </a>
+      <a href="#" class="template-item">
+        <img src="img/template9.png" alt="Corporate Modern">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Corporate Modern</h4>
+        </div>
+      </a>
+      <a href="#" class="template-item">
+        <img src="img/template10.png" alt="Elite Technical">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Elite Technical</h4>
+        </div>
+      </a>
+      <a href="#" class="template-item">
+        <img src="img/template11.png" alt="Refined Professional">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Refined Professional</h4>
+        </div>
+      </a>
+      <a href="#" class="template-item">
+        <img src="img/template12.png" alt="Artistic Ochre">
+        <div class="use-template-btn">Use this template</div>
+        <div class="template-info">
+          <h4>Artistic Ochre</h4>
+        </div>
+      </a>
+    </div>
+
+    <div class="scroll-hint">
+        <div class="scroll-hint-btn"
+          onclick="document.getElementById('template-scroll').scrollBy({left: -280, behavior: 'smooth'})">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </div>
+        <div class="scroll-hint-btn"
+          onclick="document.getElementById('template-scroll').scrollBy({left: 280, behavior: 'smooth'})">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="templates.html"
+        style="font-family: 'Plus Jakarta Sans', sans-serif; color: var(--primary); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; transition: all 0.2s;">
+        View all templates
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Roadmap / Coming Soon Features Section -->
+  <section class="roadmap-section">
+    <div class="roadmap-inner">
+      <div class="roadmap-header">
+        <div class="roadmap-label">🚀 Product Roadmap</div>
+        <h2>What's Coming to Density</h2>
+        <p>We're building the most intelligent career platform in India. Here's a preview of the powerful tools
+          launching soon.</p>
+      </div>
+      <div class="roadmap-grid">
+
+        <!-- Card 1: AI Features (LIVE) -->
+        <div class="roadmap-card" style="border-color:#6366f1;">
+          <div class="roadmap-card-header">
+            <div class="roadmap-icon-wrap icon-ai">🤖</div>
+            <a href="ai-rewriter.html"
+              style="background:rgba(99,102,241,0.2);color:#a5b4fc;border:1px solid rgba(99,102,241,0.4);border-radius:99px;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;">🟢
+              Live Now</a>
           </div>
-          <h4>The Developer</h4>
-          <div class="template-colors">
-            <div class="color-dot" style="background: #1c2b4b;"></div>
-            <div class="color-dot" style="background: #ffffff;"></div>
-            <div class="color-dot" style="background: #00CC76;"></div>
+          <h3>Actionable AI Writing Suite</h3>
+          <div class="feature-item">
+            <div class="feature-dot dot-ai"></div>
+            <p><strong>AI Bullet Point Re-writer</strong>Transforms weak lines like "managed a team" into metric-driven
+              achievements like "Led 10-person team to increase efficiency by 22%."</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot dot-ai"></div>
+            <p><strong>Contextual Keyword Injector</strong>Weaves missing ATS keywords naturally into your experience —
+              no keyword stuffing.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot dot-ai"></div>
+            <p><strong>Tone & Sentiment Analyzer</strong>Tells you if your resume sounds too passive, too bold, or
+              perfectly pitched for the target company culture.</p>
           </div>
         </div>
-        <div class="template-card">
-          <div style="height: 180px; background: #1e293b; border-radius: 8px; margin-bottom: 12px;"></div>
-          <h4>The Executive</h4>
-          <div class="template-colors">
-            <div class="color-dot" style="background: #1e3a8a;"></div>
-            <div class="color-dot" style="background: #3b82f6;"></div>
-            <div class="color-dot" style="background: #334155;"></div>
+
+        <!-- Card 2: Career Suite -->
+        <div class="roadmap-card">
+          <div class="roadmap-card-header">
+            <div class="roadmap-icon-wrap icon-career">🎯</div>
+            <span class="soon-badge">Coming Soon</span>
+          </div>
+          <h3>The Career Suite</h3>
+          <div class="feature-item">
+            <div class="feature-dot dot-career"></div>
+            <p><strong>AI Interview Mock Coach</strong>Upload your resume + job description. Get the 5 most likely
+              interview questions with AI-powered feedback on your answers.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot dot-career"></div>
+            <p><strong>Cover Letter DNA Matcher</strong>Pulls a specific "hook" from the job description and matches it
+              to a proof point in your resume for a hyper-personalized cover letter.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot dot-career"></div>
+            <p><strong>LinkedIn Profile Sync</strong>Analyzes your resume and tells you exactly what to update on
+              LinkedIn for a consistent professional brand.</p>
           </div>
         </div>
-        <div class="template-card">
-          <div
-            style="height: 180px; background: #f8fafc; border-radius: 8px; margin-bottom: 12px; border: 1px solid #cbd5e1;">
+
+        <!-- Card 3: Niche Modes -->
+        <div class="roadmap-card">
+          <div class="roadmap-card-header">
+            <div class="roadmap-icon-wrap icon-niche">⚡</div>
+            <span class="soon-badge">Coming Soon</span>
           </div>
-          <h4>The Creative</h4>
-          <div class="template-colors">
-            <div class="color-dot" style="background: #c7d2fe;"></div>
-            <div class="color-dot" style="background: #a5b4fc;"></div>
-            <div class="color-dot" style="background: #475569;"></div>
+          <h3>Hyper-Niche Industry Modes</h3>
+          <div class="feature-item">
+            <div class="feature-dot dot-niche"></div>
+            <p><strong>Dev Mode</strong>GitHub integration, LeetCode stats, and LaTeX-style clean exports that tech
+              recruiters love.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot dot-niche"></div>
+            <p><strong>Creative Mode</strong>Portfolio links, visual hierarchy, and stunning color palettes that pass
+              ATS but impress human eyes.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot dot-niche"></div>
+            <p><strong>Executive Mode</strong>High-level strategy focus, board experience highlights, and "quiet luxury"
+              typography for senior roles.</p>
           </div>
         </div>
+
+        <!-- Card 4: Job Matching -->
+        <div class="roadmap-card">
+          <div class="roadmap-card-header">
+            <div class="roadmap-icon-wrap icon-jobs">🔍</div>
+            <span class="soon-badge">Coming Soon</span>
+          </div>
+          <h3>Smart Job Matching (Reverse Search)</h3>
+          <div class="feature-item">
+            <div class="feature-dot dot-jobs"></div>
+            <p><strong>Resume-to-Job Discovery</strong>Instead of checking your resume against jobs, we flip the script
+              — based on your highest ATS scores, we surface live job postings where you are already a 90%+ match.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot dot-jobs"></div>
+            <p><strong>Instant Gratification</strong>See 5–10 real openings from LinkedIn & Indeed tailored to your
+              exact profile strength the moment you finish your resume.</p>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -1131,26 +2379,224 @@
       if (isDeleting) {
         textElement.textContent = currentPhrase.substring(0, charIndex - 1);
         charIndex--;
-        typeSpeed = 40; // Fast erase
+        typeSpeed = 60; // Slightly slower erase for stability
       } else {
         textElement.textContent = currentPhrase.substring(0, charIndex + 1);
         charIndex++;
-        typeSpeed = 120; // Slow write
+        typeSpeed = 120;
       }
 
       if (!isDeleting && charIndex === currentPhrase.length) {
         isDeleting = true;
-        typeSpeed = 3000; // Pause at end
+        typeSpeed = 2500; // Pause at end
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;
-        typeSpeed = 500; // Pause at start
+        typeSpeed = 500;
       }
 
       setTimeout(type, typeSpeed);
     }
 
     document.addEventListener('DOMContentLoaded', type);
+  </script>
+  <script>
+    // Advanced Template Scroll Scaling (Cover Flow Effect)
+    const container = document.getElementById('template-scroll');
+    let items = document.querySelectorAll('.template-item');
+
+    // --- INFINITE SCROLL LOGIC ---
+    function setupInfiniteScroll() {
+      const originalItems = Array.from(container.children);
+      
+      // Clone items to start and end for circular effect
+      originalItems.forEach(item => {
+        const cloneBefore = item.cloneNode(true);
+        const cloneAfter = item.cloneNode(true);
+        container.appendChild(cloneAfter);
+        container.prepend(cloneBefore);
+      });
+
+      // Update items reference
+      items = document.querySelectorAll('.template-item');
+      
+      // Center the scroll position initially
+      const itemWidth = originalItems[0].offsetWidth + 50; // width + gap
+      container.scrollLeft = originalItems.length * itemWidth;
+    }
+
+    function handleInfiniteLoop() {
+      const scrollWidth = container.scrollWidth;
+      const clientWidth = container.clientWidth;
+      const oneThird = scrollWidth / 3;
+
+      if (container.scrollLeft >= oneThird * 2) {
+        // Silent jump back to middle set
+        container.scrollLeft -= oneThird;
+      } else if (container.scrollLeft <= oneThird - clientWidth) {
+        // Silent jump forward to middle set
+        container.scrollLeft += oneThird;
+      }
+    }
+
+    function updateCoverFlow() {
+      handleInfiniteLoop();
+
+      const containerRect = container.getBoundingClientRect();
+      const centerX = containerRect.left + containerRect.width / 2;
+
+      items.forEach(item => {
+        const itemRect = item.getBoundingClientRect();
+        const itemCenterX = itemRect.left + itemRect.width / 2;
+        const distanceFromCenter = itemCenterX - centerX;
+        const normalizedDistance = Math.min(Math.max(distanceFromCenter / (containerRect.width / 2), -1), 1);
+
+        // Calculate transformations
+        const scale = 1.15 - Math.abs(normalizedDistance) * 0.15;
+        const opacity = 1 - Math.abs(normalizedDistance) * 0.3;
+        const zIndex = Math.round(100 - Math.abs(normalizedDistance) * 50);
+
+        item.style.transform = `scale(${scale})`;
+        item.style.zIndex = zIndex;
+        item.style.opacity = opacity;
+
+        // Centered class for button visibility
+        if (Math.abs(normalizedDistance) < 0.15) {
+          item.classList.add('is-centered');
+        } else {
+          item.classList.remove('is-centered');
+        }
+      });
+    }
+
+    // --- ULTRA-SMOOTH ONE-BY-ONE AUTO SCROLL ---
+    let isPaused = false;
+    let autoScrollInterval;
+
+    function easeInOutCubic(t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t * t + b;
+      t -= 2;
+      return c / 2 * (t * t * t + 2) + b;
+    }
+
+    function smoothScrollStep(targetLeft, duration) {
+      const startTime = performance.now();
+      const startLeft = container.scrollLeft;
+      const distance = targetLeft - startLeft;
+      
+      // Disable snap during animation to prevent "fighting" the manual scroll
+      container.style.scrollSnapType = 'none';
+
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        container.scrollLeft = easeInOutCubic(Math.min(elapsed, duration), startLeft, distance, duration);
+
+        if (elapsed < duration) {
+          requestAnimationFrame(step);
+        } else {
+          // Re-enable snap after animation finishes
+          container.style.scrollSnapType = 'x mandatory';
+        }
+        updateCoverFlow();
+      }
+      requestAnimationFrame(step);
+    }
+
+    function startAutoScroll() {
+      autoScrollInterval = setInterval(() => {
+        if (!isPaused) {
+          const itemWidth = items[0].offsetWidth + 50; // width + gap
+          const target = container.scrollLeft + itemWidth;
+          smoothScrollStep(target, 1200); // Faster 1.2-second transition
+        }
+      }, 3500); // Every 3.5 seconds
+    }
+
+    container.addEventListener('mouseenter', () => isPaused = true);
+    container.addEventListener('mouseleave', () => isPaused = false);
+    container.addEventListener('mousedown', () => isPaused = true);
+    window.addEventListener('mouseup', () => isPaused = false);
+
+    // Initialize
+    setupInfiniteScroll();
+    startAutoScroll();
+
+    container.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateCoverFlow);
+    });
+    
+    window.addEventListener('resize', updateCoverFlow);
+
+    // Initial call
+    setTimeout(updateCoverFlow, 100);
+
+    // --- Resume Grader Animations ---
+    const graderSection = document.getElementById('grader-trigger');
+    const typingElement = document.getElementById('grader-typing');
+    const textToType = "Managed a team of 5 engineers, spearheaded a dynamic team of 5 engineers.. |";
+    let hasAnimated = false;
+
+    function typeWriter(text, i, fnCallback) {
+      if (i < text.length) {
+        typingElement.innerHTML = text.substring(0, i + 1) + '<span class="typing-cursor"></span>';
+        setTimeout(function() {
+          typeWriter(text, i + 1, fnCallback)
+        }, 50);
+      } else if (typeof fnCallback == 'function') {
+        setTimeout(fnCallback, 700);
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          graderSection.classList.add('active');
+          hasAnimated = true;
+          setTimeout(() => {
+            typeWriter(textToType, 0);
+          }, 1000);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(graderSection);
+
+    // --- Bullet Point Cycling Animation ---
+    const bulletItems = document.querySelectorAll('#grader-bullets .grader-bullet-item');
+    let activeBullet = 0;
+    let bulletTimer = null;
+
+    function setActiveBullet(index) {
+      bulletItems.forEach((item, i) => {
+        item.classList.remove('active');
+        // Reset the progress bar
+        const num = item.querySelector('.grader-bullet-num');
+        if (num) num.style.setProperty('--progress-duration', '0ms');
+      });
+      bulletItems[index].classList.add('active');
+      activeBullet = index;
+    }
+
+    function startBulletCycle() {
+      bulletTimer = setInterval(() => {
+        activeBullet = (activeBullet + 1) % bulletItems.length;
+        setActiveBullet(activeBullet);
+      }, 2500);
+    }
+
+    // Allow manual click
+    bulletItems.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        clearInterval(bulletTimer);
+        setActiveBullet(i);
+        startBulletCycle();
+      });
+    });
+
+    // Start cycling automatically
+    setActiveBullet(0);
+    startBulletCycle();
   </script>
 </body>
 
