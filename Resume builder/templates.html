@@ -34,9 +34,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
-      background-attachment: fixed;
-      /* Keeps the gradient smooth as you scroll */
+      background: #fdfdfb;
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
       line-height: 1.5;
@@ -47,7 +45,7 @@
 
     /* Navbar */
     .navbar {
-      height: 60px;
+      height: 80px;
       background: #ffffff;
       /* Switched to White as requested */
       backdrop-filter: blur(12px);
@@ -60,7 +58,7 @@
     }
 
     .navbar-container {
-      max-width: 1400px;
+      max-width: 100%;
       margin: 0 auto;
       padding: 0 48px;
       height: 100%;
@@ -73,7 +71,7 @@
     .nav-steps {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -82,54 +80,61 @@
     .step {
       display: flex;
       align-items: center;
-      gap: 10px;
-      opacity: 0.7;
-      transition: all 0.3s ease;
-    }
-
-    .step.active {
-      opacity: 1;
+      gap: 12px;
     }
 
     .step-num {
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: transparent;
-      border: 1px solid #10b981;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
-      color: #10b981;
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      color: #64748b;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     .step.active .step-num {
-      background: #10b981;
-      border-color: #10b981;
+      background: #10B981;
+      border-color: #10B981;
       color: #ffffff;
-      box-shadow: none;
+    }
+
+    /* Outer ring for active step */
+    .step.active .step-num::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.15);
+      z-index: -1;
     }
 
     .step-label {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 500;
       color: #64748b;
-      /* Dark Slate Gray for readability on white */
       white-space: nowrap;
     }
 
     .step.active .step-label {
       color: #0f172a;
-      /* Darker for active step */
+      font-weight: 700;
     }
 
     .step-divider {
       width: 40px;
       height: 1px;
       background: #e2e8f0;
-      /* Light border color for divider */
+      margin: 0 8px;
     }
 
     @media (max-width: 768px) {
@@ -222,13 +227,80 @@
 
     .templates-hero h1 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 48px;
+      font-size: 64px;
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 12px;
       letter-spacing: -0.04em;
       color: #1E2937;
       /* Updated to Charcoal as requested */
+    }
+
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .trust-icon {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+    }
+
+    .trust-icon.icon-ats {
+      color: #0d9488;
+    }
+
+    /* Teal */
+    .trust-icon.icon-recruiter {
+      color: #e11d48;
+    }
+
+    /* Rose */
+    .trust-icon.icon-easy {
+      color: #f59e0b;
+    }
+
+    /* Amber */
+    .trust-icon.icon-download {
+      color: #6366f1;
+    }
+
+    /* Indigo */
+
+    .trust-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.01em;
+    }
+
+    .trust-dot {
+      width: 4px;
+      height: 4px;
+      background: #cbd5e1;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 768px) {
+      .trust-bar {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .trust-dot {
+        display: none;
+      }
     }
 
 
@@ -367,70 +439,78 @@
     }
 
     .nav-tabs-wrapper {
-      background: white;
-      padding: 15px 0 0;
-      /* Reduced from 32px */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #fdfdfb;
+      /* Very light beige background for the section */
+      padding: 40px 0;
       border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: center;
     }
 
     .tabs-container {
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 14px;
       display: flex;
-      justify-content: center;
-      gap: 60px;
-      width: 100%;
-      padding: 0 48px;
-      max-width: 1400px;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid #f1f5f9;
+      max-width: fit-content;
       margin: 0 auto;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    @media (max-width: 1024px) {
-      .tabs-container {
-        justify-content: flex-start;
-        gap: 32px;
-      }
-    }
-
-    .tabs-container::-webkit-scrollbar {
-      display: none;
-      /* Chrome/Safari */
     }
 
     .tab-btn {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 16px 0;
+      gap: 10px;
+      padding: 10px 20px;
       background: transparent;
       border: none;
-      border-bottom: 2px solid transparent;
-      color: #94a3b8;
-      font-size: 17px;
+      border-radius: 12px;
+      color: #64748b;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       white-space: nowrap;
     }
 
     .tab-btn svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       stroke-width: 2;
       fill: none;
     }
 
     .tab-btn:hover {
-      color: #1d4ed8;
+      background: #f8fafc;
+      color: #0f172a;
     }
 
     .tab-btn.active {
-      color: #1d4ed8;
-      border-bottom-color: #1d4ed8;
+      background: #0f172a;
+      color: #ffffff;
+    }
+
+    .tab-count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      background: #f1f5f9;
+      color: #64748b;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-left: 4px;
+    }
+
+    .tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
     }
 
     /* Templates Grid Section */
@@ -470,11 +550,10 @@
 
     .template-image-wrap {
       width: 100%;
-      background: #f5f7fa;
-      /* Updated to a more neutral, premium Slate Gray */
-      padding: 24px;
+      background: transparent;
+      padding: 8px;
       border-radius: 0;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      border: none;
       box-shadow: none;
       position: relative;
       margin-bottom: 24px;
@@ -780,6 +859,67 @@
       color: #fff;
     }
 
+
+    .footer-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+      color: #64748b;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-bottom-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #fff;
+    }
+
     @media (max-width: 1200px) {
       .footer-grid {
         grid-template-columns: 1fr 1fr;
@@ -887,6 +1027,36 @@
     <h1>Resume Templates</h1>
     <p>Each layout is hand-crafted to pass the 6-second recruiter test and every ATS scanner. Choose a design and land
       your next role faster.</p>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <svg class="trust-icon icon-ats" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <span class="trust-text">ATS-Optimized</span>
+      </div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">
+        <svg class="trust-icon icon-recruiter" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+        <span class="trust-text">Recruiter Approved</span>
+      </div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">
+        <svg class="trust-icon icon-easy" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        </svg>
+        <span class="trust-text">Easy to Customize</span>
+      </div>
+      <div class="trust-dot"></div>
+      <div class="trust-item">
+        <svg class="trust-icon icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+        </svg>
+        <span class="trust-text">Instant Download</span>
+      </div>
+    </div>
   </header>
 
 
@@ -901,13 +1071,15 @@
           <rect x="3" y="14" width="7" height="7" />
         </svg>
         All
+        <span class="tab-count">8</span>
       </button>
       <button class="tab-btn" data-filter="fresher">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="m12 3 1.912 5.886L20 10.8l-5.088 1.914L13 18.6l-1.912-5.886L6 10.8l5.088-1.914z" />
+          <path d="M12 3l1.912 5.886L20 10.8l-5.088 1.914L13 18.6l-1.912-5.886L6 10.8l5.088-1.914z" />
           <path d="M5 3v4M3 5h4M19 17v4M17 19h4" />
         </svg>
         Fresher
+        <span class="tab-count">2</span>
       </button>
       <button class="tab-btn" data-filter="student">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -915,6 +1087,7 @@
           <path d="M6 12v5c3 3 9 3 12 0v-5" />
         </svg>
         Student
+        <span class="tab-count">1</span>
       </button>
       <button class="tab-btn" data-filter="professional">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -923,6 +1096,7 @@
           <path d="M12 12h.01" />
         </svg>
         Professional
+        <span class="tab-count">4</span>
       </button>
       <button class="tab-btn" data-filter="photo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -930,6 +1104,7 @@
           <circle cx="12" cy="7" r="4" />
         </svg>
         With Photo
+        <span class="tab-count">3</span>
       </button>
       <button class="tab-btn" data-filter="tech">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -937,6 +1112,7 @@
           <polyline points="8 6 2 12 8 18" />
         </svg>
         Tech
+        <span class="tab-count">1</span>
       </button>
       <button class="tab-btn" data-filter="creative">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -945,6 +1121,7 @@
             d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94" />
         </svg>
         Creative
+        <span class="tab-count">2</span>
       </button>
       <button class="tab-btn" data-filter="ats">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -952,6 +1129,7 @@
           <path d="m9 12 2 2 4-4" />
         </svg>
         ATS
+        <span class="tab-count">3</span>
       </button>
     </div>
   </div>
@@ -1156,7 +1334,8 @@
           </svg>
           <span class="footer-brand-name">Density</span>
         </a>
-        <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+        <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that
+          gets you hired in 2026.</p>
         <div class="social-links">
           <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
               <path
