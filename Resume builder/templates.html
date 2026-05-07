@@ -1,49 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Choose Your Template — Density Resume Builder</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Your Template | Density Resume Builder</title>
+  <meta name="description"
+    content="Select from our gallery of high-score, ATS-friendly resume templates. Each design is recruiter-approved and optimized for modern job applications." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&family=Outfit:wght@700;800&display=swap"
+    rel="stylesheet" />
+  <script src="js/loader.js"></script>
+
   <style>
     :root {
-      --primary: #7c3aed;
-      --primary-hover: #6d28d9;
-      --bg-lavender: #f5f3ff;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --glass-bg: rgba(255, 255, 255, 0.8);
-      --glass-border: rgba(255, 255, 255, 0.4);
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --bg-light: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --btn-blue: #1d4ed8;
     }
 
-    /* ── BASE STYLES ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html, body {
-      height: 100%;
-      width: 100%;
+    body {
       font-family: 'Inter', sans-serif;
-      background: #fafafa;
+      background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+      background-attachment: fixed;
+      /* Keeps the gradient smooth as you scroll */
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
-      scroll-behavior: smooth;
+      line-height: 1.5;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* ── NAVBAR ── */
+
+    /* Navbar */
     .navbar {
+      height: 60px;
+      background: #ffffff;
+      /* Switched to White as requested */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      width: 100%;
+      border-bottom: 1px solid #f1f5f9;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 100%;
       display: flex;
       align-items: center;
-      height: 64px;
-      padding: 0 32px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--glass-border);
-      box-shadow: 0 1px 1px rgba(0,0,0,0.02), 0 2px 10px rgba(0,0,0,0.04);
-      position: fixed;
-      top: 0; width: 100%;
-      z-index: 1000;
+      position: relative;
+    }
+
+    /* Step Indicator Styles */
+    .nav-steps {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .step.active {
+      opacity: 1;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    .step.active .step-num {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: none;
+    }
+
+    .step-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      /* Dark Slate Gray for readability on white */
+      white-space: nowrap;
+    }
+
+    .step.active .step-label {
+      color: #0f172a;
+      /* Darker for active step */
+    }
+
+    .step-divider {
+      width: 40px;
+      height: 1px;
+      background: #e2e8f0;
+      /* Light border color for divider */
+    }
+
+    @media (max-width: 768px) {
+      .nav-steps {
+        display: none;
+      }
     }
 
     .brand-logo {
@@ -51,377 +143,1119 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: #000;
-      transition: opacity 0.2s;
     }
-    .brand-logo:hover { opacity: 0.8; }
-    .brand-logo img { width: 32px; height: 32px; object-fit: contain; }
-    .brand-logo span { font-size: 1.15rem; font-weight: 650; letter-spacing: -0.01em; }
-    .brand-logo strong { font-weight: 800; }
 
-    /* ── PREMIUM HEADER ── */
-    .hero-header {
-      margin-top: 64px;
-      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-      padding: 100px 32px 120px;
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+      /* Increased from 1 to prevent overlap */
+      gap: 2px;
+      /* Added small gap for clarity */
+    }
+
+
+    .brand-title span:first-child {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #0f172a;
+      /* Dark logo text */
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title span:last-child {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      /* Subtitle color */
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .btn-get-started {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    /* Hero Section */
+    .templates-hero {
       text-align: center;
+      padding: 40px 48px 10px;
+      /* Reduced top padding from 80px to 40px */
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .templates-hero p {
+      font-size: 0.95rem;
+      /* Subtly reduced from 1rem */
+      color: #0f172a;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+
+    .templates-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -0.04em;
+      color: #1E2937;
+      /* Updated to Charcoal as requested */
+    }
+
+
+
+
+
+
+    /* Templates Grid */
+    .templates-grid-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* Grader Promo Banner */
+    .grader-promo {
+      max-width: 1400px;
+      margin: 80px auto 0;
+      background: #0f172a;
+      border-radius: 24px;
+      padding: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-header h1 {
-      font-size: 64px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 24px;
-      letter-spacing: -0.04em;
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    .grader-promo::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(49, 87, 224, 0.2) 0%, transparent 70%);
+      filter: blur(40px);
     }
 
-    .hero-header h1 span {
-      background: linear-gradient(to right, #7c3aed, #4f46e5);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .grader-content h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 32px;
+      margin-bottom: 16px;
     }
 
-    .hero-header p {
-      font-size: 21px;
-      color: var(--text-muted);
-      font-weight: 500;
-      max-width: 720px;
-      margin: 0 auto;
-      line-height: 1.5;
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    .grader-content p {
+      color: #94a3b8;
+      font-size: 18px;
+      max-width: 500px;
+      line-height: 1.6;
     }
 
-    /* ── GALLERY GRID ── */
-    .gallery-container {
-      padding: 40px 32px 160px;
-      max-width: 1400px;
-      margin: 0 auto;
-      margin-top: -60px;
-      position: relative;
-      z-index: 10;
+    .grader-cta {
+      background: #1d4ed8;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.2s;
     }
 
-    .guidance-section {
-      max-width: 1000px; 
-      margin: 0 auto; 
-      padding: 60px 24px; 
+    .grader-cta:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+
+    /* Expert Tips Section */
+    .expert-tips {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .tips-header {
       text-align: center;
+      margin-bottom: 60px;
     }
-    .guidance-grid {
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-      gap: 24px; 
-      text-align: left;
+
+    .tips-header h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 36px;
+      margin-bottom: 16px;
     }
-    .guidance-card {
-      background: #fff; 
-      padding: 24px; 
-      border-radius: 12px; 
-      border: 1px solid #e2e8f0; 
-      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .tip-card {
+      padding: 32px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .tip-card h4 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .tip-card p {
+      font-size: 15px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .templates-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grader-promo {
+        flex-direction: column;
+        text-align: center;
+        gap: 32px;
+        padding: 40px;
+      }
     }
 
     .templates-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      gap: 32px;
     }
 
-    @media (max-width: 1200px) {
-      .templates-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px) {
-      .templates-grid { grid-template-columns: 1fr; }
-    }
-
-    /* NO ROUNDED EDGES */
-    .template-card {
-      background: #ffffff;
-      border-radius: 0;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-      border: 1px solid #f1f5f9;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    .nav-tabs-wrapper {
+      background: white;
+      padding: 15px 0 0;
+      /* Reduced from 32px */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
     }
 
-    .template-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-    }
-
-    .preview-box {
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
       width: 100%;
-      height: 400px;
-      overflow: hidden;
-      background: #f8fafc;
+      padding: 0 48px;
+      max-width: 1400px;
+      margin: 0 auto;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    @media (max-width: 1024px) {
+      .tabs-container {
+        justify-content: flex-start;
+        gap: 32px;
+      }
+    }
+
+    .tabs-container::-webkit-scrollbar {
+      display: none;
+      /* Chrome/Safari */
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 0;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #94a3b8;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .tab-btn:hover {
+      color: #1d4ed8;
+    }
+
+    .tab-btn.active {
+      color: #1d4ed8;
+      border-bottom-color: #1d4ed8;
+    }
+
+    /* Templates Grid Section */
+    .templates-section {
+      background: transparent;
+      padding: 0 0 120px;
+      /* Reduced top padding to 0 for maximum tightness */
+      min-height: 800px;
       position: relative;
-      border-radius: 0;
+      z-index: 1;
     }
 
-    /* Hover overlay on image */
-    .preview-box::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(12, 15, 25, 0);
-      transition: background 0.4s;
+
+
+
+    .templates-grid-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
     }
 
-    .template-card:hover .preview-box::after {
-      background: rgba(12, 15, 25, 0.4);
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      /* 4 columns as requested */
+      gap: 32px;
+      /* Slightly tighter gap for 4 columns */
     }
 
-    .preview-box img {
+
+    .template-item {
+      display: block;
+      text-decoration: none;
+      position: relative;
+      background: transparent;
+    }
+
+    .template-image-wrap {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .template-card:hover .preview-box img {
-      transform: scale(1.05);
-    }
-
-    .card-content {
+      background: #f5f7fa;
+      /* Updated to a more neutral, premium Slate Gray */
       padding: 24px;
-      background: #fff;
+      border-radius: 0;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: none;
+      position: relative;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    .card-content h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 4px;
+
+
+
+
+
+    .template-item:hover .template-image-wrap {
+      box-shadow: none;
+      border-color: rgba(95, 61, 196, 0.2);
     }
 
-    .card-content p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 0;
-      line-height: 1.4;
+    .template-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      /* Layered Shadow Effect as requested */
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.05),
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.06);
+      background: #ffffff;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
     }
 
-    /* ── OVERLAY BUTTON - NO ROUNDED EDGES ── */
-    .btn-action {
+    .template-item:hover img {
+      transform: translateY(-4px);
+      box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.08),
+        0 2px 4px rgba(0, 0, 0, 0.12),
+        0 30px 60px rgba(0, 0, 0, 0.08);
+    }
+
+
+
+
+
+    .template-info {
+      padding: 0;
+      text-align: left;
+    }
+
+    .template-info h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .template-info p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .use-template-btn {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -10%);
-      z-index: 10;
-      display: inline-block;
-      width: 70%;
-      padding: 14px;
-      background: var(--primary);
-      color: #fff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      border-radius: 0;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      
-      /* HIDE BY DEFAULT */
-      opacity: 0;
-      pointer-events: none;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    .template-card:hover .btn-action {
-      opacity: 1;
       transform: translate(-50%, -50%);
-      pointer-events: auto;
+      background: #1d4ed8;
+      /* Updated to Blue as requested */
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      display: none;
+      /* Hide by default */
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      z-index: 100;
+      pointer-events: none;
+      /* Pass clicks to parent item */
+      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.2);
     }
 
-    .btn-action:hover {
-      background: var(--primary-hover);
-      transform: translate(-50%, -55%);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    .template-item:hover .use-template-btn {
+      display: flex;
+      /* Show on hover */
     }
 
-    .badge-pop {
+    .template-badge {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      color: var(--primary);
-      padding: 4px 10px;
-      border-radius: 0;
+      /* Reverted back to right as requested */
+      background: #1d4ed8;
+      /* Updated to Blue as requested */
+      color: white;
+      padding: 4px 12px;
+      border-radius: 99px;
       font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      z-index: 5;
-      backdrop-filter: blur(4px);
+      z-index: 10;
     }
 
-    .badge-pop.featured { background: var(--primary); color: #fff; }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+
+
+
+
+    /* Premium Footer */
+    .footer {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 100px 48px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      z-index: 10;
     }
 
-    /* ── BOTTOM BAR ── */
-    .bottom-bar {
-      width: 100%;
-      height: 48px;
-      background: #fff;
-      border-top: 1px solid #f1f5f9;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-logo {
       display: flex;
       align-items: center;
-      padding: 0 32px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      z-index: 1000;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
     }
-    .bottom-bar span {
-      font-size: 11px;
+
+    .footer-brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-tagline {
+      color: #94a3b8;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #cbd5e1;
+      transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background: #5F3DC4;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
       color: #64748b;
-      font-weight: 400;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-bottom-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #fff;
+    }
+
+
+    .footer-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+      color: #64748b;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #94a3b8;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-bottom-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 1200px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .templates-hero h1 {
+        font-size: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .templates-hero {
+        padding: 60px 24px;
+      }
+
+      .templates-hero h1 {
+        font-size: 32px;
+      }
+
+      .templates-grid-container {
+        padding: 0 24px 80px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
+
+  <!-- Navbar -->
   <nav class="navbar">
-    <a href="index.html" class="brand-logo">
-      <img src="img/logo.png" alt="Density Logo">
-      <span>Density <strong>Resume Builder</strong></span>
-    </a>
-  </nav>
-
-  <!-- PREMIUM HEADER -->
-  <section class="hero-header">
-    <h1>High-Score <span>ATS Resumes</span></h1>
-    <p>Hand-crafted, professional CV templates optimized for global recruitment standards. Choose a layout to build your job-winning resume now.</p>
-  </header>
-
-  <!-- GUIDANCE SECTION -->
-  <section class="guidance-section">
-    <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 16px; color: #0f172a;">How to choose the perfect template?</h2>
-    <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin-bottom: 40px;">Selecting the right structure can make or break your application. Our templates are designed for specific career stages and industries.</p>
-  </section>
-
-  <!-- GALLERY -->
-  <main class="gallery-container">
-    <div class="templates-grid">
-      
-      <!-- Row 1 -->
-      <div class="template-card" style="--i:1;">
-        <span class="badge-pop featured">Top Pick</span>
-        <div class="preview-box">
-          <img src="img/template2.png" alt="Professional Teal Template">
-          <a href="builder-teal.html" class="btn-action">Build with this</a>
+    <div class="navbar-container">
+      <a href="index.html" class="brand-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+          <rect x="5" y="5" width="28" height="28" fill="#000" />
+          <rect x="37" y="37" width="28" height="28" fill="#000" />
+          <rect x="69" y="37" width="28" height="28" fill="#000" />
+          <rect x="37" y="69" width="28" height="28" fill="#000" />
+          <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+          <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+          <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+          <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+        </svg>
+        <div class="brand-title">
+          <span>Density</span>
+          <span>Resume Builder</span>
         </div>
-        <div class="card-content">
-          <h3>Professional Teal</h3>
-          <p>Dual-column with sleek teal accents.</p>
+      </a>
+      <div class="nav-steps">
+        <div class="step active">
+          <span class="step-num">1</span>
+          <span class="step-label">Select Template</span>
         </div>
-      </div>
-
-      <div class="template-card" style="--i:2;">
-        <div class="preview-box">
-          <img src="img/template3.jpg" alt="Dark Sidebar Template">
-          <a href="builder-dark.html" class="btn-action">Build with this</a>
+        <div class="step-divider"></div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <span class="step-label">Personalize</span>
         </div>
-        <div class="card-content">
-          <h3>Executive Dark</h3>
-          <p>High-contrast strategic design.</p>
+        <div class="step-divider"></div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <span class="step-label">Review</span>
         </div>
-      </div>
-
-      <div class="template-card" style="--i:3;">
-        <div class="preview-box">
-          <img src="img/template4.jpg" alt="Modern Beige Template">
-          <a href="builder-modern.html" class="btn-action">Build with this</a>
-        </div>
-        <div class="card-content">
-          <h3>Modern Beige</h3>
-          <p>Sophisticated and contemporary tones.</p>
-        </div>
-      </div>
-
-    <div class="template-card" style="--i:4;">
-        <div class="preview-box">
-          <img src="img/template1.jpg" alt="Minimalist Template">
-          <a href="builder-minimalist.html" class="btn-action">Build with this</a>
-        </div>
-        <div class="card-content">
-          <h3>Minimalist Classic</h3>
-          <p>Clean and efficient one-column layout.</p>
-        </div>
-      </div>
-
-      <!-- Row 2 -->
-      <div class="template-card" style="--i:5;">
-        <div class="preview-box">
-          <img src="img/template5.jpg" alt="Monochrome Resume">
-          <a href="builder-monochrome.html" class="btn-action">Build with this</a>
-        </div>
-        <div class="card-content">
-          <h3>Monochrome Clean</h3>
-          <p>Classic gray-scale professional layout.</p>
-        </div>
-      </div>
-
-      <div class="template-card" style="--i:6;">
-        <div class="preview-box">
-          <img src="img/template6.jpg" alt="Peach Sidebar Resume">
-          <a href="builder-peach.html" class="btn-action">Build with this</a>
-        </div>
-        <div class="card-content">
-          <h3>Creative Peach</h3>
-          <p>Modern touch with subtle warm accents.</p>
-        </div>
-      </div>
-
-      <div class="template-card" style="--i:7;">
-        <div class="preview-box">
-          <img src="img/template7.jpg" alt="Beige Sidebar Resume">
-          <a href="builder-cream.html" class="btn-action">Build with this</a>
-        </div>
-        <div class="card-content">
-          <h3>Contemporary Cream</h3>
-          <p>Elegant beige sidebar for a refined look.</p>
-        </div>
-      </div>
-
-      <div class="template-card" style="--i:8;">
-        <div class="preview-box">
-          <img src="img/template8.jpg" alt="Textual Resume">
-          <a href="builder-textual.html" class="btn-action">Build with this</a>
-        </div>
-        <div class="card-content">
-          <h3>Modern Textual</h3>
-          <p>Spacious layout focused on readability.</p>
+        <div class="step-divider"></div>
+        <div class="step">
+          <span class="step-num">4</span>
+          <span class="step-label">Download</span>
         </div>
       </div>
 
     </div>
-  </main>
+  </nav>
 
-  <!-- BOTTOM BAR -->
-  <div class="bottom-bar">
-    <span>© 2026 Density Resume Builder • Designed for Success</span>
-    <span style="margin-left:auto; display:flex; gap:16px;">
-      <a href="about.html" style="font-size:11px;color:#7C3AED;text-decoration:none;font-weight:500;">About</a>
-      <a href="contact.html" style="font-size:11px;color:#7C3AED;text-decoration:none;font-weight:500;">Contact</a>
-      <a href="privacy-policy.html" style="font-size:11px;color:#7C3AED;text-decoration:none;font-weight:500;">Privacy Policy</a>
-      <a href="terms.html" style="font-size:11px;color:#7C3AED;text-decoration:none;font-weight:500;">Terms &amp; Conditions</a>
-      <a href="disclaimer.html" style="font-size:11px;color:#7C3AED;text-decoration:none;font-weight:500;">Disclaimer</a>
-    </span>
+
+  <!-- Hero Section -->
+  <header class="templates-hero">
+    <h1>Resume Templates</h1>
+    <p>Each layout is hand-crafted to pass the 6-second recruiter test and every ATS scanner. Choose a design and land
+      your next role faster.</p>
+  </header>
+
+
+
+  <div class="nav-tabs-wrapper">
+    <div class="tabs-container">
+      <button class="tab-btn active" data-filter="all">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+        </svg>
+        All
+      </button>
+      <button class="tab-btn" data-filter="fresher">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="m12 3 1.912 5.886L20 10.8l-5.088 1.914L13 18.6l-1.912-5.886L6 10.8l5.088-1.914z" />
+          <path d="M5 3v4M3 5h4M19 17v4M17 19h4" />
+        </svg>
+        Fresher
+      </button>
+      <button class="tab-btn" data-filter="student">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+          <path d="M6 12v5c3 3 9 3 12 0v-5" />
+        </svg>
+        Student
+      </button>
+      <button class="tab-btn" data-filter="professional">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          <rect x="2" y="7" width="20" height="14" rx="2" />
+          <path d="M12 12h.01" />
+        </svg>
+        Professional
+      </button>
+      <button class="tab-btn" data-filter="photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        With Photo
+      </button>
+      <button class="tab-btn" data-filter="tech">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+        Tech
+      </button>
+      <button class="tab-btn" data-filter="creative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10" />
+          <path
+            d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94" />
+        </svg>
+        Creative
+      </button>
+      <button class="tab-btn" data-filter="ats">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+        ATS
+      </button>
+    </div>
   </div>
 
+  <!-- Templates Section -->
+  <section class="templates-section">
+    <main class="templates-grid-container">
+      <div class="templates-grid">
+
+        <a href="builder-cream.html" class="template-item" data-category="creative professional fresher">
+          <div class="template-image-wrap">
+            <span class="template-badge">Popular</span>
+            <img src="img/template7.jpg" alt="Contemporary Cream">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Contemporary Cream</h4>
+            <p>Elegant and minimalist professional look.</p>
+          </div>
+        </a>
+
+        <a href="builder-dark.html" class="template-item" data-category="photo tech ats">
+          <div class="template-image-wrap">
+            <img src="img/template3.jpg" alt="Executive Dark">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Executive Dark</h4>
+            <p>High-contrast strategic design.</p>
+          </div>
+        </a>
+
+        <a href="builder-modern.html" class="template-item" data-category="creative fresher">
+          <div class="template-image-wrap">
+            <img src="img/template-modern-beige.jpg" alt="Modern Beige">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Modern Beige</h4>
+            <p>Sophisticated and contemporary tones.</p>
+          </div>
+        </a>
+
+        <a href="builder-minimalist.html" class="template-item" data-category="student fresher">
+          <div class="template-image-wrap">
+            <img src="img/template1.jpg" alt="Minimalist Classic">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Minimalist Classic</h4>
+            <p>Clean and efficient one-column layout.</p>
+          </div>
+        </a>
+
+        <a href="builder-monochrome.html" class="template-item" data-category="professional photo ats">
+          <div class="template-image-wrap">
+            <img src="img/template5.jpg" alt="Monochrome Clean">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Monochrome Clean</h4>
+            <p>Professional black and white aesthetic.</p>
+          </div>
+        </a>
+
+        <a href="builder-peach.html" class="template-item" data-category="creative student">
+          <div class="template-image-wrap">
+            <img src="img/template6.jpg" alt="Creative Peach">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Creative Peach</h4>
+            <p>Modern layout with soft vibrant tones.</p>
+          </div>
+        </a>
+
+        <a href="builder-teal.html" class="template-item" data-category="professional tech fresher photo">
+          <div class="template-image-wrap">
+            <img src="img/template2.png" alt="Professional Teal">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Professional Teal</h4>
+            <p>Dual-column with sleek teal accents.</p>
+          </div>
+        </a>
+
+        <a href="builder-textual.html" class="template-item" data-category="photo tech ats">
+          <div class="template-image-wrap">
+            <img src="img/template8.jpg" alt="Modern Textual">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Modern Textual</h4>
+            <p>Text-focused layout for senior roles.</p>
+          </div>
+        </a>
+
+        <a href="#" class="template-item" data-category="photo">
+          <div class="template-image-wrap">
+            <img src="img/template9.png" alt="Corporate Modern">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Corporate Modern</h4>
+            <p>Traditional structure for management roles.</p>
+          </div>
+        </a>
+
+        <a href="#" class="template-item" data-category="tech">
+          <div class="template-image-wrap">
+            <img src="img/template10.png" alt="Elite Technical">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Elite Technical</h4>
+            <p>Optimized for software and systems engineering.</p>
+          </div>
+        </a>
+
+        <a href="#" class="template-item" data-category="photo minimalist">
+          <div class="template-image-wrap">
+            <img src="img/template11.png" alt="Refined Professional">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Refined Professional</h4>
+            <p>Sleek design with strategic use of white space.</p>
+          </div>
+        </a>
+
+        <a href="#" class="template-item" data-category="student creative photo">
+          <div class="template-image-wrap">
+            <img src="img/template12.png" alt="Artistic Ochre">
+            <div class="use-template-btn">Use this template</div>
+          </div>
+          <div class="template-info">
+            <h4>Artistic Ochre</h4>
+            <p>Bold color blocks for creative portfolios.</p>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Grader Promo -->
+      <div class="grader-promo">
+        <div class="grader-content">
+          <h3>Already have a resume?</h3>
+          <p>Upload your current PDF and see how it scores against our 2026 AI recruiter benchmark.</p>
+        </div>
+        <a href="index.html#grader-trigger" class="grader-cta">Grade My Resume — Free</a>
+      </div>
+
+    </main>
+  </section>
+
+  <!-- Expert Tips Section -->
+  <section class="expert-tips">
+    <div class="tips-header">
+      <h2>Resume Intelligence</h2>
+      <p>Expert insights to help you land the role.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <h4>ATS Compatibility</h4>
+        <p>Every template here is engineered with a standard hierarchy that 99% of Applicant Tracking Systems can parse
+          with zero errors.</p>
+      </div>
+      <div class="tip-card">
+        <h4>The 6-Second Rule</h4>
+        <p>We place your most impactful metrics in the "F-pattern" scan zone, ensuring recruiters see your value in the
+          first few seconds.</p>
+      </div>
+      <div class="tip-card">
+        <h4>Design Psychology</h4>
+        <p>Our color palettes are chosen to evoke trust (Teal/Blue) and strategic thinking (Dark/Slate) according to
+          modern hiring studies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+            <defs>
+              <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#5F3DC4;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+            <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+            <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+            <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+            <rect x="0" y="0" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+            <rect x="32" y="32" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+            <rect x="64" y="32" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+            <rect x="32" y="64" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+          </svg>
+          <span class="footer-brand-name">Density</span>
+        </a>
+        <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg></a>
+          <a href="#" aria-label="Twitter"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+            </svg></a>
+          <a href="#" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="templates.html">Resume Templates</a></li>
+          <li><a href="templates.html">ATS Resume Builder</a></li>
+          <li><a href="grader.html">AI Resume Grader</a></li>
+          <li><a href="ai-rewriter.html">AI Content Rewriter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog.html">Career Blog</a></li>
+          <li><a href="about.html">About Density</a></li>
+          <li><a href="contact.html">Contact Support</a></li>
+          <li><a href="about.html">Success Stories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="disclaimer.html">Cookie Policy</a></li>
+          <li><a href="disclaimer.html">Compliance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>© 2026 Density Resume Builder • Crafted for Career Excellence</p>
+        <div class="footer-bottom-links">
+          <a href="sitemap.xml">Sitemap</a>
+          <a href="robots.txt">Robots</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script type="module">
+    import { auth, onAuthStateChanged } from "./js/firebase-config.js";
+    const navAuthBtn = document.querySelector('.btn-get-started');
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navAuthBtn.textContent = 'Dashboard';
+        navAuthBtn.href = 'dashboard.html';
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const templateItems = document.querySelectorAll('.template-item');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filter = btn.getAttribute('data-filter');
+
+          templateItems.forEach(item => {
+            const categories = item.getAttribute('data-category').split(' ');
+
+            if (filter === 'all' || categories.includes(filter)) {
+              item.classList.remove('hidden');
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+              }, 10);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                item.classList.add('hidden');
+              }, 300);
+            }
+          });
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
