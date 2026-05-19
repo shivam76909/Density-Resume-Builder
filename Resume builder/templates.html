@@ -16,12 +16,12 @@
 
   <style>
     :root {
-      --primary: #1d4ed8;
+      --primary: #2563EB;
       --primary-hover: #1e40af;
       --bg-light: #ffffff;
       --text-main: #0f172a;
       --text-muted: #475569;
-      --btn-blue: #1d4ed8;
+      --btn-blue: #2563EB;
     }
 
     *,
@@ -34,7 +34,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #fdfdfb;
+      background: #ffffff;
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
       line-height: 1.5;
@@ -45,13 +45,12 @@
 
     /* Navbar */
     .navbar {
-      height: 80px;
-      background: #ffffff;
-      /* Switched to White as requested */
+      height: 64px;
+      background: #0f172a;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       width: 100%;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -84,17 +83,17 @@
     }
 
     .step-num {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      background: #ffffff;
-      border: 2px solid #e2e8f0;
-      color: #64748b;
+      background: rgba(255,255,255,0.03);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      color: #94a3b8;
       transition: all 0.3s ease;
       position: relative;
     }
@@ -119,21 +118,21 @@
     }
 
     .step-label {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
-      color: #64748b;
+      color: #94a3b8;
       white-space: nowrap;
     }
 
     .step.active .step-label {
-      color: #0f172a;
+      color: #ffffff;
       font-weight: 700;
     }
 
     .step-divider {
       width: 40px;
       height: 1px;
-      background: #e2e8f0;
+      background: rgba(255,255,255,0.1);
       margin: 0 8px;
     }
 
@@ -153,10 +152,7 @@
     .brand-title {
       display: flex;
       flex-direction: column;
-      line-height: 1.2;
-      /* Increased from 1 to prevent overlap */
-      gap: 2px;
-      /* Added small gap for clarity */
+      line-height: 1.1;
     }
 
 
@@ -164,18 +160,49 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: 20px;
-      color: #0f172a;
-      /* Dark logo text */
+      color: #ffffff;
       letter-spacing: -0.02em;
     }
 
     .brand-title span:last-child {
-      font-size: 11px;
+      font-weight: 400;
+      font-size: 15px;
+      color: #94a3b8;
+    }
+
+    .nav-auth {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-signin {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-signin:hover {
+      color: #ffffff;
+    }
+
+    .btn-register {
+      background: #2563EB;
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 600;
-      color: #64748b;
-      /* Subtitle color */
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-register:hover {
+      background: #1e40af;
+      transform: translateY(-1px);
     }
 
     .nav-links {
@@ -209,97 +236,83 @@
     /* Hero Section */
     .templates-hero {
       text-align: center;
-      padding: 40px 48px 10px;
-      /* Reduced top padding from 80px to 40px */
-      max-width: 900px;
+      padding: 15px 48px 10px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .templates-hero p {
       font-size: 0.95rem;
       /* Subtly reduced from 1rem */
-      color: #0f172a;
-      max-width: 600px;
+      color: #475569;
+      max-width: none;
       margin: 0 auto;
       line-height: 1.6;
+    }
+
+    .btn-choose-later {
+      display: inline-block;
+      margin-top: 0;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+
+    .btn-choose-later:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 15px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+
+    .breadcrumb-item:hover {
+      color: #0f172a;
+    }
+
+    .breadcrumb-separator {
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+    }
+
+    .breadcrumb-current {
+      color: #64748b;
+      font-weight: 500;
     }
 
 
     .templates-hero h1 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 64px;
-      font-weight: 800;
+      font-size: 48px;
+      font-weight: 700;
       line-height: 1.1;
       margin-bottom: 12px;
       letter-spacing: -0.04em;
       color: #1E2937;
-      /* Updated to Charcoal as requested */
-    }
-
-    .trust-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 20px;
-      padding: 0 20px;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .trust-icon {
-      width: 16px;
-      height: 16px;
-      stroke-width: 2.5;
-    }
-
-    .trust-icon.icon-ats {
-      color: #0d9488;
-    }
-
-    /* Teal */
-    .trust-icon.icon-recruiter {
-      color: #e11d48;
-    }
-
-    /* Rose */
-    .trust-icon.icon-easy {
-      color: #f59e0b;
-    }
-
-    /* Amber */
-    .trust-icon.icon-download {
-      color: #6366f1;
-    }
-
-    /* Indigo */
-
-    .trust-text {
-      font-size: 12px;
-      font-weight: 600;
-      color: #94a3b8;
-      letter-spacing: 0.01em;
-    }
-
-    .trust-dot {
-      width: 4px;
-      height: 4px;
-      background: #cbd5e1;
-      border-radius: 50%;
     }
 
     @media (max-width: 768px) {
-      .trust-bar {
-        flex-wrap: wrap;
-        gap: 16px;
-      }
-
-      .trust-dot {
-        display: none;
+      .navbar {
+        padding: 0 24px;
       }
     }
 
@@ -355,7 +368,7 @@
     }
 
     .grader-cta {
-      background: #1d4ed8;
+      background: #2563EB;
       color: white;
       padding: 16px 32px;
       border-radius: 12px;
@@ -439,8 +452,7 @@
     }
 
     .nav-tabs-wrapper {
-      background: #fdfdfb;
-      /* Very light beige background for the section */
+      background: #ffffff;
       padding: 40px 0;
       border-bottom: 1px solid #f1f5f9;
       display: flex;
@@ -534,10 +546,8 @@
 
     .templates-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      /* 4 columns as requested */
-      gap: 32px;
-      /* Slightly tighter gap for 4 columns */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
     }
 
 
@@ -560,7 +570,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow: visible;
+      perspective: 800px;
     }
 
 
@@ -577,7 +588,6 @@
       width: 100%;
       height: auto;
       display: block;
-      /* Layered Shadow Effect as requested */
       box-shadow:
         0 2px 4px rgba(0, 0, 0, 0.05),
         0 1px 2px rgba(0, 0, 0, 0.1),
@@ -585,15 +595,17 @@
       background: #ffffff;
       position: relative;
       z-index: 1;
-      transition: transform 0.3s ease;
+      border-radius: 4px;
+      transform-style: preserve-3d;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
 
     .template-item:hover img {
-      transform: translateY(-4px);
+      transform: translateZ(40px);
       box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.14),
         0 4px 8px rgba(0, 0, 0, 0.08),
-        0 2px 4px rgba(0, 0, 0, 0.12),
-        0 30px 60px rgba(0, 0, 0, 0.08);
+        0 50px 100px rgba(0, 0, 0, 0.10);
     }
 
 
@@ -625,7 +637,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: #1d4ed8;
+      background: #2563EB;
       /* Updated to Blue as requested */
       color: #ffffff;
       padding: 14px 28px;
@@ -640,7 +652,7 @@
       z-index: 100;
       pointer-events: none;
       /* Pass clicks to parent item */
-      box-shadow: 0 10px 20px rgba(29, 78, 216, 0.2);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
     }
 
     .template-item:hover .use-template-btn {
@@ -653,7 +665,7 @@
       top: 20px;
       right: 20px;
       /* Reverted back to right as requested */
-      background: #1d4ed8;
+      background: #2563EB;
       /* Updated to Blue as requested */
       color: white;
       padding: 4px 12px;
@@ -982,10 +994,12 @@
     <div class="navbar-container">
       <a href="index.html" class="brand-logo">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+          <!-- Drop shadows -->
           <rect x="5" y="5" width="28" height="28" fill="#000" />
           <rect x="37" y="37" width="28" height="28" fill="#000" />
           <rect x="69" y="37" width="28" height="28" fill="#000" />
           <rect x="37" y="69" width="28" height="28" fill="#000" />
+          <!-- Purple squares -->
           <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
           <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
           <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
@@ -1018,45 +1032,29 @@
         </div>
       </div>
 
+      <div class="nav-auth">
+        <a href="auth.html" class="nav-signin">Sign In</a>
+        <a href="auth.html" class="btn-register">Register</a>
+      </div>
+
     </div>
   </nav>
 
 
   <!-- Hero Section -->
   <header class="templates-hero">
+    <nav class="breadcrumbs">
+      <a href="index.html" class="breadcrumb-item">Home</a>
+      <span class="breadcrumb-separator">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </span>
+      <span class="breadcrumb-current">Resume Templates</span>
+    </nav>
     <h1>Resume Templates</h1>
-    <p>Each layout is hand-crafted to pass the 6-second recruiter test and every ATS scanner. Choose a design and land
-      your next role faster.</p>
-    <div class="trust-bar">
-      <div class="trust-item">
-        <svg class="trust-icon icon-ats" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-        </svg>
-        <span class="trust-text">ATS-Optimized</span>
-      </div>
-      <div class="trust-dot"></div>
-      <div class="trust-item">
-        <svg class="trust-icon icon-recruiter" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          <path d="m9 12 2 2 4-4" />
-        </svg>
-        <span class="trust-text">Recruiter Approved</span>
-      </div>
-      <div class="trust-dot"></div>
-      <div class="trust-item">
-        <svg class="trust-icon icon-easy" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-        </svg>
-        <span class="trust-text">Easy to Customize</span>
-      </div>
-      <div class="trust-dot"></div>
-      <div class="trust-item">
-        <svg class="trust-icon icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
-        </svg>
-        <span class="trust-text">Instant Download</span>
-      </div>
-    </div>
+    <p>Templates that impress recruiters and pass every ATS. Pick one and get hired faster.</p>
+    <a href="upload-choice.html" class="btn-choose-later">Choose later</a>
   </header>
 
 
@@ -1139,10 +1137,10 @@
     <main class="templates-grid-container">
       <div class="templates-grid">
 
-        <a href="builder-cream.html" class="template-item" data-category="creative professional fresher">
+        <a href="upload-choice.html?template=cream" class="template-item" data-category="creative professional fresher">
           <div class="template-image-wrap">
             <span class="template-badge">Popular</span>
-            <img src="img/template7.jpg" alt="Contemporary Cream">
+            <img src="img/template7.jpg?v=2" alt="Contemporary Cream">
             <div class="use-template-btn">Use this template</div>
           </div>
           <div class="template-info">
@@ -1151,7 +1149,7 @@
           </div>
         </a>
 
-        <a href="builder-dark.html" class="template-item" data-category="photo tech ats">
+        <a href="upload-choice.html?template=dark" class="template-item" data-category="photo tech ats">
           <div class="template-image-wrap">
             <img src="img/template3.jpg" alt="Executive Dark">
             <div class="use-template-btn">Use this template</div>
@@ -1162,7 +1160,7 @@
           </div>
         </a>
 
-        <a href="builder-modern.html" class="template-item" data-category="creative fresher">
+        <a href="upload-choice.html?template=modern" class="template-item" data-category="creative fresher">
           <div class="template-image-wrap">
             <img src="img/template-modern-beige.jpg" alt="Modern Beige">
             <div class="use-template-btn">Use this template</div>
@@ -1173,7 +1171,7 @@
           </div>
         </a>
 
-        <a href="builder-minimalist.html" class="template-item" data-category="student fresher">
+        <a href="upload-choice.html?template=minimalist" class="template-item" data-category="student fresher">
           <div class="template-image-wrap">
             <img src="img/template1.jpg" alt="Minimalist Classic">
             <div class="use-template-btn">Use this template</div>
@@ -1184,7 +1182,7 @@
           </div>
         </a>
 
-        <a href="builder-monochrome.html" class="template-item" data-category="professional photo ats">
+        <a href="upload-choice.html?template=monochrome" class="template-item" data-category="professional photo ats">
           <div class="template-image-wrap">
             <img src="img/template5.jpg" alt="Monochrome Clean">
             <div class="use-template-btn">Use this template</div>
@@ -1195,7 +1193,7 @@
           </div>
         </a>
 
-        <a href="builder-peach.html" class="template-item" data-category="creative student">
+        <a href="upload-choice.html?template=peach" class="template-item" data-category="creative student">
           <div class="template-image-wrap">
             <img src="img/template6.jpg" alt="Creative Peach">
             <div class="use-template-btn">Use this template</div>
@@ -1206,7 +1204,8 @@
           </div>
         </a>
 
-        <a href="builder-teal.html" class="template-item" data-category="professional tech fresher photo">
+        <a href="upload-choice.html?template=teal" class="template-item"
+          data-category="professional tech fresher photo">
           <div class="template-image-wrap">
             <img src="img/template2.png" alt="Professional Teal">
             <div class="use-template-btn">Use this template</div>
@@ -1217,7 +1216,7 @@
           </div>
         </a>
 
-        <a href="builder-textual.html" class="template-item" data-category="photo tech ats">
+        <a href="upload-choice.html?template=textual" class="template-item" data-category="photo tech ats">
           <div class="template-image-wrap">
             <img src="img/template8.jpg" alt="Modern Textual">
             <div class="use-template-btn">Use this template</div>
@@ -1228,7 +1227,7 @@
           </div>
         </a>
 
-        <a href="#" class="template-item" data-category="photo">
+        <a href="upload-choice.html?template=9" class="template-item" data-category="photo">
           <div class="template-image-wrap">
             <img src="img/template9.png" alt="Corporate Modern">
             <div class="use-template-btn">Use this template</div>
@@ -1239,7 +1238,7 @@
           </div>
         </a>
 
-        <a href="#" class="template-item" data-category="tech">
+        <a href="upload-choice.html?template=10" class="template-item" data-category="tech">
           <div class="template-image-wrap">
             <img src="img/template10.png" alt="Elite Technical">
             <div class="use-template-btn">Use this template</div>
@@ -1250,7 +1249,7 @@
           </div>
         </a>
 
-        <a href="#" class="template-item" data-category="photo minimalist">
+        <a href="upload-choice.html?template=11" class="template-item" data-category="photo minimalist">
           <div class="template-image-wrap">
             <img src="img/template11.png" alt="Refined Professional">
             <div class="use-template-btn">Use this template</div>
@@ -1261,7 +1260,7 @@
           </div>
         </a>
 
-        <a href="#" class="template-item" data-category="student creative photo">
+        <a href="upload-choice.html?template=12" class="template-item" data-category="student creative photo">
           <div class="template-image-wrap">
             <img src="img/template12.png" alt="Artistic Ochre">
             <div class="use-template-btn">Use this template</div>
