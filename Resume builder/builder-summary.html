@@ -700,11 +700,10 @@ RULES:
 OUTPUT FORMAT: Return ONLY the rewritten summary text. No JSON, no explanations, no quotes.`;
 
       try {
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        const response = await fetch('/api/groq', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer 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`
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             model: 'llama-3.3-70b-versatile',
