@@ -750,8 +750,7 @@
     </script>
 
     <script>
-        const API_KEY = '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';
-        const API_URL = `https://api.groq.com/openai/v1/chat/completions`;
+        const API_URL = `/api/groq`;
 
         let selectedTone = 'confident';
         let lastResult = '';
@@ -846,8 +845,7 @@ OUTPUT FORMAT (strict JSON, no explanation):
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         model: 'llama-3.3-70b-versatile',
