@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Blog & Resume Tips 2026 — Density Resume Builder</title>
+    <meta name="description"
+        content="Expert tips on writing ATS-friendly resumes, covering gaps in employment, and landing top interviews in 2026. Brought to you by Density Resume Builder." />
+    <meta name="keywords"
+        content="resume tips, ATS friendly resume guide, how to write a cv for freshers, career blog, interview preparation, Density Resume builder blog" />
+    <meta name="author" content="Density Resume Builder" />
+    <link rel="canonical" href="https://www.densityresumebuilder.in/blog.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="js/loader.js"></script>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-hover: #4338CA;
+            --bg-light: #F8FAFC;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: #0F172A;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            padding: 0 32px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .brand-logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .brand-logo span {
+            font-size: 1.15rem;
+            font-weight: 650;
+            letter-spacing: -0.01em;
+        }
+
+        .brand-logo strong {
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ── HERO ── */
+        .blog-hero {
+            background: #fff;
+            padding: 160px 24px 80px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .blog-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .blog-hero p {
+            font-size: 18px;
+            color: #64748B;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── BLOG GRID ── */
+        .blog-container {
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+            min-height: 50vh;
+        }
+
+        .blog-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #E0E7FF 0%, #EEF2FF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6366F1;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .blog-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0F172A;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* ── FOOTER ── */
+        .bottom-bar {
+            width: 100%;
+            height: 48px;
+            background: #fff;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            padding: 0 32px;
+            margin-top: auto;
+        }
+
+        .bottom-bar span {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .bottom-links {
+            margin-left: auto;
+            display: flex;
+            gap: 16px;
+        }
+
+        .bottom-links a {
+            font-size: 11px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .bottom-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .bottom-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <img src="img/logo.png" alt="Density Logo"
+                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xNCAybDcgN3YxNEEyIDIgMCAwIDEgMTkgMjVIMWExIDEgMCAwIDEgLTEtMVY0YTIgMiAwIDAgMSAyLTJoOW0wIDBMMTQgMnY3bDcgNyIvPjwvc3ZnPg=='" />
+            <span>Density <strong>Resume Builder</strong></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="blog-hero">
+        <h1>Density Career Insights</h1>
+        <p>Expert strategies for passing the ATS, acing your interviews, and landing your dream job in 2026.</p>
+    </header>
+
+    <!-- POSTS -->
+    <main class="blog-container">
+
+        <article class="blog-card">
+            <div class="img-placeholder">ATS Algorithms</div>
+            <div class="blog-content">
+                <div class="blog-tag">Resume Tips</div>
+                <h2 class="blog-title">How Applicant Tracking Systems (ATS) Actually Work in 2026</h2>
+                <p class="blog-excerpt">Uncover the secrets of modern ATS software. Learn why heavily formatted resumes
+                    get rejected and how to format yours to guarantee human review.</p>
+                <a href="templates.html" class="read-more">Read Full Post &rarr;</a>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <div class="img-placeholder">Fresher Guide</div>
+            <div class="blog-content">
+                <div class="blog-tag">Career Advice</div>
+                <h2 class="blog-title">The Ultimate Fresher's Guide to Building a High-Impact CV</h2>
+                <p class="blog-excerpt">No experience? No problem. Discover how to highlight academic projects, soft
+                    skills, and internships to outshine competitors with more experience.</p>
+                <a href="templates.html" class="read-more">Read Full Post &rarr;</a>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <div class="img-placeholder">Soft vs Hard Skills</div>
+            <div class="blog-content">
+                <div class="blog-tag">Interview Prep</div>
+                <h2 class="blog-title">Hard Skills vs. Soft Skills: What Tech Recruiters Really Want</h2>
+                <p class="blog-excerpt">While Python and React might get you the interview, communication and
+                    adaptability will get you the job. Here is the perfect balance for your resume.</p>
+                <a href="templates.html" class="read-more">Read Full Post &rarr;</a>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- BOTTOM BAR -->
+    <div class="bottom-bar">
+        <span>© 2026 Density Resume Builder</span>
+        <div class="bottom-links">
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

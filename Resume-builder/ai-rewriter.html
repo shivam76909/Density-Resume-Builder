@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Bullet Re-writer | Density Resume Builder</title>
+    <meta name="description"
+        content="Transform weak resume bullet points into high-impact, metric-driven achievements using AI. Free tool by Density Resume Builder." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0a0f1e;
+            --surface: #111827;
+            --card: #1a2235;
+            --border: #1e293b;
+            --border-light: #334155;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.25);
+            --green: #00CC76;
+            --green-glow: rgba(0, 204, 118, 0.15);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ambient glow background */
+        .bg-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(99, 102, 241, 0.08);
+            top: -200px;
+            right: -200px;
+        }
+
+        .glow-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 204, 118, 0.06);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 48px;
+            background: rgba(10, 15, 30, 0.85);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(16px);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-title span:first-child {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .brand-title span:last-child {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .btn-nav-cta {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px !important;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-nav-cta:hover {
+            background: #4f46e5;
+            transform: translateY(-1px);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            text-align: center;
+            padding: 80px 48px 60px;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-glow);
+            border: 1px solid rgba(99, 102, 241, 0.35);
+            border-radius: 99px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #a5b4fc;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .page-hero h1 span {
+            background: linear-gradient(135deg, #6366f1, #00CC76);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-hero p {
+            color: var(--text-muted);
+            font-size: 17px;
+            max-width: 540px;
+            margin: 0 auto 16px;
+            line-height: 1.6;
+        }
+
+        /* Main Tool Area */
+        .tool-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .tool-card {
+            background: var(--card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .input-group label span {
+            color: var(--primary);
+        }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            resize: none;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        textarea {
+            height: 120px;
+            line-height: 1.6;
+        }
+
+        textarea::placeholder,
+        input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .tone-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tone-btn {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tone-btn:hover {
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .tone-btn.active {
+            background: var(--primary-glow);
+            border-color: var(--primary);
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+
+        .rewrite-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .rewrite-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .rewrite-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Result Area */
+        .result-card {
+            background: var(--card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 36px;
+            display: none;
+            animation: fadeUp 0.4s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .result-label-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .result-label-text::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+        }
+
+        .copy-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .copy-btn.copied {
+            border-color: var(--green);
+            color: var(--green);
+            background: var(--green-glow);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 640px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comp-box {
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .comp-box-before {
+            background: rgba(239, 68, 68, 0.07);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .comp-box-after {
+            background: var(--green-glow);
+            border: 1px solid rgba(0, 204, 118, 0.25);
+        }
+
+        .comp-box-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .comp-box-before .comp-box-label {
+            color: #f87171;
+        }
+
+        .comp-box-after .comp-box-label {
+            color: var(--green);
+        }
+
+        .comp-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .comp-box-before p {
+            color: var(--text-muted);
+            text-decoration-line: line-through;
+            text-decoration-color: rgba(239, 68, 68, 0.4);
+        }
+
+        /* Variants */
+        .variants-section {
+            margin-top: 20px;
+        }
+
+        .variants-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .variant-item {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .variant-item:hover {
+            border-color: var(--primary);
+        }
+
+        .variant-copy {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: color 0.2s;
+            padding: 2px;
+        }
+
+        .variant-copy:hover {
+            color: var(--green);
+        }
+
+        /* Tips */
+        .tips-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--primary-glow);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-top: 24px;
+            font-size: 13.5px;
+            color: #a5b4fc;
+        }
+
+        .tips-bar svg {
+            flex-shrink: 0;
+        }
+
+        /* Error */
+        .error-box {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 14px;
+            color: #fca5a5;
+            display: none;
+            margin-top: 16px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 14px 20px;
+            }
+
+            .page-hero {
+                padding: 50px 20px 40px;
+            }
+
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .tool-card,
+            .result-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;">
+                <rect x="5" y="5" width="28" height="28" fill="#000" />
+                <rect x="37" y="37" width="28" height="28" fill="#000" />
+                <rect x="69" y="37" width="28" height="28" fill="#000" />
+                <rect x="37" y="69" width="28" height="28" fill="#000" />
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+            </svg>
+            <div class="brand-title">
+                <span>Density</span>
+                <span>Resume Builder</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="templates.html">Templates</a>
+            <a href="ai-rewriter.html" style="color:#a5b4fc;">AI Re-writer</a>
+            <a href="about.html">FAQ</a>
+            <a href="auth.html" class="btn-nav-cta" id="nav-auth-btn">Get Started Free</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="page-hero">
+        <div class="hero-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#a5b4fc">
+                <path
+                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+            </svg>
+            Powered by Gemini AI
+        </div>
+        <h1>AI Bullet Point <span>Re-writer</span></h1>
+        <p>Paste a weak resume line and watch AI transform it into a high-impact, metric-driven achievement that gets
+            callbacks.</p>
+    </div>
+
+    <!-- Tool -->
+    <div class="tool-wrapper">
+        <div class="tool-card">
+
+            <div class="input-group">
+                <label>Your Current Bullet Point <span>*</span></label>
+                <textarea id="bullet-input"
+                    placeholder='e.g. "Managed a team" or "Worked on customer support" or "Responsible for sales"'></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group" style="margin-bottom:0;">
+                    <label>Your Target Job Title</label>
+                    <input type="text" id="job-title" placeholder='e.g. "Software Engineer", "Product Manager"' />
+                </div>
+                <div class="input-group" style="margin-bottom:0;">
+                    <label>Industry (optional)</label>
+                    <input type="text" id="industry" placeholder='e.g. "Tech", "Finance", "Marketing"' />
+                </div>
+            </div>
+
+            <div class="input-group" style="margin-top:20px;">
+                <label>Output Format</label>
+                <div class="tone-selector" id="format-selector">
+                    <button class="tone-btn active" data-format="auto">🤖 Auto-Detect</button>
+                    <button class="tone-btn" data-format="bullet">📝 Bullet Point</button>
+                    <button class="tone-btn" data-format="paragraph">📄 Detailed Explanation</button>
+                </div>
+            </div>
+
+            <div class="input-group" style="margin-top:20px;">
+                <label>Desired Tone</label>
+                <div class="tone-selector">
+                    <button class="tone-btn active" data-tone="confident">💼 Confident</button>
+                    <button class="tone-btn" data-tone="results-driven">📈 Results-Driven</button>
+                    <button class="tone-btn" data-tone="leadership">🚀 Leadership</button>
+                    <button class="tone-btn" data-tone="technical">⚙️ Technical</button>
+                    <button class="tone-btn" data-tone="creative">🎨 Creative</button>
+                </div>
+            </div>
+
+            <button class="rewrite-btn" id="rewrite-btn" onclick="rewriteBullet()">
+                <div class="spinner" id="spinner"></div>
+                <svg id="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                </svg>
+                <span id="btn-text">Rewrite with AI</span>
+            </button>
+
+            <div class="error-box" id="error-box"></div>
+        </div>
+
+        <!-- Result Area -->
+        <div class="result-card" id="result-card">
+            <div class="result-label">
+                <div class="result-label-text">AI Rewritten Result</div>
+                <button class="copy-btn" id="main-copy-btn" onclick="copyMain()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy
+                </button>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comp-box comp-box-before">
+                    <div class="comp-box-label">❌ Before</div>
+                    <p id="before-text"></p>
+                </div>
+                <div class="comp-box comp-box-after">
+                    <div class="comp-box-label">✅ After</div>
+                    <p id="after-text"></p>
+                </div>
+            </div>
+
+            <div class="variants-section">
+                <div class="variants-label">✨ 2 More Variations</div>
+                <div id="variants-list"></div>
+            </div>
+
+            <div class="tips-bar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span id="ai-tip">Pro tip: Add specific numbers or results whenever possible. Recruiters scan for
+                    metrics first.</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">← Back to Density Resume Builder</a> &nbsp;|&nbsp; AI Bullet Re-writer powered by Google
+            Gemini</p>
+    </footer>
+
+    <script type="module">
+        import { auth, onAuthStateChanged } from "./js/firebase-config.js";
+        const navBtn = document.getElementById('nav-auth-btn');
+        onAuthStateChanged(auth, (user) => {
+            if (user) { navBtn.textContent = 'Dashboard'; navBtn.href = 'dashboard.html'; }
+        });
+    </script>
+
+    <script>
+        const API_URL = `/api/groq`;
+
+        let selectedTone = 'confident';
+        let lastResult = '';
+
+        // Tone selector
+        document.querySelectorAll('.tone-btn:not(#format-selector .tone-btn)').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tone-btn:not(#format-selector .tone-btn)').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedTone = btn.dataset.tone;
+            });
+        });
+
+        // Format selector
+        let selectedFormat = 'auto';
+        document.querySelectorAll('#format-selector .tone-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#format-selector .tone-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedFormat = btn.dataset.format;
+            });
+        });
+
+        async function rewriteBullet() {
+            const bullet = document.getElementById('bullet-input').value.trim();
+            const jobTitle = document.getElementById('job-title').value.trim();
+            const industry = document.getElementById('industry').value.trim();
+            const errorBox = document.getElementById('error-box');
+
+            if (!bullet) {
+                errorBox.textContent = '⚠️ Please enter a bullet point to rewrite.';
+                errorBox.style.display = 'block';
+                return;
+            }
+            errorBox.style.display = 'none';
+
+            // Loading state
+            const btn = document.getElementById('rewrite-btn');
+            const spinner = document.getElementById('spinner');
+            const btnIcon = document.getElementById('btn-icon');
+            const btnText = document.getElementById('btn-text');
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            btnIcon.style.display = 'none';
+            btnText.textContent = 'Rewriting with AI…';
+            document.getElementById('result-card').style.display = 'none';
+
+            const context = [
+                jobTitle ? `Target Job Title: ${jobTitle}` : '',
+                industry ? `Industry: ${industry}` : '',
+                `Desired Tone: ${selectedTone}`,
+            ].filter(Boolean).join('\n');
+
+            let isParagraph = bullet.length > 120 || bullet.includes('.') && bullet.split('.').length > 2;
+
+            // Override auto-detect if user manually selects a format
+            if (selectedFormat === 'bullet') isParagraph = false;
+            if (selectedFormat === 'paragraph') isParagraph = true;
+
+            const inputType = isParagraph ? "paragraph/summary" : "bullet point";
+            const rules = isParagraph
+                ? "- Keep it a cohesive, flowing detailed paragraph (2-4 sentences), maintaining the original scope but making it punchy, metric-driven, and highly professional."
+                : "- Keep it concise — one single bullet point sentence, max 25 words.";
+
+            const prompt = `You are an AI writing assistant for a resume builder app.
+Your job is to improve resume text so it sounds professional, concise, ATS-friendly, and achievement-focused.
+
+CONTEXT / TARGET:
+${context || 'General professional resume'}
+
+ORIGINAL INPUT: "${bullet}"
+
+RULES:
+- Never invent facts, numbers, companies, dates, skills, or job titles.
+- PRESERVE PERSONAL DETAILS: Never remove or alter the user's name or job titles if mentioned.
+- Keep the original meaning the same.
+- Rewrite weak sentences into strong resume language using action verbs.
+- Avoid jargon, fluff, and overly dramatic language. Keep it authentic and direct.
+- If the input is already strong, make only small improvements.
+${rules}
+- Tone: ${selectedTone}
+
+OUTPUT FORMAT (strict JSON, no explanation):
+{
+  "main": "The single best rewritten ${inputType}",
+  "variant2": "A second variation with a different angle or structure",
+  "variant3": "A third variation emphasizing a different professional strength",
+  "tip": "One specific, actionable tip for this person's text (15-20 words)"
+}`;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'llama-3.3-70b-versatile',
+                        messages: [{ role: 'user', content: prompt }],
+                        temperature: 0.7,
+                        max_tokens: 512
+                    })
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.error?.message || 'API request failed');
+                }
+
+                const data = await response.json();
+                let raw = data.choices[0].message.content.trim();
+
+                // Strip markdown code fences if present
+                raw = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
+
+                const result = JSON.parse(raw);
+                lastResult = result.main;
+
+                // Populate result card
+                document.getElementById('before-text').textContent = bullet;
+                document.getElementById('after-text').textContent = result.main;
+                document.getElementById('ai-tip').textContent = result.tip || 'Add specific numbers or results — recruiters scan for metrics first.';
+
+                // Variants
+                const varList = document.getElementById('variants-list');
+                varList.innerHTML = '';
+                [result.variant2, result.variant3].forEach((v, i) => {
+                    if (v) {
+                        const div = document.createElement('div');
+                        div.className = 'variant-item';
+                        div.innerHTML = `<span>${v}</span><button class="variant-copy" title="Copy" onclick="copyText(this, '${v.replace(/'/g, "\\'")}')">📋</button>`;
+                        varList.appendChild(div);
+                    }
+                });
+
+                // Reset copy button
+                const copyBtn = document.getElementById('main-copy-btn');
+                copyBtn.textContent = 'Copy';
+                copyBtn.classList.remove('copied');
+
+                document.getElementById('result-card').style.display = 'block';
+                document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            } catch (err) {
+                // Gemini API failed — use smart offline rewriter as fallback
+                try {
+                    const result = smartRewrite(bullet, jobTitle, industry, selectedTone);
+                    lastResult = result.main;
+                    document.getElementById('before-text').textContent = bullet;
+                    document.getElementById('after-text').textContent = result.main;
+                    document.getElementById('ai-tip').textContent = result.tip;
+                    const varList = document.getElementById('variants-list');
+                    varList.innerHTML = '';
+                    [result.variant2, result.variant3].forEach((v) => {
+                        if (v) {
+                            const div = document.createElement('div');
+                            div.className = 'variant-item';
+                            div.innerHTML = `<span>${v}</span><button class="variant-copy" title="Copy" onclick="copyText(this, '${v.replace(/'/g, "\\'")}')">📋</button>`;
+                            varList.appendChild(div);
+                        }
+                    });
+                    const copyBtn = document.getElementById('main-copy-btn');
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.classList.remove('copied');
+                    document.getElementById('result-card').style.display = 'block';
+                    document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    document.getElementById('error-box').style.display = 'none';
+                } catch (e2) {
+                    document.getElementById('error-box').textContent = `❌ Error: ${err.message}. Please try again.`;
+                    document.getElementById('error-box').style.display = 'block';
+                }
+            } finally {
+                btn.disabled = false;
+                spinner.style.display = 'none';
+                btnIcon.style.display = 'block';
+                btnText.textContent = 'Rewrite with AI';
+            }
+        }
+
+        // === Smart Offline Rewriter Engine ===
+        function smartRewrite(bullet, jobTitle, industry, tone) {
+            const b = bullet.toLowerCase();
+            const role = jobTitle || 'professional';
+            const ind = industry || 'industry';
+
+            const actionVerbs = {
+                'confident': ['Spearheaded', 'Delivered', 'Championed', 'Executed', 'Directed'],
+                'results-driven': ['Achieved', 'Boosted', 'Drove', 'Generated', 'Accelerated'],
+                'leadership': ['Led', 'Managed', 'Mentored', 'Coordinated', 'Guided'],
+                'technical': ['Engineered', 'Architected', 'Implemented', 'Optimized', 'Developed'],
+                'creative': ['Designed', 'Shaped', 'Crafted', 'Innovated', 'Transformed'],
+            };
+            const verbs = actionVerbs[tone] || actionVerbs['confident'];
+            const v1 = verbs[0], v2 = verbs[1], v3 = verbs[2];
+
+            // Pattern-based rewriting
+            let main, variant2, variant3, tip;
+
+            if (/manag|lead|supervis|oversee|head/i.test(b)) {
+                main = `${v1} a cross-functional team of [N] members, improving project delivery speed by [X]% for ${role} initiatives.`;
+                variant2 = `${v2} team performance by [X]% by implementing structured workflow improvements across [N] departments.`;
+                variant3 = `${v3} [N]-person team to consistently exceed KPIs, contributing $[X]K in annual ${ind} output.`;
+                tip = 'Replace [N] and [X] placeholders with your real team size and outcome percentage for maximum ATS impact.';
+            } else if (/develop|build|creat|design|engineer|code|program/i.test(b)) {
+                main = `${v1} a high-performance ${role} system that reduced processing time by [X]% and improved user satisfaction scores by [Y]%.`;
+                variant2 = `${v2} scalable ${ind} solutions serving [N]+ users, achieving [X]% uptime and cutting operational costs by $[Y]K.`;
+                variant3 = `${v3} end-to-end ${role} application, delivering [X]% faster load times and integrating [N] third-party APIs.`;
+                tip = 'Quantify your technical impact — mention users served, performance gains, or cost savings to stand out.';
+            } else if (/sale|revenue|client|customer|business|growth/i.test(b)) {
+                main = `${v1} $[X]K+ in new ${ind} revenue by acquiring [N] key accounts and exceeding quarterly targets by [Y]%.`;
+                variant2 = `${v2} customer retention rate by [X]% through personalized outreach strategy, saving $[Y]K in churn costs.`;
+                variant3 = `${v3} [N]-client portfolio with [X]% satisfaction rating, contributing to [Y]% overall revenue growth.`;
+                tip = 'Sales bullet points hit hardest with revenue numbers — always include a dollar amount or growth percentage.';
+            } else if (/support|help|assist|service|resol/i.test(b)) {
+                main = `${v1} [N]+ ${ind} support requests per day with [X]% first-contact resolution rate, improving SLA compliance by [Y]%.`;
+                variant2 = `${v2} average ticket resolution time by [X]% by creating a standardized troubleshooting playbook used team-wide.`;
+                variant3 = `${v3} customer experience quality score from [X] to [Y] by introducing proactive follow-up protocols.`;
+                tip = 'Support roles shine with resolution rate, response time, and satisfaction score metrics.';
+            } else if (/analys|research|report|data|excel|spread/i.test(b)) {
+                main = `${v1} comprehensive ${ind} data analysis across [N] datasets, identifying $[X]K in cost-saving opportunities for leadership.`;
+                variant2 = `${v2} reporting accuracy by [X]% by automating data pipelines, saving [N] hours of manual work weekly.`;
+                variant3 = `${v3} insights from [N]+ data points to inform strategic decisions, contributing to [X]% growth in target metrics.`;
+                tip = 'Data roles need scope — mention dataset size, frequency of analysis, and business decisions your work informed.';
+            } else {
+                // Generic powerful rewrite
+                const core = bullet.replace(/^(i |we |the team )?(managed|worked on|responsible for|assisted with|helped with|did|handled)\s*/i, '').trim();
+                const coreCap = core.charAt(0).toUpperCase() + core.slice(1);
+                main = `${v1} ${coreCap || role + ' operations'}, achieving [X]% improvement in efficiency and reducing delivery time by [Y]%.`;
+                variant2 = `${v2} key ${ind} process improvements, saving $[X]K annually and increasing team output by [Y]%.`;
+                variant3 = `${v3} ${coreCap || 'cross-functional projects'} for [N] stakeholders, delivering [X]% on-time completion rate.`;
+                tip = 'Start every bullet with a strong action verb and always include at least one metric (%, $, time, or count).';
+            }
+
+            return { main, variant2, variant3, tip };
+        }
+
+
+        function copyMain() {
+            if (!lastResult) return;
+            navigator.clipboard.writeText(lastResult).then(() => {
+                const btn = document.getElementById('main-copy-btn');
+                btn.innerHTML = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy`;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function copyText(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✅';
+                setTimeout(() => { btn.textContent = '📋'; }, 2000);
+            });
+        }
+
+        // Allow Enter+Shift in textarea, Enter alone to submit
+        document.getElementById('bullet-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); rewriteBullet(); }
+        });
+    </script>
+</body>
+
+</html>
