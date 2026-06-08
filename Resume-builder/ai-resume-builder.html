@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best AI Resume Builder Free — Smart CV Generator 2026 | Density Resume Builder</title>
+    <meta name="description" content="Build your resume instantly with the best free AI resume builder. Let our AI writer craft recruiter-approved bullet points and pass the ATS screen.">
+    <meta name="keywords" content="AI resume builder, best AI resume builder free, free AI CV generator, AI resume writer, write resume with AI, ChatGPT resume builder, automatic resume writer, AI resume scanner, resume optimizer AI, smart resume maker">
+    <meta name="author" content="Density Resume Builder">
+    <link rel="canonical" href="https://www.densityresumebuilder.in/ai-resume-builder.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <script src="js/loader.js"></script>
+    <style>
+        :root {
+            --primary: #0F172A;
+            --primary-hover: #1E293B;
+            --accent: #14B8A6;
+            --secondary: #3B82F6;
+            --bg-main: #FFFFFF;
+            --bg-light: #F8FAFC;
+            --text-main: #1E2937;
+            --text-muted: #64748B;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glow Elements */
+        .glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+        }
+
+        .glow-1 { top: -200px; left: -200px; background: rgba(20, 184, 166, 0.08); }
+        .glow-2 { top: 20%; right: -250px; background: rgba(59, 130, 246, 0.06); }
+        .glow-3 { top: 60%; left: -200px; background: rgba(20, 184, 166, 0.05); }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 48px;
+            background: #fff;
+            width: 100%;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .brand-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-title span:first-child {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title span:last-child {
+            font-weight: 400;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .btn-get-started {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-get-started:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 24px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 span {
+            color: var(--secondary);
+        }
+
+        .hero p.intro-text {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        /* Main Content Layout */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 48px;
+        }
+
+        @media (max-width: 992px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .article-section {
+            margin-bottom: 40px;
+        }
+
+        .article-section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .article-section p {
+            font-size: 15.5px;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        /* Premium Visual Resume Sample */
+        .resume-preview-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .resume-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .resume-name {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .resume-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .resume-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .resume-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 4px;
+        }
+
+        .resume-body-section {
+            margin-bottom: 20px;
+        }
+
+        .resume-body-section p.summary-text {
+            font-size: 13.5px;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .exp-item {
+            margin-bottom: 16px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .exp-bullets li {
+            font-size: 13px;
+            color: var(--text-main);
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .exp-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .skills-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-pill {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Template Download & Builder CTA Panel */
+        .cta-panel {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 20px;
+            padding: 36px;
+            color: #fff;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-panel h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-panel p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .panel-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-green {
+            background: #10B981;
+            color: #fff;
+        }
+
+        .btn-green:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .btn-trans {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-trans:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Copy Dialog styling */
+        .copy-success {
+            display: none;
+            font-size: 12px;
+            color: #10b981;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Tips & FAQ blocks */
+        .extra-sections-bg {
+            background-color: var(--bg-light);
+            border-top: 1px solid #f1f5f9;
+            padding: 80px 24px;
+        }
+
+        .extra-sections-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tips-section h2, .faq-section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .tip-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+            transition: all 0.3s;
+        }
+
+        .tip-box:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .tip-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .tip-box p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Accordion FAQ */
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+            cursor: pointer;
+            user-select: none;
+            background: #fff;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out, padding 0.2s ease-out;
+            background: #fcfcfd;
+            border-top: 0 solid var(--border);
+            padding: 0 24px;
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px 24px;
+            border-top-width: 1px;
+        }
+
+        /* Bottom CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #7C3DF9 0%, #6366F1 100%);
+            padding: 80px 24px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-banner h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-banner p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #7C3DF9;
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-btn:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        /* Global Bottom Bar / Footer */
+        .footer {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 100px 48px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand-col {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .footer-brand-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-tagline {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            color: #64748b;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 14.5px;
+            transition: all 0.2s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 1200px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 24px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom-container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-container">
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+        <div class="bg-glow glow-3"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                <rect x="5" y="5" width="28" height="28" fill="#000" />
+                <rect x="37" y="37" width="28" height="28" fill="#000" />
+                <rect x="69" y="37" width="28" height="28" fill="#000" />
+                <rect x="37" y="69" width="28" height="28" fill="#000" />
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+            </svg>
+            <div class="brand-title">
+                <span>Density</span>
+                <span>Resume Builder</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="auth.html" id="nav-auth-btn" class="btn-get-started">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>Build a Recruiter-Approved CV with Our <span>AI Resume Builder</span></h1>
+        <p class="intro-text">Writing a resume can be stressful and time-consuming. Our free AI resume builder utilizes state-of-the-art language models to help you generate professional, recruiter-approved bullet points, summaries, and career achievements in minutes. Integrated with our core ATS-friendly templates, Density's AI CV generator ensures your resume has the perfect structure and keyword density to win you job interviews.</p>
+    </header>
+
+    <!-- MAIN CONTENT AND SIDEBAR -->
+    <main class="content-container">
+        <!-- Content Side -->
+        <div class="article-content">
+            <div class="article-section">\n    <h2>How an AI Resume Writer Optimizes Your Application</h2>\n    <p>Creating a professional resume involves finding the correct industry terminology and active verbs. Density's AI resume generator works by analyzing your target job description and automatically recommending the best skills, descriptions, and action verbs.</p>\n    <p>Our AI model doesn't just write placeholder texts—it structures your accomplishments into the STAR format (Situation, Task, Action, Result), ensuring your bullet points describe quantifiable achievements that impress technical and HR reviewers.</p>\n</div>\n<div class="article-section">\n    <h2>Features of Our Free AI CV Generator</h2>\n    <p>Density's AI writer is built to give you a complete competitive edge. It features: an automated summary writer (generating 3 alternative executive summaries based on your profile), a bullet point optimizer (rewriting passive sentences into active, metrics-focused descriptions), and an ATS keyword scanner.</p>\n    <p>When you type in your roles, the editor checks the text against corporate database standards, letting you know which critical keywords you need to add to match the recruiter's search filters.</p>\n</div>\n<div class="article-section">\n    <h2>How to Use AI to Build a Professional Resume</h2>\n    <p>To build a resume using AI, start by picking one of our recruiter-approved templates. Enter your basic contact information and select your target role (e.g. 'Software Engineer' or 'Data Analyst').</p>\n    <p>Let our AI generate a professional summary and suggest bullets for your experience. Edit the suggestions to reflect your actual metrics and achievements, list your education, and click download. You will get a perfectly structured, ATS-compliant PDF in under 5 minutes.</p>\n</div>\n
+
+            <!-- Resume Example Section -->
+            <div class="article-section" style="margin-top: 60px;">
+                <h2 style="text-align: left; margin-bottom: 24px;">Standard Recruiter-Approved Resume Example</h2>
+                <p>Below is a visual implementation of a highly competitive resume based on our guidelines. You can copy the raw structural template data to customize it, or load it straight into our builder.</p>
+                
+                <div class="resume-preview-card">
+                    <div class="resume-header">
+                        <div class="resume-name">Devendra Singh</div>
+                        <div class="resume-title">Full Stack Developer</div>
+                        <div class="resume-contacts">
+                            <span>✉ devendra@email.com</span>
+                            <span>📞 +91 99887 76655</span>
+                            <span>🔗 github.com/devendracodes</span>
+                        </div>
+                    </div>
+
+                    <div class="resume-body-section">
+                        <div class="resume-section-title">Professional Summary</div>
+                        <p class="summary-text">Full Stack Developer with 4+ years of experience specializing in building responsive web applications with React.js, Node.js, and MongoDB. Expert in using AI tools to optimize web delivery speeds, improve API routes, and maintain clean test pipelines.</p>
+                    </div>
+
+                    <div class="resume-body-section">
+                        <div class="resume-section-title">Professional Experience</div>
+                        <div class="exp-item">\n    <div class="exp-header">\n        <span>Full Stack Engineer — TechCrafters India</span>\n        <span>06/2022 - Present</span>\n    </div>\n    <ul class="exp-bullets">\n        <li>Redesigned the primary user portal using Next.js and Tailwind CSS, increasing page load speeds by 40% and user retention by 15%.</li>\n        <li>Developed scalable backend APIs using Express and Node.js, reducing database query times by 25% through MongoDB index tuning.</li>\n        <li>Configured CI/CD deployment runs via GitHub Actions, decreasing build failures by 30%.</li>\n    </ul>\n</div>\n<div class="exp-item">\n    <div class="exp-header">\n        <span>Junior Frontend Developer — ByteCode Systems</span>\n        <span>07/2020 - 05/2022</span>\n    </div>\n    <ul class="exp-bullets">\n        <li>Created 20+ responsive web pages using HTML5, CSS3, and React.js, ensuring 100% cross-browser responsiveness.</li>\n    </ul>\n</div>\n
+                    </div>
+
+                    <div class="resume-body-section">
+                        <div class="resume-section-title">Key Core Skills</div>
+                        <div class="skills-pills">
+                            <span class="skill-pill">JavaScript (ES6+) & TypeScript</span>\n<span class="skill-pill">React.js, Next.js & Redux</span>\n<span class="skill-pill">Node.js & Express.js</span>\n<span class="skill-pill">MongoDB, MySQL & Redis</span>\n<span class="skill-pill">Git, GitHub & GitHub Actions</span>\n<span class="skill-pill">Tailwind CSS & SASS</span>\n<span class="skill-pill">REST API Development</span>\n
+                        </div>
+                    </div>
+
+                    <div class="resume-body-section" style="margin-bottom: 0;">
+                        <div class="resume-section-title">Education & Credentials</div>
+                        <p class="summary-text" style="font-weight: 500;">BTech in Computer Science — MITS Gwalior (Graduated 2020)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Panel -->
+        <aside class="sidebar-side">
+            <div class="cta-panel">
+                <h3>Use This Template in Density Builder</h3>
+                <p>Customize this professional <strong>Elite Technical</strong> template instantly using our free, AI-driven resume builder. Coded to score 90+ on ATS screening systems.</p>
+                <a href="upload-choice.html?template=10" class="panel-btn btn-green">Customize This Resume</a>
+                <button class="panel-btn btn-trans" id="copy-json-btn">Copy JSON Template Data</button>
+                <div class="copy-success" id="copy-status">✓ JSON template copied to clipboard!</div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- TIPS & FAQ SECTIONS -->
+    <section class="extra-sections-bg">
+        <div class="extra-sections-inner">
+            <div class="tips-section">
+                <h2>Top Actionable ATS Optimization Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-box">\n    <h4>Tip 1</h4>\n    <p>Use the AI optimizer to identify missing keywords in your target job description.</p>\n</div>\n<div class="tip-box">\n    <h4>Tip 2</h4>\n    <p>Always verify that the AI suggestions match your actual accomplishments and numbers.</p>\n</div>\n<div class="tip-box">\n    <h4>Tip 3</h4>\n    <p>Choose a clean, single-column template to display your AI-generated text blocks.</p>\n</div>\n<div class="tip-box">\n    <h4>Tip 4</h4>\n    <p>Do not copy-paste raw ChatGPT outputs; use our integrated editor to ensure the formatting matches our templates.</p>\n</div>\n<div class="tip-box">\n    <h4>Tip 5</h4>\n    <p>Review dates and contact details to ensure they are parsed correctly by scanners.</p>\n</div>\n
+                </div>
+            </div>
+
+            <div class="faq-section" style="margin-top: 80px;">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">\n    <div class="faq-question">Is this AI resume builder free?</div>\n    <div class="faq-answer">Yes, Density's core AI resume builder and templates are completely free to use. You can write, optimize, and export your resume in PDF format without any hidden costs.</div>\n</div>\n<div class="faq-item">\n    <div class="faq-question">How does the AI resume writer work?</div>\n    <div class="faq-answer">Our AI analyzer reviews the text you input, matches it against standard industry keywords, and suggests powerful action verbiage and impact structures to make your profile stand out to recruiters.</div>\n</div>\n<div class="faq-item">\n    <div class="faq-question">Will my AI-generated resume pass the ATS screen?</div>\n    <div class="faq-answer">Yes, because our AI writer is integrated directly with our ATS-compliant layouts. It ensures that the generated text contains the correct terminology and is structured in standard, readable layouts.</div>\n</div>\n
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM CTA BANNER -->
+    <section class="cta-banner">
+        <h2>Start Building Your Job-Winning Resume Today</h2>
+        <p>Create a beautiful, professional, and scanner-proof CV in minutes. Entirely free to get started.</p>
+        <a href="templates.html" class="cta-btn">Build My Resume — Free</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                        <defs>
+                            <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#5F3DC4;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+                        <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+                        <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+                        <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.1)" rx="4" />
+                        <rect x="0" y="0" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+                        <rect x="32" y="32" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+                        <rect x="64" y="32" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+                        <rect x="32" y="64" width="30" height="30" fill="url(#footerLogoGrad)" rx="6" />
+                    </svg>
+                    <span class="footer-brand-name">Density</span>
+                </a>
+                <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="templates.html">Resume Templates</a></li>
+                    <li><a href="templates.html">ATS Resume Builder</a></li>
+                    <li><a href="grader.html">AI Resume Grader</a></li>
+                    <li><a href="ai-rewriter.html">AI Content Rewriter</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resume Guides</h4>
+                <ul>
+                    <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+                    <li><a href="resume-for-btech-freshers.html">BTech Fresher Resume</a></li>
+                    <li><a href="resume-for-software-engineer.html">Software Engineer Resume</a></li>
+                    <li><a href="resume-for-mba-students.html">MBA Student Resume</a></li>
+                    <li><a href="resume-for-data-analyst.html">Data Analyst Resume</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resume Guides (Cont.)</h4>
+                <ul>
+                    <li><a href="resume-for-java-developer.html">Java Developer Resume</a></li>
+                    <li><a href="resume-for-frontend-developer.html">Frontend Developer Resume</a></li>
+                    <li><a href="ats-resume-template.html">ATS Resume Template</a></li>
+                    <li><a href="resume-format-for-freshers.html">Fresher Resume Format</a></li>
+                    <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="disclaimer.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>© 2026 Density Resume Builder • Crafted for Career Excellence</p>
+                <div class="footer-bottom-links">
+                    <a href="sitemap.xml">Sitemap</a>
+                    <a href="robots.txt">Robots</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAQ accordion interactivity script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Copy JSON template code
+            const copyBtn = document.getElementById('copy-json-btn');
+            const copyStatus = document.getElementById('copy-status');
+            const resumeData = {"name": "Devendra Singh", "title": "Full Stack Developer", "email": "devendra@email.com", "phone": "+91 99887 76655", "linkedin": "github.com/devendracodes", "summary": "Full Stack Developer with 4+ years of experience specializing in building responsive web applications with React.js, Node.js, and MongoDB. Expert in using AI tools to optimize web delivery speeds, improve API routes, and maintain clean test pipelines.", "experience": [{"role": "Full Stack Engineer \u2014 TechCrafters India", "date": "06/2022 - Present", "bullets": ["Redesigned the primary user portal using Next.js and Tailwind CSS, increasing page load speeds by 40% and user retention by 15%.", "Developed scalable backend APIs using Express and Node.js, reducing database query times by 25% through MongoDB index tuning.", "Configured CI/CD deployment runs via GitHub Actions, decreasing build failures by 30%."]}, {"role": "Junior Frontend Developer \u2014 ByteCode Systems", "date": "07/2020 - 05/2022", "bullets": ["Created 20+ responsive web pages using HTML5, CSS3, and React.js, ensuring 100% cross-browser responsiveness."]}], "skills": ["JavaScript (ES6+) & TypeScript", "React.js, Next.js & Redux", "Node.js & Express.js", "MongoDB, MySQL & Redis", "Git, GitHub & GitHub Actions", "Tailwind CSS & SASS", "REST API Development"], "education": "BTech in Computer Science \u2014 MITS Gwalior (Graduated 2020)"};
+
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(JSON.stringify(resumeData, null, 2)).then(() => {
+                    copyStatus.style.display = 'block';
+                    setTimeout(() => {
+                        copyStatus.style.display = 'none';
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    </script>
+
+    <!-- Firebase sign in dynamic redirect script -->
+    <script type="module">
+        import { auth, onAuthStateChanged } from "./js/firebase-config.js";
+        const navAuthBtn = document.getElementById('nav-auth-btn');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navAuthBtn.textContent = 'Dashboard';
+                navAuthBtn.href = 'dashboard.html';
+            }
+        });
+    </script>
+
+    <!-- FAQ Schema JSON-LD -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Is this AI resume builder free?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, Density's core AI resume builder and templates are completely free to use. You can write, optimize, and export your resume in PDF format without any hidden costs."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How does the AI resume writer work?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our AI analyzer reviews the text you input, matches it against standard industry keywords, and suggests powerful action verbiage and impact structures to make your profile stand out to recruiters."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Will my AI-generated resume pass the ATS screen?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, because our AI writer is integrated directly with our ATS-compliant layouts. It ensures that the generated text contains the correct terminology and is structured in standard, readable layouts."
+            }
+        }
+    ]
+}
+    </script>
+</body>
+</html>
