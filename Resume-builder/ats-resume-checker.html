@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Resume Checker – Analyze and Improve Your Resume Score | Density Resume Builder</title>
+    <meta name="description" content="Use Density Resume Builder's ATS Resume Checker to instantly analyze your resume. Check your resume score against ATS systems and get actionable recommendations.">
+    <meta name="keywords" content="ATS resume checker, resume score, ATS compatibility, resume checker, resume grader">
+    <meta name="author" content="Density Resume Builder">
+    <link rel="canonical" href="https://www.densityresumebuilder.in/ats-resume-checker.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <script src="js/loader.js"></script>
+    <style>
+        :root {
+            --primary: #0F172A;
+            --primary-hover: #1E293B;
+            --accent: #14B8A6;
+            --secondary: #3B82F6;
+            --bg-main: #FFFFFF;
+            --bg-light: #F8FAFC;
+            --text-main: #1E2937;
+            --text-muted: #64748B;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glow Elements */
+        .glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+        }
+
+        .glow-1 { top: -200px; left: -200px; background: rgba(20, 184, 166, 0.08); }
+        .glow-2 { top: 20%; right: -250px; background: rgba(59, 130, 246, 0.06); }
+        .glow-3 { top: 60%; left: -200px; background: rgba(20, 184, 166, 0.05); }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 48px;
+            background: #fff;
+            width: 100%;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .brand-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-title span:first-child {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title span:last-child {
+            font-weight: 400;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .btn-get-started {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-get-started:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 24px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+            color: var(--primary);
+        }
+
+        .hero p.intro-text {
+            font-size: 20px;
+            color: var(--secondary);
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main Content Layout */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 48px;
+        }
+
+        @media (max-width: 992px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .article-section {
+            margin-bottom: 40px;
+        }
+
+        .article-section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            margin-top: 24px;
+        }
+
+        .article-section h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .article-section p {
+            font-size: 15.5px;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        /* Lists */
+        .article-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .article-section ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .article-section ul.inline-bullets {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .article-section ul.inline-bullets li {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .check-list, .cross-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .check-list li, .cross-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .icon-check {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .icon-cross {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        /* Score Table Styling */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 15px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border);
+        }
+
+        .score-table th {
+            background-color: var(--primary);
+            color: #fff;
+            text-align: left;
+            padding: 14px 20px;
+            font-weight: 700;
+        }
+
+        .score-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .score-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-table tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        /* Premium Visual Resume Sample */
+        .resume-preview-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .resume-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .resume-name {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .resume-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .resume-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .resume-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 4px;
+        }
+
+        .resume-body-section {
+            margin-bottom: 20px;
+        }
+
+        .resume-body-section p.summary-text {
+            font-size: 13.5px;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .exp-item {
+            margin-bottom: 16px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .exp-bullets li {
+            font-size: 13px;
+            color: var(--text-main);
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+            display: list-item;
+        }
+
+        .exp-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .skills-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-pill {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Template Download & Builder CTA Panel */
+        .cta-panel {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 20px;
+            padding: 36px;
+            color: #fff;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-panel h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-panel p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .panel-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-green {
+            background: #10B981;
+            color: #fff;
+        }
+
+        .btn-green:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .btn-trans {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-trans:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Copy Dialog styling */
+        .copy-success {
+            display: none;
+            font-size: 12px;
+            color: #10b981;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Tips & FAQ blocks */
+        .extra-sections-bg {
+            background-color: var(--bg-light);
+            border-top: 1px solid #f1f5f9;
+            padding: 80px 24px;
+        }
+
+        .extra-sections-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tips-section h2, .faq-section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .tip-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+            transition: all 0.3s;
+        }
+
+        .tip-box:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .tip-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .tip-box p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Accordion FAQ */
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+            cursor: pointer;
+            user-select: none;
+            background: #fff;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out, padding 0.2s ease-out;
+            background: #fcfcfd;
+            border-top: 0 solid var(--border);
+            padding: 0 24px;
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px 24px;
+            border-top-width: 1px;
+        }
+
+        /* Bottom CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #7C3DF9 0%, #6366F1 100%);
+            padding: 80px 24px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .cta-banner h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-banner p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #7C3DF9;
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-btn:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        /* Global Bottom Bar / Footer */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 24px;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px 24px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .hero-content h1 {
+                text-align: center !important;
+            }
+
+            .hero-btns,
+            .hero-pills {
+                justify-content: center;
+            }
+
+            .main-sections {
+                grid-template-columns: 1fr;
+                padding: 40px 24px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+          background: #0f172a;
+          color: #fff;
+          padding: 80px 48px 40px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 2.2fr 1fr 1.2fr 1.1fr 1fr;
+          gap: 24px;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .footer-brand-col {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-decoration: none;
+          color: #fff;
+        }
+
+        .footer-brand-title {
+          display: flex;
+          flex-direction: column;
+          line-height: 1.1;
+        }
+
+        .footer-brand-name {
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-weight: 800;
+          font-size: 20px;
+          letter-spacing: -0.02em;
+          color: #fff;
+        }
+
+        .footer-brand-sub {
+          font-weight: 400;
+          font-size: 15px;
+          color: #fff;
+        }
+
+        .footer-tagline {
+          color: #fff;
+          font-size: 14px;
+          line-height: 1.6;
+          max-width: 280px;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 16px;
+        }
+
+        .social-links a {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.05);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+          background: #5F3DC4;
+          color: #fff;
+          transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 18px;
+          color: #cbd5e1;
+        }
+
+        .footer-col ul {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .footer-col ul li a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 13px;
+          transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+          color: #14B8A6;
+          padding-left: 0;
+        }
+
+        .footer-bottom {
+          margin-top: 60px;
+          padding-top: 32px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: #fff;
+          font-size: 12px;
+        }
+
+        .footer-bottom-links {
+          display: flex;
+          gap: 24px;
+        }
+
+        .footer-bottom-links a {
+          color: #fff;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .footer-bottom-links a:hover {
+          color: #fff;
+        }
+
+        @media (max-width: 1200px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .footer-bottom-container {
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-container">
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+        <div class="bg-glow glow-3"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                <rect x="5" y="5" width="28" height="28" fill="#000" />
+                <rect x="37" y="37" width="28" height="28" fill="#000" />
+                <rect x="69" y="37" width="28" height="28" fill="#000" />
+                <rect x="37" y="69" width="28" height="28" fill="#000" />
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+            </svg>
+            <div class="brand-title">
+                <span>Density</span>
+                <span>Resume Builder</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="auth.html" id="nav-auth-btn" class="btn-get-started">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>ATS Resume Checker – Analyze and Improve Your Resume Score</h1>
+        <p class="intro-text">Check Your Resume Against ATS Systems Before You Apply</p>
+    </header>
+
+    <!-- MAIN CONTENT AND SIDEBAR -->
+    <main class="content-container">
+        <!-- Content Side -->
+        <div class="article-content">
+            <div class="article-section">
+                <p>Most companies today use Applicant Tracking Systems (ATS) to screen resumes before they reach recruiters. If your resume isn't optimized for ATS software, it may get rejected even if you're qualified for the job.</p>
+                <p>An ATS Resume Checker helps identify formatting issues, missing keywords, weak sections, and optimization opportunities so you can improve your chances of getting shortlisted.</p>
+                <p>Use Density Resume Builder's ATS Resume Checker to instantly analyze your resume and receive actionable recommendations to improve ATS compatibility and recruiter appeal.</p>
+                <a href="templates.html" class="btn-green panel-btn" style="display: inline-block; width: auto; padding: 14px 36px; margin: 12px 0 24px;">Check Your Resume Now →</a>
+            </div>
+
+            <div class="article-section">
+                <h2>What Is an ATS Resume Checker?</h2>
+                <p>An ATS Resume Checker is a tool that analyzes your resume and evaluates how well it will perform in Applicant Tracking Systems.</p>
+                <p>The tool typically reviews:</p>
+                <ul class="inline-bullets">
+                    <li>Resume Formatting</li>
+                    <li>ATS Compatibility</li>
+                    <li>Keywords</li>
+                    <li>Skills Matching</li>
+                    <li>Resume Sections</li>
+                    <li>Readability</li>
+                    <li>Contact Information</li>
+                    <li>Work Experience</li>
+                    <li>Education</li>
+                    <li>Certifications</li>
+                </ul>
+                <p style="margin-top: 16px;">The goal is to help you create a resume that can be properly parsed and ranked by hiring software.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Why ATS Resume Checking Matters</h2>
+                <p>Studies show that many resumes are filtered out before recruiters ever review them.</p>
+                <p>Common reasons include:</p>
+                <ul class="inline-bullets">
+                    <li>Missing keywords</li>
+                    <li>Poor formatting</li>
+                    <li>ATS-incompatible designs</li>
+                    <li>Weak resume summaries</li>
+                    <li>Incomplete sections</li>
+                    <li>Generic content</li>
+                </ul>
+                <p style="margin-top: 16px;">A resume checker helps identify these issues before you submit your application.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>How ATS Resume Checkers Work</h2>
+                <p>ATS resume analysis tools scan your resume and evaluate:</p>
+                
+                <h3>Keyword Optimization</h3>
+                <p>The system checks whether your resume contains relevant industry and job-specific keywords.</p>
+                <p>Examples:</p>
+                <ul class="inline-bullets">
+                    <li>Project Management</li>
+                    <li>Data Analysis</li>
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>SEO</li>
+                    <li>Salesforce</li>
+                    <li>Leadership</li>
+                </ul>
+                <p style="margin-top: 16px;">Keywords help ATS software determine whether you're a good match for the role.</p>
+
+                <h3>Resume Structure</h3>
+                <p>The tool verifies whether your resume includes essential sections:</p>
+                <ul class="inline-bullets">
+                    <li>Contact Information</li>
+                    <li>Professional Summary</li>
+                    <li>Skills</li>
+                    <li>Work Experience</li>
+                    <li>Education</li>
+                    <li>Certifications</li>
+                </ul>
+                <p style="margin-top: 16px;">A well-structured resume improves ATS readability.</p>
+
+                <h3>Formatting Review</h3>
+                <p>ATS systems prefer simple formatting.</p>
+                <p>The checker evaluates:</p>
+                <ul class="check-list">
+                    <li><span class="icon-check">✔</span> Standard headings</li>
+                    <li><span class="icon-check">✔</span> Proper spacing</li>
+                    <li><span class="icon-check">✔</span> Clear section organization</li>
+                    <li><span class="icon-check">✔</span> Professional fonts</li>
+                </ul>
+                <p style="margin-top: 12px;">It may flag:</p>
+                <ul class="cross-list">
+                    <li><span class="icon-cross">❌</span> Tables</li>
+                    <li><span class="icon-cross">❌</span> Images</li>
+                    <li><span class="icon-cross">❌</span> Graphics</li>
+                    <li><span class="icon-cross">❌</span> Text boxes</li>
+                    <li><span class="icon-cross">❌</span> Complex layouts</li>
+                </ul>
+
+                <h3>Readability Analysis</h3>
+                <p>Resume checkers also evaluate:</p>
+                <ul>
+                    <li>Sentence clarity</li>
+                    <li>Grammar</li>
+                    <li>Consistency</li>
+                    <li>Professional language</li>
+                </ul>
+                <p style="margin-top: 16px;">Clear content improves both ATS and recruiter performance.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>ATS Resume Score Explained</h2>
+                <p>Many resume checkers provide an ATS score.</p>
+                <p>Typical score categories:</p>
+                
+                <table class="score-table">
+                    <thead>
+                        <tr>
+                            <th>Score</th>
+                            <th>Interpretation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>90–100</td>
+                            <td><strong>Excellent</strong></td>
+                        </tr>
+                        <tr>
+                            <td>80–89</td>
+                            <td><strong>Very Good</strong></td>
+                        </tr>
+                        <tr>
+                            <td>70–79</td>
+                            <td><strong>Good</strong></td>
+                        </tr>
+                        <tr>
+                            <td>60–69</td>
+                            <td><strong>Needs Improvement</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Below 60</td>
+                            <td><strong>Significant Optimization Required</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>A higher score generally indicates stronger ATS compatibility.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>What Makes a Resume ATS-Friendly?</h2>
+                <p>An ATS-friendly resume typically includes:</p>
+                
+                <h3>Standard Headings</h3>
+                <p>Examples:</p>
+                <ul class="inline-bullets">
+                    <li>Professional Summary</li>
+                    <li>Work Experience</li>
+                    <li>Skills</li>
+                    <li>Education</li>
+                    <li>Certifications</li>
+                </ul>
+
+                <h3>Relevant Keywords</h3>
+                <p>Use keywords from the job description whenever applicable.</p>
+
+                <h3>Reverse Chronological Format</h3>
+                <p>Most ATS systems and recruiters prefer:</p>
+                <p style="font-weight: 600; color: var(--secondary);">Most Recent Experience → Older Experience</p>
+
+                <h3 style="margin-top: 16px;">Clean Formatting</h3>
+                <p>Use:</p>
+                <ul>
+                    <li>Simple layouts</li>
+                    <li>Bullet points</li>
+                    <li>Consistent spacing</li>
+                </ul>
+                <p style="margin-top: 12px;">Avoid complex visual designs.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>ATS Resume Checker Features</h2>
+                <p>A comprehensive ATS Resume Checker should evaluate:</p>
+                
+                <h3>ATS Compatibility Score</h3>
+                <p>Measures overall ATS performance.</p>
+
+                <h3>Keyword Analysis</h3>
+                <p>Identifies:</p>
+                <ul>
+                    <li>Missing keywords</li>
+                    <li>Keyword relevance</li>
+                    <li>Keyword density</li>
+                </ul>
+
+                <h3>Skills Analysis</h3>
+                <p>Evaluates whether your skills align with target job requirements.</p>
+
+                <h3>Resume Section Review</h3>
+                <p>Checks for missing or weak sections.</p>
+
+                <h3>Formatting Validation</h3>
+                <p>Detects formatting issues that may confuse ATS software.</p>
+
+                <h3>Improvement Suggestions</h3>
+                <p>Provides recommendations for improving ATS performance.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Common ATS Issues Found by Resume Checkers</h2>
+                
+                <h3>Missing Keywords</h3>
+                <p>Many resumes fail because they don't include enough relevant job-specific keywords.</p>
+                <div style="background: var(--bg-light); border-left: 4px solid var(--secondary); padding: 16px; margin: 16px 0; border-radius: 8px;">
+                    <p style="margin-bottom: 8px;"><strong>Job Description Requirements:</strong> SQL, Tableau, Data Visualization</p>
+                    <p style="margin-bottom: 8px;"><strong>Resume Text:</strong> Data Reporting</p>
+                    <p style="margin-bottom: 0; font-weight: 500; color: var(--accent);">Adding the exact keywords can improve ATS matching.</p>
+                </div>
+
+                <h3>Weak Professional Summary</h3>
+                <div style="background: var(--bg-light); border-left: 4px solid var(--secondary); padding: 16px; margin: 16px 0; border-radius: 8px;">
+                    <p style="margin-bottom: 8px; color: #ef4444;"><strong>❌ Weak:</strong> Hardworking professional seeking opportunities.</p>
+                    <p style="margin-bottom: 0; color: var(--accent);"><strong>✔ Better:</strong> Data Analyst with 4+ years of experience using SQL, Python, and Tableau to generate actionable business insights.</p>
+                </div>
+
+                <h3>Poor Achievement Statements</h3>
+                <div style="background: var(--bg-light); border-left: 4px solid var(--secondary); padding: 16px; margin: 16px 0; border-radius: 8px;">
+                    <p style="margin-bottom: 8px; color: #ef4444;"><strong>❌ Passive:</strong> Managed projects.</p>
+                    <p style="margin-bottom: 0; color: var(--accent);"><strong>✔ Impact-driven:</strong> Managed projects worth ₹2 crore while achieving 95% on-time delivery.</p>
+                </div>
+
+                <h3>Missing Skills Section</h3>
+                <p>A dedicated skills section improves ATS keyword recognition.</p>
+
+                <h3>Formatting Problems</h3>
+                <p>Complex templates often reduce ATS readability.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>ATS Resume Checker for Freshers</h2>
+                <p>Freshers can benefit significantly from ATS optimization.</p>
+                <p>Focus on:</p>
+                <ul class="inline-bullets">
+                    <li>Skills</li>
+                    <li>Certifications</li>
+                    <li>Projects</li>
+                    <li>Internships</li>
+                    <li>Education</li>
+                </ul>
+                <h3 style="margin-top: 16px;">Fresher ATS Checklist</h3>
+                <ul class="check-list">
+                    <li><span class="icon-check">✔</span> Clear Career Objective</li>
+                    <li><span class="icon-check">✔</span> Skills Section</li>
+                    <li><span class="icon-check">✔</span> Academic Projects</li>
+                    <li><span class="icon-check">✔</span> Relevant Certifications</li>
+                    <li><span class="icon-check">✔</span> Professional Formatting</li>
+                </ul>
+            </div>
+
+            <div class="article-section">
+                <h2>ATS Resume Checker for Experienced Professionals</h2>
+                <p>Experienced professionals should focus on:</p>
+                <ul>
+                    <li>Quantified achievements</li>
+                    <li>Industry keywords</li>
+                    <li>Leadership experience</li>
+                    <li>Technical expertise</li>
+                    <li>Professional certifications</li>
+                </ul>
+                <p style="margin-top: 16px;">Strong ATS optimization often leads to higher recruiter visibility.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>ATS Resume Optimization Tips</h2>
+                
+                <h3>Match Job Descriptions</h3>
+                <p>Review each job posting carefully.</p>
+                <p>Include relevant:</p>
+                <ul class="inline-bullets">
+                    <li>Skills</li>
+                    <li>Technologies</li>
+                    <li>Certifications</li>
+                    <li>Responsibilities</li>
+                </ul>
+
+                <h3>Quantify Achievements</h3>
+                <p>Examples:</p>
+                <ul class="check-list">
+                    <li><span class="icon-check">✔</span> Increased website traffic by 150%.</li>
+                    <li><span class="icon-check">✔</span> Reduced operational costs by ₹10 lakh annually.</li>
+                    <li><span class="icon-check">✔</span> Improved customer satisfaction by 20%.</li>
+                </ul>
+
+                <h3>Use Industry Keywords</h3>
+                <p>Examples:</p>
+                <div style="background: var(--bg-light); padding: 16px; border-radius: 8px; margin: 12px 0;">
+                    <p style="margin-bottom: 8px;"><strong>Software Engineering:</strong> Java, Python, AWS, REST API</p>
+                    <p style="margin-bottom: 8px;"><strong>Marketing:</strong> SEO, PPC, Content Marketing</p>
+                    <p style="margin-bottom: 0;"><strong>Project Management:</strong> Agile, Scrum, Stakeholder Management</p>
+                </div>
+
+                <h3>Include Certifications</h3>
+                <p>Certifications often improve ATS rankings.</p>
+                <p>Examples:</p>
+                <ul class="inline-bullets">
+                    <li>AWS Certification</li>
+                    <li>PMP</li>
+                    <li>Google Analytics Certification</li>
+                    <li>Salesforce Certification</li>
+                </ul>
+            </div>
+
+            <div class="article-section">
+                <h2>ATS Resume Checker vs Recruiter Review</h2>
+                
+                <h3>ATS Review</h3>
+                <p>Focuses on:</p>
+                <ul class="inline-bullets">
+                    <li>Keywords</li>
+                    <li>Formatting</li>
+                    <li>Structure</li>
+                    <li>ATS Compatibility</li>
+                </ul>
+
+                <h3>Recruiter Review</h3>
+                <p>Focuses on:</p>
+                <ul class="inline-bullets">
+                    <li>Experience</li>
+                    <li>Achievements</li>
+                    <li>Career Progression</li>
+                    <li>Professional Presentation</li>
+                </ul>
+                <p style="margin-top: 16px;">A strong resume should perform well in both evaluations.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Why Use Density Resume Builder ATS Resume Checker?</h2>
+                <p>Density Resume Builder helps job seekers:</p>
+                <ul class="check-list">
+                    <li><span class="icon-check">✔</span> Analyze ATS compatibility</li>
+                    <li><span class="icon-check">✔</span> Identify missing keywords</li>
+                    <li><span class="icon-check">✔</span> Improve resume structure</li>
+                    <li><span class="icon-check">✔</span> Optimize formatting</li>
+                    <li><span class="icon-check">✔</span> Increase ATS scores</li>
+                    <li><span class="icon-check">✔</span> Improve recruiter visibility</li>
+                    <li><span class="icon-check">✔</span> Create professional resumes quickly</li>
+                </ul>
+            </div>
+
+            <div class="article-section">
+                <h2>Common ATS Resume Mistakes</h2>
+                <p>Avoid:</p>
+                
+                <h3>Keyword Stuffing</h3>
+                <p>Use keywords naturally.</p>
+
+                <h3>Generic Resumes</h3>
+                <p>Customize resumes for each application.</p>
+
+                <h3>Missing Metrics</h3>
+                <p>Quantify achievements whenever possible.</p>
+
+                <h3>Complex Templates</h3>
+                <p>Keep formatting simple and ATS-friendly.</p>
+
+                <h3>Spelling and Grammar Errors</h3>
+                <p>Proofread carefully before submitting.</p>
+            </div>
+
+            <!-- Resume Example Section -->
+            <div class="article-section" style="margin-top: 60px;">
+                <h2 style="text-align: left; margin-bottom: 24px;">Standard Recruiter-Approved Resume Example</h2>
+                <p>Below is a visual implementation of a highly competitive resume based on our guidelines. You can copy the raw structural template data to customize it, or load it straight into our builder.</p>
+                
+                <div class="resume-preview-card">
+                    <div class="resume-header">
+                        <div class="resume-name">Jane Smith</div>
+                        <div class="resume-title">Senior Project Manager</div>
+                        <div class="resume-contacts">
+                            <span>✉ janesmith@email.com</span>
+                            <span>📞 +91 98765 43210</span>
+                            <span>🔗 linkedin.com/in/janesmith</span>
+                        </div>
+                    </div>
+
+                    <div class="resume-body-section">
+                        <div class="resume-section-title">Professional Summary</div>
+                        <p class="summary-text">Result-oriented PMP certified Project Manager with 8+ years of experience leading cross-functional teams in software development. Proven track record of delivering complex digital products on time and 15% under budget. Expert in Agile methodologies, scrum frameworks, and stakeholder alignment.</p>
+                    </div>
+
+                    <div class="resume-body-section">
+                        <div class="resume-section-title">Professional Experience</div>
+                        <div class="exp-item">
+                            <div class="exp-header">
+                                <span>Lead Project Manager — Tech Solutions Ltd</span>
+                                <span>06/2021 - Present</span>
+                            </div>
+                            <ul class="exp-bullets">
+                                <li>Spearheaded the deployment of a new enterprise SaaS platform, resulting in a 25% increase in team productivity and a 30% reduction in time-to-market.</li>
+                                <li>Managed a project budget of $1.5M, optimizing resource allocation to save $180K in vendor licensing costs.</li>
+                                <li>Implemented agile scrum workflows for a team of 15 engineers, decreasing sprint carryover rates by 40%.</li>
+                            </ul>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-header">
+                                <span>Senior Agile Project Manager — Innovate Corp</span>
+                                <span>03/2018 - 05/2021</span>
+                            </div>
+                            <ul class="exp-bullets">
+                                <li>Facilitated daily scrums, sprint planning, and retrospective sessions for 3 development squads, improving delivery velocity by 20%.</li>
+                                <li>Coordinated with product owners to define scope and prioritize backlog, ensuring 98% on-time release schedules.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="resume-body-section">
+                        <div class="resume-section-title">Key Core Skills</div>
+                        <div class="skills-pills">
+                            <span class="skill-pill">Project Management</span>
+                            <span class="skill-pill">Agile & Scrum Methodologies</span>
+                            <span class="skill-pill">PMP Certified</span>
+                            <span class="skill-pill">Jira & Confluence</span>
+                            <span class="skill-pill">Budgeting & Forecasting</span>
+                            <span class="skill-pill">Risk Management</span>
+                            <span class="skill-pill">Stakeholder Communication</span>
+                        </div>
+                    </div>
+
+                    <div class="resume-body-section" style="margin-bottom: 0;">
+                        <div class="resume-section-title">Education & Credentials</div>
+                        <p class="summary-text" style="font-weight: 500;">Bachelor of Technology in Computer Science — ABC University (Graduated 2017)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Panel -->
+        <aside class="sidebar-side">
+            <div class="cta-panel">
+                <h3>Use This Template in Density Builder</h3>
+                <p>Customize this professional <strong>Minimalist Classic</strong> template instantly using our free, AI-driven resume builder. Coded to score 90+ on ATS screening systems.</p>
+                <a href="upload-choice.html?template=minimalist" class="panel-btn btn-green">Customize This Resume</a>
+                <button class="panel-btn btn-trans" id="copy-json-btn">Copy JSON Template Data</button>
+                <div class="copy-success" id="copy-status">✓ JSON template copied to clipboard!</div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- TIPS & FAQ SECTIONS -->
+    <section class="extra-sections-bg">
+        <div class="extra-sections-inner">
+            <div class="tips-section">
+                <h2>Top Actionable ATS Optimization Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-box">
+                        <h4>Tip 1</h4>
+                        <p>Use standard section headers like 'Work Experience', 'Education', and 'Skills' so the parser knows where to categorize your content.</p>
+                    </div>
+                    <div class="tip-box">
+                        <h4>Tip 2</h4>
+                        <p>Avoid placing important details (such as contact info) inside header/footer components or text boxes.</p>
+                    </div>
+                    <div class="tip-box">
+                        <h4>Tip 3</h4>
+                        <p>Always save and upload your resume as a PDF or DOCX file. Avoid image files (JPEG/PNG) which cannot be read by ATS scanners.</p>
+                    </div>
+                    <div class="tip-box">
+                        <h4>Tip 4</h4>
+                        <p>Use standard bullet points (circles or squares) and avoid custom graphical symbols or emojis.</p>
+                    </div>
+                    <div class="tip-box">
+                        <h4>Tip 5</h4>
+                        <p>Keep your file name professional and clean, e.g., 'Jane-Smith-Resume.pdf'.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section" style="margin-top: 80px;">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <div class="faq-question">What is an ATS Resume Checker?</div>
+                        <div class="faq-answer">An ATS Resume Checker analyzes your resume and evaluates how well it will perform in Applicant Tracking Systems.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Is ATS optimization important?</div>
+                        <div class="faq-answer">Yes. Many companies use ATS software to screen resumes before recruiter review.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">What ATS score is considered good?</div>
+                        <div class="faq-answer">Generally, a score above 80 is considered strong.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Can ATS checkers improve my resume?</div>
+                        <div class="faq-answer">ATS checkers identify weaknesses and provide recommendations for improvement.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Do recruiters see ATS scores?</div>
+                        <div class="faq-answer">No. ATS scores are typically used as guidance tools, not visible recruiter metrics.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Should I customize my resume for every job?</div>
+                        <div class="faq-answer">Yes. Tailoring resumes improves ATS matching and recruiter relevance.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM CTA BANNER -->
+    <section class="cta-banner">
+        <h2>Check Your Resume Before You Apply</h2>
+        <p>A professionally optimized resume can dramatically improve your chances of passing ATS screening and reaching recruiters. By analyzing keywords, formatting, skills, and content, an ATS Resume Checker helps ensure your resume is ready for today's hiring systems.</p>
+        <p style="margin-bottom: 24px; opacity: 0.9;">Use Density Resume Builder ATS Resume Checker to evaluate your resume, improve your ATS score, and increase your chances of landing interviews.</p>
+        <a href="templates.html" class="cta-btn">Check Your Resume Now →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                        <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                        <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                        <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                        <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+                    </svg>
+                    <div class="footer-brand-title">
+                        <span class="footer-brand-name">Density</span>
+                        <span class="footer-brand-sub">Resume Builder</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="resume-builder.html">Resume Builder</a></li>
+                    <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
+                    <li><a href="ats-resume-optimizer.html">ATS Resume Optimizer</a></li>
+                    <li><a href="cv-builder.html">CV Builder</a></li>
+                    <li><a href="templates.html">Resume Templates</a></li>
+                    <li><a href="resume-examples.html">Resume Examples</a></li>
+                    <li><a href="cover-letter-builder.html">Cover Letter Builder</a></li>
+                    <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Popular Resume Examples</h4>
+                <ul>
+                    <li><a href="software-engineer-resume.html">Software Engineer Resume</a></li>
+                    <li><a href="data-analyst.html">Data Analyst Resume</a></li>
+                    <li><a href="executive-assistant-resume.html">Executive Assistant Resume</a></li>
+                    <li><a href="ui-ux-developer-resume.html">UI/UX Designer Resume</a></li>
+                    <li><a href="project-manager-resume.html">Project Manager Resume</a></li>
+                    <li><a href="teacher-resume.html">Teacher Resume</a></li>
+                    <li><a href="hr-resume.html">HR Resume</a></li>
+                    <li><a href="financial-analyst-resume.html">Financial Analyst Resume</a></li>
+                    <li><a href="digital-marketing-resume.html">Digital Marketing Resume</a></li>
+                    <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resume Resources</h4>
+                <ul>
+                    <li><a href="resume-help.html">Resume Help</a></li>
+                    <li><a href="resume-format.html">Resume Format</a></li>
+                    <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
+                    <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
+                    <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
+                    <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
+                    <li><a href="career-advice.html">Career Advice</a></li>
+                    <li><a href="interview-questions.html">Interview Questions</a></li>
+                    <li><a href="salary-guide.html">Salary Guide</a></li>
+                    <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="sitemap.xml">Sitemap</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Cookie Policy</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&#169; 2026 Density Resume Builder &#8226; Crafted for Career Excellence</p>
+                <div class="footer-bottom-links">
+                    <a href="sitemap.xml">Sitemap</a>
+                    <a href="robots.txt">Robots</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAQ accordion interactivity script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Copy JSON template code
+            const copyBtn = document.getElementById('copy-json-btn');
+            const copyStatus = document.getElementById('copy-status');
+            const resumeData = {"name": "Jane Smith", "title": "Senior Project Manager", "email": "janesmith@email.com", "phone": "+91 98765 43210", "linkedin": "linkedin.com/in/janesmith", "summary": "Result-oriented PMP certified Project Manager with 8+ years of experience leading cross-functional teams in software development. Proven track record of delivering complex digital products on time and 15% under budget. Expert in Agile methodologies, scrum frameworks, and stakeholder alignment.", "experience": [{"role": "Lead Project Manager \u2014 Tech Solutions Ltd", "date": "06/2021 - Present", "bullets": ["Spearheaded the deployment of a new enterprise SaaS platform, resulting in a 25% increase in team productivity and a 30% reduction in time-to-market.", "Managed a project budget of $1.5M, optimizing resource allocation to save $180K in vendor licensing costs.", "Implemented agile scrum workflows for a team of 15 engineers, decreasing sprint carryover rates by 40%."]}, {"role": "Senior Agile Project Manager \u2014 Innovate Corp", "date": "03/2018 - 05/2021", "bullets": ["Facilitated daily scrums, sprint planning, and retrospective sessions for 3 development squads, improving delivery velocity by 20%.", "Coordinated with product owners to define scope and prioritize backlog, ensuring 98% on-time release schedules."]}], "skills": ["Project Management", "Agile & Scrum Methodologies", "PMP Certified", "Jira & Confluence", "Budgeting & Forecasting", "Risk Management", "Stakeholder Communication"], "education": "Bachelor of Technology in Computer Science \u2014 ABC University (Graduated 2017)"};
+
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(JSON.stringify(resumeData, null, 2)).then(() => {
+                    copyStatus.style.display = 'block';
+                    setTimeout(() => {
+                        copyStatus.style.display = 'none';
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    </script>
+
+    <!-- Firebase sign in dynamic redirect script -->
+    <script type="module">
+        import { auth, onAuthStateChanged } from "./js/firebase-config.js";
+        const navAuthBtn = document.getElementById('nav-auth-btn');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navAuthBtn.textContent = 'Dashboard';
+                navAuthBtn.href = 'dashboard.html';
+            }
+        });
+    </script>
+
+    <!-- FAQ Schema JSON-LD -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What is an ATS Resume Checker?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An ATS Resume Checker analyzes your resume and evaluates how well it will perform in Applicant Tracking Systems."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is ATS optimization important?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Many companies use ATS software to screen resumes before recruiter review."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What ATS score is considered good?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Generally, a score above 80 is considered strong."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Can ATS checkers improve my resume?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ATS checkers identify weaknesses and provide recommendations for improvement."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Do recruiters see ATS scores?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. ATS scores are typically used as guidance tools, not visible recruiter metrics."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Should I customize my resume for every job?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Tailoring resumes improves ATS matching and recruiter relevance."
+            }
+        }
+    ]
+}
+    </script>
+</body>
+</html>

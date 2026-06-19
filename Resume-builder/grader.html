@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Grader | Density Resume Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #14B8A6;
+            --secondary: #3B82F6;
+            --bg-main: #FFFFFF;
+            --bg-light: #F8FAFC;
+            --text-main: #1E2937;
+            --text-muted: #64748B;
+            --border: #f1f5f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Glow System from Home Page */
+        .glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+        }
+
+        .glow-1 { top: -200px; left: -200px; background: rgba(20, 184, 166, 0.08); }
+        .glow-2 { top: 20%; right: -250px; background: rgba(59, 130, 246, 0.06); }
+        .glow-3 { top: 60%; left: -200px; background: rgba(20, 184, 166, 0.05); }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 48px;
+            background: #fff;
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            border-bottom: none;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .brand-logo svg { width: 40px; height: 40px; }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-title span:first-child {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #000;
+        }
+
+        .brand-title span:last-child {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grader Grid */
+        .grader-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* Clean White Cards */
+        .glass-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Upload Side */
+        .drop-zone {
+            border: 2px dashed #e2e8f0;
+            border-radius: 20px;
+            padding: 48px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .drop-zone:hover {
+            border-color: #7c3aed;
+            background: #f5f3ff;
+            transform: translateY(-2px);
+        }
+
+        .drop-zone svg {
+            color: #7c3aed;
+            margin-bottom: 20px;
+        }
+
+        .drop-zone h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        /* Results Side */
+        .results-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .score-hero {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 32px;
+        }
+
+        .gauge-outer {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: conic-gradient(#7c3aed 0deg, #f1f5f9 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 1s ease;
+        }
+
+        .gauge-inner {
+            width: 85%;
+            height: 85%;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .score-val {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7c3aed;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        /* Detailed Breakdown */
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .breakdown-item {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .status-pill {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-pill.pass { background: #dcfce7; color: #166534; }
+        .status-pill.fail { background: #fee2e2; color: #991b1b; }
+
+        /* Pro Tips */
+        .tips-container {
+            margin-top: 8px;
+        }
+
+        .tip-card {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            background: #fdf2ff;
+            border-left: 4px solid #7c3aed;
+            margin-bottom: 12px;
+        }
+
+        .tip-card svg { color: #7c3aed; flex-shrink: 0; }
+        .tip-card div { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .tip-card strong { color: var(--primary); display: block; margin-bottom: 2px; }
+
+        #upload-status {
+            text-align: center;
+            margin-top: 24px;
+            font-weight: 600;
+            color: #7c3aed;
+            display: none;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 14px;
+            background: #7c3aed;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        @media (max-width: 900px) {
+            .grader-grid { grid-template-columns: 1fr; }
+        }
+
+        
+
+    
+
+    
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px 24px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .hero-content h1 {
+                text-align: center !important;
+            }
+
+            .hero-btns,
+            .hero-pills {
+                justify-content: center;
+            }
+
+            .main-sections {
+                grid-template-columns: 1fr;
+                padding: 40px 24px;
+            }
+        }
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0f172a;
+      color: #fff;
+      padding: 80px 48px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1.2fr 1.1fr 1fr;
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .footer-brand-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .footer-brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .footer-brand-sub {
+      font-weight: 400;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .footer-tagline {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      background: #5F3DC4;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 18px;
+      color: #cbd5e1;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #14B8A6;
+      padding-left: 0;
+    }
+
+    .footer-bottom {
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-bottom-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 1200px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom-container {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+</style>
+</head>
+
+<body>
+    <div class="glow-container">
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+        <div class="bg-glow glow-3"></div>
+    </div>
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                <!-- Drop shadows -->
+                <rect x="5" y="5" width="28" height="28" fill="#000" />
+                <rect x="37" y="37" width="28" height="28" fill="#000" />
+                <rect x="69" y="37" width="28" height="28" fill="#000" />
+                <rect x="37" y="69" width="28" height="28" fill="#000" />
+                <!-- Purple squares -->
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+            </svg>
+            <div class="brand-title">
+                <span>Density</span>
+                <span>Resume Builder</span>
+            </div>
+        </a>
+        <a href="index.html" style="text-decoration: none; color: #64748b; font-size: 14px; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#64748b'">Back to Home</a>
+    </nav>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>AI <span style="color: var(--primary)">Resume Grader</span></h1>
+            <p>Our proprietary engine analyzes your resume against 50+ ATS data points and recruitment standards.</p>
+        </div>
+
+        <div class="grader-grid">
+            <div class="upload-side">
+                <div class="glass-card" style="padding: 24px;">
+                    <div class="drop-zone" id="drop-zone">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="17 8 12 3 7 8" />
+                            <line x1="12" y1="3" x2="12" y2="15" />
+                        </svg>
+                        <h3>Drop your Resume</h3>
+                        <p>PDF format only (Max 5MB)</p>
+                    </div>
+                    <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                    <div id="upload-status">Analyzing document structure... <span class="typing-cursor"></span></div>
+                    
+                    <div style="margin-top: 32px;">
+                        <h4 style="font-size: 14px; color: white; margin-bottom: 16px;">What we check:</h4>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted);">
+                                <span style="color: var(--primary);">●</span> Contact info & Social links
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted);">
+                                <span style="color: var(--primary);">●</span> Section keyword density
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted);">
+                                <span style="color: var(--primary);">●</span> Action verb utilization
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted);">
+                                <span style="color: var(--primary);">●</span> Quantifiable achievement metrics
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <!-- Score Card -->
+                <div class="glass-card score-hero">
+                    <div class="gauge-outer" id="gauge-bg">
+                        <div class="gauge-inner">
+                            <div class="score-val" id="score-text">0</div>
+                            <div class="score-label" id="rating-label">Ready</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 style="font-size: 24px; margin-bottom: 8px;">Overall ATS Strength</h2>
+                        <p id="score-description" style="color: var(--text-muted); font-size: 14px;">Upload your resume to begin the deep-scan analysis.</p>
+                    </div>
+                </div>
+
+                <!-- Breakdown -->
+                <div class="glass-card">
+                    <h3 style="font-size: 18px; margin-bottom: 24px; color: white;">Detailed Analysis</h3>
+                    <div class="breakdown-grid">
+                        <div class="breakdown-item">
+                            <div class="item-header">Contact Info <span class="status-pill" id="stat-contact">WAITING</span></div>
+                            <div id="desc-contact" style="font-size: 11px; color: var(--text-muted);">Email, Phone, & LinkedIn presence.</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="item-header">Work Exp <span class="status-pill" id="stat-exp">WAITING</span></div>
+                            <div id="desc-exp" style="font-size: 11px; color: var(--text-muted);">Role titles & duration clarity.</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="item-header">Skills Density <span class="status-pill" id="stat-skills">WAITING</span></div>
+                            <div id="desc-skills" style="font-size: 11px; color: var(--text-muted);">Relevant industry keywords.</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="item-header">Formatting <span class="status-pill" id="stat-format">WAITING</span></div>
+                            <div id="desc-format" style="font-size: 11px; color: var(--text-muted);">Bullet points & text flow.</div>
+                        </div>
+                    </div>
+
+                    <div class="tips-container" id="tips-list" style="margin-top: 32px; display: none;">
+                        <h4 style="font-size: 14px; color: white; margin-bottom: 16px;">Actionable Improvements:</h4>
+                        <!-- Tips injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { analyzeResume } from './js/ats-engine.js';
+
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const uploadStatus = document.getElementById('upload-status');
+        const scoreText = document.getElementById('score-text');
+        const ratingLabel = document.getElementById('rating-label');
+        const gaugeBg = document.getElementById('gauge-bg');
+        const scoreDesc = document.getElementById('score-description');
+        const tipsList = document.getElementById('tips-list');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+
+        async function handleFile(file) {
+            if (!file || file.type !== 'application/pdf') {
+                alert('Please upload a valid PDF file.');
+                return;
+            }
+
+            uploadStatus.style.display = 'block';
+            
+            try {
+                const text = await extractText(file);
+                // Simulate deep scan delay for premium feel
+                await new Promise(r => setTimeout(r, 1500));
+                const results = analyzeResume(text);
+                updateUI(results);
+            } catch (err) {
+                console.error(err);
+                alert('Error analyzing PDF.');
+            } finally {
+                uploadStatus.style.display = 'none';
+            }
+        }
+
+        async function extractText(file) {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            let fullText = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                fullText += content.items.map(item => item.str).join(' ');
+            }
+            return fullText;
+        }
+
+        function updateUI(results) {
+            const score = results.score;
+            scoreText.innerText = score;
+            
+            // Update Gauge
+            gaugeBg.style.background = `conic-gradient(var(--primary) ${score * 3.6}deg, rgba(255,255,255,0.05) 0deg)`;
+
+            // Rating & Color from Engine
+            ratingLabel.innerText = results.rating.label;
+            ratingLabel.style.color = results.rating.color;
+            
+            scoreDesc.innerText = `Your resume has a ${results.rating.label.toLowerCase()} score. ${score < 80 ? 'Follow the suggestions below to reach the 90+ threshold.' : 'This is a highly competitive resume structure.'}`;
+
+            // Breakdown Pills
+            updateStat('contact', results.signals.contact && results.signals.linkedin);
+            updateStat('exp', results.signals.exp);
+            updateStat('skills', results.signals.skills);
+            updateStat('format', results.signals.bullets > 8);
+
+            // Tips Injection
+            tipsList.innerHTML = '<h4 style="font-size: 14px; color: white; margin-bottom: 16px;">Actionable Improvements:</h4>';
+            
+            if (results.tips.length > 0) {
+                tipsList.style.display = 'block';
+                results.tips.forEach(tip => {
+                    const card = document.createElement('div');
+                    card.className = 'tip-card';
+                    card.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><div><strong>${tip.title}</strong>${tip.text}</div>`;
+                    tipsList.appendChild(card);
+                });
+            } else {
+                tipsList.style.display = 'none';
+            }
+        }
+
+        function updateStat(id, pass) {
+            const pill = document.getElementById(`stat-${id}`);
+            if (!pill) return;
+            pill.innerText = pass ? 'PASS' : 'FAIL';
+            pill.className = `status-pill ${pass ? 'pass' : 'fail'}`;
+        }
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+      <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+            <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+            <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+            <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+            <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+          </svg>
+          <div class="footer-brand-title">
+            <span class="footer-brand-name">Density</span>
+            <span class="footer-brand-sub">Resume Builder</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="resume-builder.html">Resume Builder</a></li>
+          <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
+          <li><a href="ats-resume-optimizer.html">ATS Resume Optimizer</a></li>
+          <li><a href="cv-builder.html">CV Builder</a></li>
+          <li><a href="templates.html">Resume Templates</a></li>
+          <li><a href="resume-examples.html">Resume Examples</a></li>
+          <li><a href="cover-letter-builder.html">Cover Letter Builder</a></li>
+          <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Resume Examples</h4>
+        <ul>
+          <li><a href="software-engineer-resume.html">Software Engineer Resume</a></li>
+          <li><a href="data-analyst.html">Data Analyst Resume</a></li>
+          <li><a href="executive-assistant-resume.html">Executive Assistant Resume</a></li>
+          <li><a href="ui-ux-developer-resume.html">UI/UX Designer Resume</a></li>
+          <li><a href="project-manager-resume.html">Project Manager Resume</a></li>
+          <li><a href="teacher-resume.html">Teacher Resume</a></li>
+          <li><a href="hr-resume.html">HR Resume</a></li>
+          <li><a href="financial-analyst-resume.html">Financial Analyst Resume</a></li>
+          <li><a href="digital-marketing-resume.html">Digital Marketing Resume</a></li>
+          <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resume Resources</h4>
+        <ul>
+          <li><a href="resume-help.html">Resume Help</a></li>
+          <li><a href="resume-format.html">Resume Format</a></li>
+          <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
+          <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
+          <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
+          <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
+          <li><a href="career-advice.html">Career Advice</a></li>
+          <li><a href="interview-questions.html">Interview Questions</a></li>
+          <li><a href="salary-guide.html">Salary Guide</a></li>
+          <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="privacy-policy.html">Cookie Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&#169; 2026 Density Resume Builder &#8226; Crafted for Career Excellence</p>
+        <div class="footer-bottom-links">
+          <a href="sitemap.xml">Sitemap</a>
+          <a href="robots.txt">Robots</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

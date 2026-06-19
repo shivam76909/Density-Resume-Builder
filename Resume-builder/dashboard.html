@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Density Resume Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <script src="js/loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-hover: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --accent: #10B981;
+            --accent-light: rgba(16, 185, 129, 0.1);
+            --bg-light: #F8FAFC;
+            --bg-card: #ffffff;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --border-hover: #CBD5E1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient background glow elements */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 48px;
+            background: #fff;
+            width: 100%;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .brand-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-title span:first-child {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title span:last-child {
+            font-weight: 400;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .btn-logout {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+
+        .btn-logout:hover {
+            color: var(--text-dark);
+            background: var(--bg-light);
+            border-color: var(--border-hover);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--primary-light);
+        }
+
+        /* Main Dashboard */
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 36px;
+            gap: 20px;
+        }
+
+        .welcome-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #0F172A 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-text p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .btn-new {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+            border: 1px solid transparent;
+        }
+
+        .btn-new:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-new:active {
+            transform: translateY(0);
+        }
+
+        /* ── Dashboard Stats Overview ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--border-hover);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .stat-icon.resumes-count {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .stat-icon.profile-status {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .stat-icon.ai-grade {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8B5CF6;
+        }
+
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Resumes Grid */
+        .resumes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .resume-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .resume-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .resume-preview-thumb {
+            height: 220px;
+            background: #F1F5F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ── Abstract Resume CSS Mockup ── */
+        .resume-mockup {
+            width: 75%;
+            height: 85%;
+            background: #fff;
+            border-radius: 4px 4px 0 0;
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .resume-card:hover .resume-mockup {
+            transform: translateY(4px);
+        }
+
+        .mock-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 8px;
+        }
+
+        .mock-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #E2E8F0;
+        }
+
+        .mock-title-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .mock-line-title {
+            width: 60%;
+            height: 6px;
+            background: #CBD5E1;
+            border-radius: 3px;
+        }
+
+        .mock-line-subtitle {
+            width: 40%;
+            height: 4px;
+            background: #E2E8F0;
+            border-radius: 2px;
+        }
+
+        .mock-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mock-section-title {
+            width: 30%;
+            height: 5px;
+            background: var(--primary);
+            opacity: 0.7;
+            border-radius: 2px;
+            margin-bottom: 2px;
+        }
+
+        .mock-para {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mock-line {
+            width: 100%;
+            height: 4px;
+            background: #F1F5F9;
+            border-radius: 2px;
+        }
+
+        .mock-line.short {
+            width: 80%;
+        }
+
+        .mock-line.medium {
+            width: 90%;
+        }
+
+        /* Colors override for template styles in mockups */
+        .teal-mock .mock-section-title { background: #14B8A6; }
+        .dark-mock .resume-mockup { background: #1E293B; color: #fff; }
+        .dark-mock .mock-line { background: #334155; }
+        .dark-mock .mock-line-title { background: #475569; }
+        .dark-mock .mock-line-subtitle { background: #334155; }
+        .dark-mock .mock-section-title { background: #6366F1; }
+        .modern-mock .mock-section-title { background: #D97706; }
+        .minimalist-mock .mock-section-title { background: #0F172A; }
+        .monochrome-mock .mock-section-title { background: #475569; }
+        .cream-mock .mock-section-title { background: #C2410C; }
+
+        /* Resume Info & Details */
+        .resume-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .resume-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .resume-info h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+        }
+
+        .template-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .resume-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .resume-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Circular Action Icons with Tooltips */
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .action-btn:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .action-btn.delete-btn:hover {
+            color: #EF4444;
+            background: rgba(239, 68, 68, 0.08);
+            border-color: #EF4444;
+        }
+
+        /* Tooltip behavior */
+        .action-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #0F172A;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 200;
+        }
+
+        .action-btn:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 24px;
+            background: #fff;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        .empty-state-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            max-width: 320px;
+            line-height: 1.5;
+        }
+
+        .empty-state .btn-new {
+            box-shadow: none;
+        }
+
+        
+
+        /* Responsive Breakpoints */
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stat-card.ai-grade-card {
+                grid-column: span 2;
+            }
+        }
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .btn-new {
+                width: 100%;
+                justify-content: center;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .stat-card.ai-grade-card {
+                grid-column: auto;
+            }
+
+        }
+    
+
+    
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px 24px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .hero-content h1 {
+                text-align: center !important;
+            }
+
+            .hero-btns,
+            .hero-pills {
+                justify-content: center;
+            }
+
+            .main-sections {
+                grid-template-columns: 1fr;
+                padding: 40px 24px;
+            }
+        }
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0f172a;
+      color: #fff;
+      padding: 80px 48px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1.2fr 1.1fr 1fr;
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .footer-brand-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .footer-brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .footer-brand-sub {
+      font-weight: 400;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .footer-tagline {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      background: #5F3DC4;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 18px;
+      color: #cbd5e1;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #14B8A6;
+      padding-left: 0;
+    }
+
+    .footer-bottom {
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-bottom-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 1200px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom-container {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+</style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                <!-- Drop shadows -->
+                <rect x="5" y="5" width="28" height="28" fill="#000" />
+                <rect x="37" y="37" width="28" height="28" fill="#000" />
+                <rect x="69" y="37" width="28" height="28" fill="#000" />
+                <rect x="37" y="69" width="28" height="28" fill="#000" />
+                <!-- Purple squares -->
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+            </svg>
+            <div class="brand-title">
+                <span>Density</span>
+                <span>Resume Builder</span>
+            </div>
+        </a>
+        <div class="user-menu">
+            <a href="index.html" class="btn-logout">Logout</a>
+            <div class="user-avatar" id="user-initials">JD</div>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="welcome-text">
+                <h1 id="user-greeting">Hi, John!</h1>
+                <p>Welcome back to your workspace.</p>
+            </div>
+            <a href="templates.html" class="btn-new">
+                <i class="fas fa-plus"></i> Create New
+            </a>
+        </div>
+
+        <!-- ── Dashboard Stats Overview ── -->
+        <div class="stats-grid" id="stats-panel" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-icon resumes-count">
+                    <i class="far fa-file-alt"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Active Resumes</span>
+                    <span class="stat-value" id="stat-count">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon profile-status">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Profile Strength</span>
+                    <span class="stat-value">ATS Optimized</span>
+                </div>
+            </div>
+            <div class="stat-card ai-grade-card">
+                <div class="stat-icon ai-grade">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">AI Grade Average</span>
+                    <span class="stat-value" id="stat-grade">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="resumes-grid" id="resumes-list">
+            <!-- Content loaded via JavaScript -->
+        </div>
+
+        <div class="empty-state" style="display: none;" id="empty-msg">
+            <div class="empty-state-icon">
+                <i class="far fa-file-alt"></i>
+            </div>
+            <h3>No Resumes Yet</h3>
+            <p>Start your career journey by creating your first resume with our ATS-optimized templates.</p>
+            <a href="templates.html" class="btn-new">
+                <i class="fas fa-plus"></i> Create Resume
+            </a>
+        </div>
+    </main>
+
+    <script type="module">
+        import { auth, onAuthStateChanged, signOut } from "./js/firebase-config.js";
+        import { getUserResumes } from "./js/resume-service.js";
+
+        const userGreeting = document.getElementById('user-greeting');
+        const userInitials = document.getElementById('user-initials');
+        const logoutBtn = document.querySelector('.btn-logout');
+        const resumesList = document.getElementById('resumes-list');
+        const emptyMsg = document.getElementById('empty-msg');
+
+        // Protect the page: Check if user is logged in
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // User is signed in
+                const displayName = user.displayName || user.email.split('@')[0];
+                userGreeting.innerText = `Hi, ${displayName}!`;
+                userInitials.innerText = displayName.substring(0, 2).toUpperCase();
+
+                // Load real resumes
+                loadResumes();
+            } else {
+                window.location.href = "auth.html";
+            }
+        });
+
+        function calculateResumeScore(res) {
+            let score = 30; // base score for starting
+            if (res.contact && (res.contact.email || res.contact.phone)) score += 20;
+            if (res.summary && res.summary.trim()) score += 15;
+            if (res.experiences && res.experiences.length > 0) score += 20;
+            if (res.education && res.education.length > 0) score += 15;
+            if (res.skills && res.skills.length > 0) score += 10;
+            return Math.min(score, 100);
+        }
+
+        function getMockupClass(templateName) {
+            if (!templateName) return 'minimalist-mock';
+            const name = templateName.toLowerCase();
+            if (name.includes('teal')) return 'teal-mock';
+            if (name.includes('dark') || name.includes('executive')) return 'dark-mock';
+            if (name.includes('modern') || name.includes('beige')) return 'modern-mock';
+            if (name.includes('monochrome') || name.includes('clean')) return 'monochrome-mock';
+            if (name.includes('cream') || name.includes('contemporary')) return 'cream-mock';
+            return 'minimalist-mock';
+        }
+
+        async function loadResumes() {
+            try {
+                const resumes = await getUserResumes();
+                resumesList.innerHTML = ''; // Clear previous
+
+                if (resumes.length === 0) {
+                    emptyMsg.style.display = 'flex';
+                    document.getElementById('stats-panel').style.display = 'none';
+                    return;
+                }
+
+                emptyMsg.style.display = 'none';
+                document.getElementById('stats-panel').style.display = 'grid';
+
+                const templateMapping = {
+                    "Professional Teal": { file: "builder-teal.html", img: "img/template2.png" },
+                    "Executive Dark": { file: "builder-dark.html", img: "img/template3.jpg" },
+                    "Modern Beige": { file: "builder-modern.html", img: "img/template-modern-beige.jpg" },
+                    "Minimalist Classic": { file: "builder-minimalist.html", img: "img/template1.jpg" },
+                    "Monochrome Clean": { file: "builder-monochrome.html", img: "img/template5.jpg" },
+                    "Creative Peach": { file: "builder-peach.html", img: "img/template6.jpg" },
+                    "Modern Textual": { file: "builder-textual.html", img: "img/template8.jpg" },
+                    "Contemporary Cream": { file: "builder-cream.html", img: "img/template7.jpg" }
+                };
+
+                const templateIds = {
+                    "Professional Teal": "teal",
+                    "Executive Dark": "dark",
+                    "Modern Beige": "modern",
+                    "Minimalist Classic": "minimalist",
+                    "Monochrome Clean": "monochrome",
+                    "Creative Peach": "peach",
+                    "Modern Textual": "textual",
+                    "Contemporary Cream": "cream"
+                };
+
+                let totalScoreSum = 0;
+                resumes.forEach(res => {
+                    const templateData = templateMapping[res.template] || { file: "builder-teal.html", img: "img/template2.png" };
+                    const editUrl = `${templateData.file}?id=${res.id}`;
+                    const templateId = templateIds[res.template] || "default";
+
+                    const score = calculateResumeScore(res);
+                    totalScoreSum += score;
+
+                    const mockClass = getMockupClass(res.template);
+
+                    let formattedDate = 'Edited recently';
+                    if (res.updatedAt) {
+                        try {
+                            const date = res.updatedAt.toDate ? res.updatedAt.toDate() : new Date(res.updatedAt);
+                            formattedDate = `Edited ${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = 'resume-card';
+                    card.onclick = (e) => {
+                        if (!e.target.closest('.action-btn')) {
+                            window.location.href = editUrl;
+                        }
+                    };
+
+                    card.innerHTML = `
+                        <div class="resume-preview-thumb">
+                            <div class="resume-mockup ${mockClass}">
+                                <div class="mock-header">
+                                    <div class="mock-avatar"></div>
+                                    <div class="mock-title-block">
+                                        <div class="mock-line-title"></div>
+                                        <div class="mock-line-subtitle"></div>
+                                    </div>
+                                </div>
+                                <div class="mock-body">
+                                    <div class="mock-section-title"></div>
+                                    <div class="mock-para">
+                                        <div class="mock-line"></div>
+                                        <div class="mock-line medium"></div>
+                                        <div class="mock-line short"></div>
+                                    </div>
+                                    <div class="mock-section-title"></div>
+                                    <div class="mock-para">
+                                        <div class="mock-line"></div>
+                                        <div class="mock-line medium"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resume-info">
+                            <div class="resume-title-row">
+                                <h3>${res.title || 'Untitled Resume'}</h3>
+                                <span class="template-badge">${res.template || 'Density Classic'}</span>
+                            </div>
+                            <div class="resume-meta">
+                                <i class="far fa-clock"></i> ${formattedDate}
+                            </div>
+                            <div class="resume-actions">
+                                <a href="${editUrl}" class="action-btn" data-tooltip="Edit Resume"><i class="fas fa-edit"></i></a>
+                                <a href="builder-review.html?id=${res.id}&template=${templateId}" class="action-btn" data-tooltip="Download PDF"><i class="fas fa-download"></i></a>
+                                <a href="#" class="action-btn delete-btn delete" data-tooltip="Delete Resume" data-id="${res.id}"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </div>
+                    `;
+                    resumesList.appendChild(card);
+                });
+
+                // Update Overview Panel stats
+                document.getElementById('stat-count').innerText = resumes.length;
+                document.getElementById('stat-grade').innerText = `${Math.round(totalScoreSum / resumes.length)}%`;
+
+                // Attach delete events
+                document.querySelectorAll('.action-btn.delete').forEach(btn => {
+                    btn.onclick = async (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const id = btn.getAttribute('data-id');
+                        if (confirm("Are you sure you want to delete this resume?")) {
+                            const { deleteResume } = await import("./js/resume-service.js");
+                            await deleteResume(id);
+                            loadResumes(); // Reload
+                        }
+                    };
+                });
+
+            } catch (err) {
+                console.error("Failed to load resumes:", err);
+                resumesList.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px 24px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); max-width: 500px; margin: 40px auto; box-shadow: var(--shadow);">
+                        <i class="fas fa-exclamation-circle" style="font-size: 40px; color: #EF4444; margin-bottom: 16px;"></i>
+                        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">Database Connection Alert</h3>
+                        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">We couldn't connect to Firestore to load your resumes. This is usually due to Firestore rules or connection drops. You can still create resumes offline.</p>
+                        <a href="templates.html" class="btn-new" style="display: inline-flex; justify-content: center; width: auto; margin: 0 auto;">
+                            <i class="fas fa-plus"></i> Go to Templates
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // Logout logic
+        logoutBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await signOut(auth);
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error("Logout Error:", error);
+            }
+        });
+    </script>
+
+      <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+            <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+            <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+            <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+            <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+          </svg>
+          <div class="footer-brand-title">
+            <span class="footer-brand-name">Density</span>
+            <span class="footer-brand-sub">Resume Builder</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="resume-builder.html">Resume Builder</a></li>
+          <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
+          <li><a href="ats-resume-optimizer.html">ATS Resume Optimizer</a></li>
+          <li><a href="cv-builder.html">CV Builder</a></li>
+          <li><a href="templates.html">Resume Templates</a></li>
+          <li><a href="resume-examples.html">Resume Examples</a></li>
+          <li><a href="cover-letter-builder.html">Cover Letter Builder</a></li>
+          <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Resume Examples</h4>
+        <ul>
+          <li><a href="software-engineer-resume.html">Software Engineer Resume</a></li>
+          <li><a href="data-analyst.html">Data Analyst Resume</a></li>
+          <li><a href="executive-assistant-resume.html">Executive Assistant Resume</a></li>
+          <li><a href="ui-ux-developer-resume.html">UI/UX Designer Resume</a></li>
+          <li><a href="project-manager-resume.html">Project Manager Resume</a></li>
+          <li><a href="teacher-resume.html">Teacher Resume</a></li>
+          <li><a href="hr-resume.html">HR Resume</a></li>
+          <li><a href="financial-analyst-resume.html">Financial Analyst Resume</a></li>
+          <li><a href="digital-marketing-resume.html">Digital Marketing Resume</a></li>
+          <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resume Resources</h4>
+        <ul>
+          <li><a href="resume-help.html">Resume Help</a></li>
+          <li><a href="resume-format.html">Resume Format</a></li>
+          <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
+          <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
+          <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
+          <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
+          <li><a href="career-advice.html">Career Advice</a></li>
+          <li><a href="interview-questions.html">Interview Questions</a></li>
+          <li><a href="salary-guide.html">Salary Guide</a></li>
+          <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="privacy-policy.html">Cookie Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&#169; 2026 Density Resume Builder &#8226; Crafted for Career Excellence</p>
+        <div class="footer-bottom-links">
+          <a href="sitemap.xml">Sitemap</a>
+          <a href="robots.txt">Robots</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

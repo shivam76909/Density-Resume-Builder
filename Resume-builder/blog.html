@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Blog – Resume Tips, Interview Advice, Career Growth & Job Search Resources | Density Resume Builder</title>
+    <meta name="description" content="Welcome to the Density Resume Builder Career Blog. Get expert career advice, resume writing tips, ATS optimization strategies, interview prep guides, and salary insights.">
+    <meta name="keywords" content="career blog, resume tips, interview advice, career growth, job search resources, ATS optimization">
+    <meta name="author" content="Density Resume Builder">
+    <link rel="canonical" href="https://www.densityresumebuilder.in/blog.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <script src="js/loader.js"></script>
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #14B8A6;
+            --blue: #3B82F6;
+            --indigo: #6366F1;
+            --green: #10B981;
+            --bg: #FFFFFF;
+            --bg-light: #F8FAFC;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Ambient Background Glows ────────────────────────── */
+        .glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+        }
+        .glow-1 {
+            top: -200px;
+            left: -200px;
+            background: rgba(20, 184, 166, 0.06);
+        }
+        .glow-2 {
+            top: 20%;
+            right: -250px;
+            background: rgba(59, 130, 246, 0.05);
+        }
+        .glow-3 {
+            top: 60%;
+            left: -200px;
+            background: rgba(99, 102, 241, 0.04);
+        }
+
+        /* ── Navbar ─────────────────────────────────────────── */
+        .navbar {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px; padding: 0 48px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
+        .brand-title { display: flex; flex-direction: column; line-height: 1.15; }
+        .brand-title span:first-child { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+        .brand-title span:last-child  { font-size: 13px; color: #94a3b8; }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { font-size: 14.5px; font-weight: 500; color: var(--text); text-decoration: none; transition: color .2s; }
+        .nav-links a:hover { color: var(--blue); }
+        .btn-get-started { background: var(--primary); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600; transition: opacity .2s; }
+        .btn-get-started:hover { opacity: .85; }
+
+        /* ── Hero ────────────────────────────────────────────── */
+        .hero-wrapper {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0c1445 100%);
+            padding: 110px 24px 90px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .hero-wrapper::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(99,102,241,.25) 0%, transparent 70%);
+        }
+        .hero-wrapper::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99,102,241,.4), transparent);
+        }
+        .hero-wrapper h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 40px; font-weight: 700; line-height: 1.25;
+            letter-spacing: -0.02em; color: #fff;
+            max-width: 950px; margin: 0 auto 16px; position: relative;
+        }
+        .hero-sub {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px; font-weight: 600; color: #a5b4fc; max-width: 780px;
+            margin: 0 auto 20px; line-height: 1.3; position: relative;
+        }
+
+        /* ── Breadcrumb ──────────────────────────────────────── */
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 14px 24px; font-size: 13px; color: var(--muted); }
+        .breadcrumb a { color: var(--blue); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 6px; }
+
+        /* ── Layout ──────────────────────────────────────────── */
+        .content-container {
+            max-width: 1200px; margin: 0 auto;
+            padding: 40px 24px 100px;
+            display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: start;
+        }
+        @media(max-width:992px){ .content-container { grid-template-columns: 1fr; } }
+
+        /* ── Article sections ────────────────────────────────── */
+        .article-section {
+            margin-bottom: 52px; padding-bottom: 52px;
+            border-bottom: 1px solid var(--border);
+        }
+        .article-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+        .article-section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 26px; font-weight: 800; color: var(--primary);
+            margin-bottom: 18px; letter-spacing: -0.02em;
+            padding-left: 16px;
+            border-left: 4px solid;
+            border-image: linear-gradient(180deg, #3b82f6, #14b8a6) 1;
+            margin-top: 28px;
+        }
+
+        .article-section h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 19px; font-weight: 700; color: var(--primary);
+            margin: 28px 0 14px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .article-section h3::before {
+            content: ''; display: inline-block;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); flex-shrink: 0;
+        }
+
+        .article-section p {
+            font-size: 15.5px; color: #374151;
+            margin-bottom: 14px; line-height: 1.8;
+        }
+
+        /* Lists */
+        .article-section ul {
+            list-style: none; padding: 0; margin-bottom: 20px;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .article-section ul li {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 15px; color: var(--text);
+        }
+        .article-section ul li::before {
+            content: '✓'; color: var(--accent); font-weight: 700; font-size: 14px; flex-shrink: 0;
+        }
+
+        .inline-bullets {
+            flex-direction: row !important;
+            flex-wrap: wrap;
+            gap: 10px !important;
+            margin: 16px 0;
+        }
+        .inline-bullets li {
+            background: var(--bg-light); border: 1px solid var(--border);
+            padding: 6px 14px; border-radius: 8px; font-size: 13.5px !important; font-weight: 500;
+        }
+        .inline-bullets li::before { content: none !important; }
+
+        .article-section ul.no-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+        .article-section ul.no-bullets li {
+            display: block;
+            margin-bottom: 12px;
+        }
+        .article-section ul.no-bullets li::before {
+            content: none !important;
+        }
+
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .check-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+        .check-list li::before {
+            content: none !important;
+        }
+        .icon-check {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Category Articles block */
+        .article-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .article-card h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .article-card p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .article-card a {
+            font-size: 14px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .article-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sidebar CTA Panel */
+        .cta-panel {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 20px;
+            padding: 36px;
+            color: #fff;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-panel h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .cta-panel p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .panel-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-green {
+            background: #10B981;
+            color: #fff;
+        }
+
+        .btn-green:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        /* FAQ Section */
+        .faq-bg {
+            background-color: var(--bg-light);
+            border-top: 1px solid var(--border);
+            padding: 80px 24px;
+        }
+        .faq-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .faq-sub {
+            font-size: 16px;
+            color: var(--muted);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .faq-item {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+            cursor: pointer;
+            user-select: none;
+        }
+        .faq-question::after {
+            content: "+";
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--muted);
+            transition: transform 0.2s;
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out, padding 0.2s ease-out;
+            background: #fcfcfd;
+            border-top: 0 solid var(--border);
+            padding: 0 24px;
+            font-size: 14.5px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .faq-item.active .faq-answer {
+            padding: 20px 24px;
+            border-top-width: 1px;
+        }
+
+        /* Bottom CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #7C3DF9 0%, #6366F1 100%);
+            padding: 80px 24px;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-banner h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .cta-banner p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #7C3DF9;
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .cta-btn:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 24px; }
+            .nav-links { display: none; }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+          background: #0f172a;
+          color: #fff;
+          padding: 80px 48px 40px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 2.2fr 1fr 1.2fr 1.1fr 1fr;
+          gap: 24px;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .footer-brand-col {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-decoration: none;
+          color: #fff;
+        }
+
+        .footer-brand-title {
+          display: flex;
+          flex-direction: column;
+          line-height: 1.1;
+        }
+
+        .footer-brand-name {
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-weight: 800;
+          font-size: 20px;
+          letter-spacing: -0.02em;
+          color: #fff;
+        }
+
+        .footer-brand-sub {
+          font-weight: 400;
+          font-size: 15px;
+          color: #fff;
+        }
+
+        .footer-tagline {
+          color: #fff;
+          font-size: 14px;
+          line-height: 1.6;
+          max-width: 280px;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 16px;
+        }
+
+        .social-links a {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.05);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+          background: #5F3DC4;
+          color: #fff;
+          transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-bottom: 18px;
+          color: #cbd5e1;
+        }
+
+        .footer-col ul {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .footer-col ul li a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 13px;
+          transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+          color: #14B8A6;
+          padding-left: 0;
+        }
+
+        .footer-bottom {
+          margin-top: 60px;
+          padding-top: 32px;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: #fff;
+          font-size: 12px;
+        }
+
+        .footer-bottom-links {
+          display: flex;
+          gap: 24px;
+        }
+
+        .footer-bottom-links a {
+          color: #fff;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .footer-bottom-links a:hover {
+          color: #fff;
+        }
+
+        @media (max-width: 1200px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .footer-bottom-container {
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-container">
+        <div class="bg-glow glow-1"></div>
+        <div class="bg-glow glow-2"></div>
+        <div class="bg-glow glow-3"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                <rect x="5" y="5" width="28" height="28" fill="#000" />
+                <rect x="37" y="37" width="28" height="28" fill="#000" />
+                <rect x="69" y="37" width="28" height="28" fill="#000" />
+                <rect x="37" y="69" width="28" height="28" fill="#000" />
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+            </svg>
+            <div class="brand-title">
+                <span>Density</span>
+                <span>Resume Builder</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="auth.html" id="nav-auth-btn" class="btn-get-started">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-wrapper">
+        <h1>Career Blog – Resume Tips, Interview Advice, Career Growth & Job Search Resources</h1>
+        <p class="hero-sub">Expert Career Advice to Help You Get Hired Faster</p>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>&rsaquo;</span> Career Blog
+    </div>
+
+    <!-- MAIN CONTENT AND SIDEBAR -->
+    <main class="content-container">
+        <!-- Content Side -->
+        <div class="article-content">
+            <div class="article-section">
+                <p>Welcome to the Density Resume Builder Career Blog, your trusted resource for resume writing tips, ATS optimization strategies, interview preparation, salary insights, career growth advice, and job search guidance.</p>
+                <p>Today's job market is more competitive than ever. Employers use Applicant Tracking Systems (ATS), recruiters spend only a few seconds reviewing resumes, and candidates are expected to continuously improve their skills to stay competitive.</p>
+                <p>Our career blog is designed to help students, freshers, job seekers, and experienced professionals build stronger careers through practical, actionable, and up-to-date advice.</p>
+                <p>Whether you're creating your first resume, preparing for an important interview, changing careers, or aiming for a promotion, you'll find valuable resources here to support your professional journey.</p>
+                <a href="templates.html" class="btn-green panel-btn" style="display: inline-block; width: auto; padding: 14px 36px; margin: 12px 0 24px;">Create Your Resume Now →</a>
+            </div>
+
+            <div class="article-section">
+                <h2>Explore Career Resources</h2>
+                
+                <h3>Resume Writing Guides</h3>
+                <p>A professionally written resume is often the first step toward getting hired. Our resume writing guides help you:</p>
+                <ul>
+                    <li>Create ATS-friendly resumes</li>
+                    <li>Choose the right resume format</li>
+                    <li>Write effective summaries and objectives</li>
+                    <li>Showcase achievements properly</li>
+                    <li>Optimize resumes for recruiters</li>
+                    <li>Avoid common resume mistakes</li>
+                </ul>
+                <p style="margin-top: 16px;"><strong>Popular Resume Articles:</strong></p>
+                <ul class="inline-bullets">
+                    <li><a href="resume-builder.html">How to Write a Resume</a></li>
+                    <li><a href="resume-format.html">Resume Format Guide</a></li>
+                    <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
+                    <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
+                    <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
+                    <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
+                    <li><a href="resume-builder.html">Resume Writing Tips for Freshers</a></li>
+                    <li><a href="resume-builder.html">Resume Mistakes to Avoid</a></li>
+                </ul>
+
+                <h3>ATS Resume Optimization</h3>
+                <p>Most companies use Applicant Tracking Systems to filter applications. Learn how to:</p>
+                <ul>
+                    <li>Pass ATS screening</li>
+                    <li>Improve resume scores</li>
+                    <li>Use keywords effectively</li>
+                    <li>Optimize formatting</li>
+                    <li>Increase recruiter visibility</li>
+                    <li>Create ATS-friendly resumes</li>
+                </ul>
+                <p style="margin-top: 16px;"><strong>Popular ATS Resources:</strong></p>
+                <ul class="inline-bullets">
+                    <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+                    <li><a href="ai-resume-builder.html">ATS Resume Builder</a></li>
+                    <li><a href="ats-resume-template.html">ATS Resume Template</a></li>
+                    <li><a href="ats-resume-format.html">ATS Resume Format Guide</a></li>
+                    <li><a href="ats-resume-checker.html">ATS Optimization Tips</a></li>
+                </ul>
+
+                <h3>Resume Examples by Profession</h3>
+                <p>Explore professionally written resume examples across industries.</p>
+                <div style="background: var(--bg-light); padding: 24px; border-radius: 12px; border: 1px solid var(--border); margin: 20px 0;">
+                    <p style="margin-bottom: 12px;"><strong>Technology:</strong></p>
+                    <ul class="inline-bullets" style="margin-bottom: 16px !important;">
+                        <li><a href="software-engineer-resume.html">Software Engineer Resume</a></li>
+                        <li><a href="data-analyst.html">Data Analyst Resume</a></li>
+                        <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
+                        <li><a href="ui-ux-developer-resume.html">Front-End Developer Resume</a></li>
+                        <li><a href="software-engineer-resume.html">Full Stack Developer Resume</a></li>
+                        <li><a href="software-engineer-resume.html">Cybersecurity Resume</a></li>
+                    </ul>
+                    <p style="margin-bottom: 12px;"><strong>Business & Management:</strong></p>
+                    <ul class="inline-bullets" style="margin-bottom: 16px !important;">
+                        <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
+                        <li><a href="project-manager-resume.html">Project Manager Resume</a></li>
+                        <li><a href="executive-assistant-resume.html">Business Analyst Resume</a></li>
+                        <li><a href="project-manager-resume.html">Operations Manager Resume</a></li>
+                    </ul>
+                    <p style="margin-bottom: 12px;"><strong>Marketing & Sales:</strong></p>
+                    <ul class="inline-bullets" style="margin-bottom: 16px !important;">
+                        <li><a href="digital-marketing-resume.html">Digital Marketing Resume</a></li>
+                        <li><a href="digital-marketing-resume.html">SEO Specialist Resume</a></li>
+                        <li><a href="digital-marketing-resume.html">Sales Executive Resume</a></li>
+                        <li><a href="digital-marketing-resume.html">Marketing Manager Resume</a></li>
+                    </ul>
+                    <p style="margin-bottom: 12px;"><strong>Human Resources & Support:</strong></p>
+                    <ul class="inline-bullets" style="margin-bottom: 0 !important;">
+                        <li><a href="hr-resume.html">Human Resources Resume</a></li>
+                        <li><a href="hr-resume.html">Customer Service Resume</a></li>
+                        <li><a href="hr-resume.html">Customer Success Resume</a></li>
+                        <li><a href="hr-resume.html">Recruiter Resume</a></li>
+                    </ul>
+                </div>
+                <p>Each example includes:</p>
+                <ul class="check-list">
+                    <li><span class="icon-check">✔</span> Professional summaries</li>
+                    <li><span class="icon-check">✔</span> Skills sections</li>
+                    <li><span class="icon-check">✔</span> Work experience samples</li>
+                    <li><span class="icon-check">✔</span> ATS keywords</li>
+                    <li><span class="icon-check">✔</span> Resume writing tips</li>
+                </ul>
+
+                <h3>Cover Letter Resources</h3>
+                <p>A strong cover letter helps you stand out from other applicants. Learn how to:</p>
+                <ul>
+                    <li>Write professional cover letters</li>
+                    <li>Customize cover letters for different jobs</li>
+                    <li>Explain career changes</li>
+                    <li>Showcase achievements effectively</li>
+                </ul>
+                <p style="margin-top: 16px;"><strong>Popular Resources:</strong></p>
+                <ul class="inline-bullets">
+                    <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
+                    <li><a href="cover-letter-builder.html">Cover Letter Templates</a></li>
+                    <li><a href="cover-letter-examples.html">Cover Letter for Freshers</a></li>
+                    <li><a href="cover-letter-examples.html">Professional Cover Letter Samples</a></li>
+                    <li><a href="cover-letter-examples.html">Job Application Letter Examples</a></li>
+                </ul>
+
+                <h3>Interview Preparation Guides</h3>
+                <p>Interviews can determine whether you receive a job offer. Our interview resources cover:</p>
+                <ul>
+                    <li>HR Interview Questions</li>
+                    <li>Technical Interview Questions</li>
+                    <li>Behavioral Interview Questions</li>
+                    <li>STAR Method Examples</li>
+                    <li>Virtual Interview Tips</li>
+                    <li>Fresher Interview Preparation</li>
+                    <li>Interview Follow-Up Strategies</li>
+                </ul>
+                
+                <h4 style="font-size: 16px; margin-top: 20px; font-weight: 700;">Popular Articles:</h4>
+                <div class="article-card" style="margin-top: 12px;">
+                    <h4>Tell Me About Yourself – Best Answers</h4>
+                    <p>Learn how to answer the most common interview question confidently.</p>
+                    <a href="interview-questions.html">Read Guide</a>
+                </div>
+                <div class="article-card">
+                    <h4>Common HR Interview Questions</h4>
+                    <p>Prepare for questions about strengths, weaknesses, career goals, and workplace situations.</p>
+                    <a href="interview-questions.html">Read Guide</a>
+                </div>
+                <div class="article-card">
+                    <h4>Behavioral Interview Questions</h4>
+                    <p>Master the STAR method and answer situational questions effectively.</p>
+                    <a href="interview-questions.html">Read Guide</a>
+                </div>
+
+                <h3>Career Advice & Professional Growth</h3>
+                <p>Career success requires continuous learning and strategic planning. Our career advice section helps you:</p>
+                <ul>
+                    <li>Plan your career path</li>
+                    <li>Develop valuable skills</li>
+                    <li>Build professional networks</li>
+                    <li>Improve workplace performance</li>
+                    <li>Earn promotions faster</li>
+                    <li>Navigate career transitions</li>
+                </ul>
+                <p style="margin-top: 16px;"><strong>Popular Topics:</strong></p>
+                <ul class="inline-bullets">
+                    <li><a href="career-advice.html">Career Growth Strategies</a></li>
+                    <li><a href="career-advice.html">Career Change Advice</a></li>
+                    <li><a href="career-advice.html">Professional Development</a></li>
+                    <li><a href="career-advice.html">Workplace Success Tips</a></li>
+                    <li><a href="career-advice.html">Leadership Skills</a></li>
+                    <li><a href="career-advice.html">Networking for Career Growth</a></li>
+                    <li><a href="career-advice.html">Time Management at Work</a></li>
+                </ul>
+
+                <h3>Salary Guides & Compensation Insights</h3>
+                <p>Understanding salary trends can help you make informed career decisions. Our salary resources include:</p>
+                <ul>
+                    <li>Average Salary by Profession</li>
+                    <li>Salary Trends in India</li>
+                    <li>Highest Paying Careers</li>
+                    <li>Salary Negotiation Tips</li>
+                    <li>Industry Salary Comparisons</li>
+                    <li>Career Growth and Compensation</li>
+                </ul>
+                <p style="margin-top: 16px;"><strong>Popular Salary Guides:</strong></p>
+                <ul class="inline-bullets">
+                    <li><a href="salary-guide.html">Software Engineer Salary Guide</a></li>
+                    <li><a href="salary-guide.html">Data Analyst Salary Guide</a></li>
+                    <li><a href="salary-guide.html">Product Manager Salary Guide</a></li>
+                    <li><a href="salary-guide.html">Digital Marketing Salary Guide</a></li>
+                    <li><a href="salary-guide.html">Salary Negotiation Strategies</a></li>
+                </ul>
+            </div>
+
+            <div class="article-section">
+                <h2>Latest Career Articles</h2>
+                
+                <div class="article-card">
+                    <h4>How to Write a Resume That Gets Interviews</h4>
+                    <p>Learn how to create a resume that captures recruiter attention and improves your chances of landing interviews.</p>
+                    <a href="resume-builder.html">Read Article</a>
+                </div>
+                <div class="article-card">
+                    <h4>ATS Resume Checklist for 2026</h4>
+                    <p>A complete checklist to ensure your resume passes Applicant Tracking Systems successfully.</p>
+                    <a href="ats-resume-checker.html">Read Article</a>
+                </div>
+                <div class="article-card">
+                    <h4>Top Resume Skills Employers Want</h4>
+                    <p>Discover the most in-demand skills recruiters are searching for across industries.</p>
+                    <a href="resume-skills-examples.html">Read Article</a>
+                </div>
+                <div class="article-card">
+                    <h4>Best Resume Format for Freshers</h4>
+                    <p>Explore resume formats that help students and recent graduates stand out.</p>
+                    <a href="resume-format-for-freshers.html">Read Article</a>
+                </div>
+                <div class="article-card">
+                    <h4>How to Prepare for a Job Interview</h4>
+                    <p>Learn practical interview preparation strategies used by successful candidates.</p>
+                    <a href="interview-questions.html">Read Article</a>
+                </div>
+                <div class="article-card">
+                    <h4>Common Resume Mistakes That Cost Interviews</h4>
+                    <p>Avoid the errors that often prevent qualified candidates from getting shortlisted.</p>
+                    <a href="resume-builder.html">Read Article</a>
+                </div>
+            </div>
+
+            <div class="article-section">
+                <h2>Why Trust Density Resume Builder Career Resources?</h2>
+                <p>Our content is created to help job seekers:</p>
+                <ul class="check-list">
+                    <li><span class="icon-check">✔</span> Build professional resumes</li>
+                    <li><span class="icon-check">✔</span> Improve ATS compatibility</li>
+                    <li><span class="icon-check">✔</span> Prepare for interviews</li>
+                    <li><span class="icon-check">✔</span> Understand hiring trends</li>
+                    <li><span class="icon-check">✔</span> Learn career growth strategies</li>
+                    <li><span class="icon-check">✔</span> Increase job opportunities</li>
+                    <li><span class="icon-check">✔</span> Make informed career decisions</li>
+                </ul>
+                <p style="margin-top: 16px;">Every article is designed with both recruiter expectations and modern hiring practices in mind.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Career Tips for Students and Freshers</h2>
+                <p>If you're just starting your career, focus on:</p>
+                
+                <h3>Building Practical Skills</h3>
+                <p>Develop technical and professional skills that employers value.</p>
+
+                <h3>Completing Internships</h3>
+                <p>Gain hands-on experience whenever possible.</p>
+
+                <h3>Creating a Strong Resume</h3>
+                <p>Your resume is often your first impression.</p>
+
+                <h3>Learning Interview Skills</h3>
+                <p>Practice common interview questions and communication techniques.</p>
+
+                <h3>Earning Certifications</h3>
+                <p>Professional certifications can strengthen your profile and improve employability.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Career Tips for Experienced Professionals</h2>
+                <p>Experienced professionals should focus on:</p>
+                <ul>
+                    <li>Leadership development</li>
+                    <li>Industry expertise</li>
+                    <li>Professional networking</li>
+                    <li>Advanced certifications</li>
+                    <li>Personal branding</li>
+                    <li>Achievement tracking</li>
+                </ul>
+                <p style="margin-top: 16px;">Long-term career growth depends on continuously expanding your skills and responsibilities.</p>
+            </div>
+        </div>
+
+        <!-- Sidebar Panel -->
+        <aside class="sidebar-side">
+            <div class="cta-panel">
+                <h3>Build Your Resume Now</h3>
+                <p>Create a professional, ATS-friendly resume in minutes — completely free.</p>
+                <a href="templates.html" class="panel-btn btn-green">Start Building — Free</a>
+            </div>
+        </aside>
+    </main>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-bg">
+        <div class="faq-inner">
+            <h2 class="faq-heading">Frequently Asked Questions</h2>
+            <p class="faq-sub">Everything you need to know about our career resources and services.</p>
+            
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">What topics does the Career Blog cover?</div>
+                    <div class="faq-answer">The blog covers resume writing, ATS optimization, cover letters, interview preparation, salary guides, and professional development.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is this blog useful for freshers?</div>
+                    <div class="faq-answer">Yes. Many guides are specifically written for students, graduates, and first-time job seekers.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are the articles ATS-focused?</div>
+                    <div class="faq-answer">Yes. Most resume-related content includes ATS optimization best practices.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How can these articles help my job search?</div>
+                    <div class="faq-answer">The guides provide practical advice that can improve resumes, interview performance, and overall career growth.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How often should I read career resources?</div>
+                    <div class="faq-answer">Regularly following career trends can help you stay competitive and informed about changing hiring practices.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM CTA BANNER -->
+    <section class="cta-banner">
+        <h2>Start Growing Your Career Today</h2>
+        <p>Success in today's job market requires more than simply applying for jobs. By improving your resume, preparing for interviews, learning new skills, and understanding industry trends, you can significantly increase your chances of career success.</p>
+        <p style="margin-bottom: 24px; opacity: 0.9;">Explore the latest articles, guides, and resources from Density Resume Builder and take the next step toward achieving your professional goals.</p>
+        <a href="templates.html" class="cta-btn">Create Your Resume Now →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                        <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+                        <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                        <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                        <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                        <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+                    </svg>
+                    <div class="footer-brand-title">
+                        <span class="footer-brand-name">Density</span>
+                        <span class="footer-brand-sub">Resume Builder</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="resume-builder.html">Resume Builder</a></li>
+                    <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
+                    <li><a href="ats-resume-optimizer.html">ATS Resume Optimizer</a></li>
+                    <li><a href="cv-builder.html">CV Builder</a></li>
+                    <li><a href="templates.html">Resume Templates</a></li>
+                    <li><a href="resume-examples.html">Resume Examples</a></li>
+                    <li><a href="cover-letter-builder.html">Cover Letter Builder</a></li>
+                    <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Popular Resume Examples</h4>
+                <ul>
+                    <li><a href="software-engineer-resume.html">Software Engineer Resume</a></li>
+                    <li><a href="data-analyst.html">Data Analyst Resume</a></li>
+                    <li><a href="executive-assistant-resume.html">Executive Assistant Resume</a></li>
+                    <li><a href="ui-ux-developer-resume.html">UI/UX Designer Resume</a></li>
+                    <li><a href="project-manager-resume.html">Project Manager Resume</a></li>
+                    <li><a href="teacher-resume.html">Teacher Resume</a></li>
+                    <li><a href="hr-resume.html">HR Resume</a></li>
+                    <li><a href="financial-analyst-resume.html">Financial Analyst Resume</a></li>
+                    <li><a href="digital-marketing-resume.html">Digital Marketing Resume</a></li>
+                    <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resume Resources</h4>
+                <ul>
+                    <li><a href="resume-help.html">Resume Help</a></li>
+                    <li><a href="resume-format.html">Resume Format</a></li>
+                    <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
+                    <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
+                    <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
+                    <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
+                    <li><a href="career-advice.html">Career Advice</a></li>
+                    <li><a href="interview-questions.html">Interview Questions</a></li>
+                    <li><a href="salary-guide.html">Salary Guide</a></li>
+                    <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="sitemap.xml">Sitemap</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Cookie Policy</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&#169; 2026 Density Resume Builder &#8226; Crafted for Career Excellence</p>
+                <div class="footer-bottom-links">
+                    <a href="sitemap.xml">Sitemap</a>
+                    <a href="robots.txt">Robots</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAQ accordion interactivity script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Firebase sign in dynamic redirect script -->
+    <script type="module">
+        import { auth, onAuthStateChanged } from "./js/firebase-config.js";
+        const navAuthBtn = document.getElementById('nav-auth-btn');
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                navAuthBtn.textContent = 'Dashboard';
+                navAuthBtn.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

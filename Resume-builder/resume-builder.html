@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder – Create ATS-Friendly Resumes Online | Density Resume Builder</title>
+    <meta name="description" content="Build a professional ATS-friendly resume in minutes with Density Resume Builder. Choose modern templates, customize your content, and download your resume instantly.">
+    <meta name="keywords" content="resume builder, online resume builder, free resume builder, ATS resume builder, professional resume maker, resume creator, build resume online">
+    <meta name="author" content="Density Resume Builder">
+    <link rel="canonical" href="https://www.densityresumebuilder.in/resume-builder.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <script src="js/loader.js"></script>
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #14B8A6;
+            --blue: #3B82F6;
+            --indigo: #6366F1;
+            --green: #10B981;
+            --bg: #FFFFFF;
+            --bg-light: #F8FAFC;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Navbar ─────────────────────────────────────────── */
+        .navbar {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px; padding: 0 48px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
+        .brand-title { display: flex; flex-direction: column; line-height: 1.15; }
+        .brand-title span:first-child { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+        .brand-title span:last-child  { font-size: 13px; color: #94a3b8; }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { font-size: 14.5px; font-weight: 500; color: var(--text); text-decoration: none; transition: color .2s; }
+        .nav-links a:hover { color: var(--blue); }
+        .btn-get-started { background: var(--primary); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600; transition: opacity .2s; }
+        .btn-get-started:hover { opacity: .85; }
+
+        /* ── Hero ────────────────────────────────────────────── */
+        .hero-wrapper {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0c1445 100%);
+            padding: 110px 24px 90px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .hero-wrapper::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(99,102,241,.25) 0%, transparent 70%);
+        }
+        .hero-wrapper::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99,102,241,.4), transparent);
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.35);
+            border-radius: 99px; padding: 6px 18px; margin-bottom: 32px;
+            font-size: 12.5px; font-weight: 600; color: #a5b4fc; letter-spacing: .04em;
+            position: relative;
+        }
+        .hero-badge .dot { width: 7px; height: 7px; background: #818cf8; border-radius: 50%; animation: blink 1.8s ease-in-out infinite; }
+        @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
+        .hero-wrapper h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 54px; font-weight: 700; line-height: 1.12;
+            letter-spacing: -0.02em; color: #fff;
+            max-width: 820px; margin: 0 auto 24px; position: relative;
+        }
+        .hero-wrapper h1 span {
+            color: #fff;
+        }
+        .hero-sub {
+            font-size: 18px; color: #94a3b8; max-width: 680px;
+            margin: 0 auto 44px; line-height: 1.75; position: relative;
+        }
+        .hero-cta-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
+        .hero-btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff; padding: 16px 34px; border-radius: 12px;
+            font-size: 16px; font-weight: 700; text-decoration: none;
+            box-shadow: 0 8px 28px rgba(16,185,129,.4);
+            transition: all .3s;
+        }
+        .hero-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(16,185,129,.5); }
+        .hero-btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #fff; border: 1px solid #fff;
+            color: #0f172a; padding: 16px 34px; border-radius: 12px;
+            font-size: 16px; font-weight: 600; text-decoration: none;
+            transition: all .3s;
+        }
+        .hero-btn-secondary:hover { background: #f1f5f9; transform: translateY(-2px); }
+        .hero-stats {
+            display: flex; justify-content: center; gap: 56px;
+            margin-top: 68px; padding-top: 48px;
+            border-top: 1px solid rgba(255,255,255,.07);
+            flex-wrap: wrap; position: relative;
+        }
+        .hero-stat .num {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 30px; font-weight: 800; color: #fff; letter-spacing: -0.02em;
+        }
+        .hero-stat .lbl { font-size: 13px; color: #64748b; margin-top: 4px; }
+
+        /* ── Breadcrumb ──────────────────────────────────────── */
+        .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 14px 24px; font-size: 13px; color: var(--muted); }
+        .breadcrumb a { color: var(--blue); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 6px; }
+
+        /* ── Layout ──────────────────────────────────────────── */
+        .content-container {
+            max-width: 1200px; margin: 0 auto;
+            padding: 40px 24px 100px;
+            display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: start;
+        }
+        @media(max-width:992px){ .content-container { grid-template-columns: 1fr; } }
+
+        /* ── Article sections ────────────────────────────────── */
+        .article-section {
+            margin-bottom: 52px; padding-bottom: 52px;
+            border-bottom: 1px solid var(--border);
+        }
+        .article-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+        .article-section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 26px; font-weight: 800; color: var(--primary);
+            margin-bottom: 18px; letter-spacing: -0.02em;
+            padding-left: 16px;
+            border-left: 4px solid;
+            border-image: linear-gradient(180deg, #3b82f6, #14b8a6) 1;
+        }
+
+        .article-section h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 17px; font-weight: 700; color: var(--primary);
+            margin: 28px 0 10px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .article-section h3::before {
+            content: ''; display: inline-block;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); flex-shrink: 0;
+        }
+
+        .article-section p {
+            font-size: 15.5px; color: #374151;
+            margin-bottom: 14px; line-height: 1.8;
+        }
+
+        /* pill list */
+        .article-section ul {
+            list-style: none; padding: 0; margin-bottom: 16px;
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .article-section ul li {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--bg-light); border: 1px solid var(--border);
+            padding: 7px 14px; border-radius: 99px;
+            font-size: 14px; color: var(--text); font-weight: 500;
+            transition: border-color .2s, background .2s;
+        }
+        .article-section ul li:hover { border-color: var(--blue); background: #eff6ff; }
+        .article-section ul li::before {
+            content: '✓'; color: var(--green); font-weight: 700; font-size: 12px;
+        }
+
+        /* example blocks */
+        .example-block {
+            padding: 16px 20px; border-radius: 10px; margin: 14px 0;
+            font-size: 14.5px; line-height: 1.7; border-left: 4px solid var(--accent);
+            background: #f0fdfa;
+        }
+        .example-block p { margin-bottom: 4px; color: var(--text); font-size: 14.5px; }
+        .wrong-example { border-left-color: #ef4444; background: #fff5f5; }
+        .right-example { border-left-color: #10b981; background: #f0fdf4; }
+
+        /* ── Step list ───────────────────────────────────────── */
+        .steps-list { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+        .step-item {
+            display: flex; gap: 18px; align-items: flex-start;
+            padding: 20px 24px; border-radius: 14px;
+            background: #fff; border: 1px solid var(--border);
+            transition: all .25s; box-shadow: 0 2px 8px rgba(0,0,0,.02);
+        }
+        .step-item:hover { border-color: var(--blue); box-shadow: 0 8px 24px rgba(59,130,246,.09); transform: translateX(5px); }
+        .step-num {
+            flex-shrink: 0; width: 40px; height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: #fff; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 16px;
+            box-shadow: 0 4px 12px rgba(99,102,241,.3);
+        }
+        .step-body h4 { font-size: 15.5px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+        .step-body p  { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.6; }
+
+        /* ── Sidebar ─────────────────────────────────────────── */
+        .sidebar-side { position: sticky; top: 90px; }
+
+        .cta-panel {
+            background: linear-gradient(160deg, #0f172a 0%, #1e1b4b 100%);
+            border-radius: 20px; padding: 36px; color: #fff;
+            box-shadow: 0 24px 60px rgba(15,23,42,.3);
+            border: 1px solid rgba(255,255,255,.07);
+            position: relative; overflow: hidden;
+        }
+        .cta-panel::before {
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 240px; height: 240px;
+            background: rgba(99,102,241,.15); border-radius: 50%; filter: blur(50px);
+        }
+        .cta-panel h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 22px; font-weight: 800; margin-bottom: 10px; position: relative;
+        }
+        .cta-panel > p {
+            font-size: 14px; color: #94a3b8;
+            margin-bottom: 0; line-height: 1.65; position: relative;
+        }
+        .panel-features {
+            list-style: none; margin: 20px 0 28px;
+            display: flex; flex-direction: column; gap: 10px;
+            position: relative;
+        }
+        .panel-features li {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 13.5px; color: #cbd5e1;
+        }
+        .panel-features li::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+        .panel-btn {
+            display: block; width: 100%; text-align: center;
+            padding: 14px 20px; border-radius: 10px;
+            font-weight: 700; font-size: 15px;
+            text-decoration: none; margin-bottom: 10px;
+            transition: all .25s; border: none; cursor: pointer; position: relative;
+        }
+        .btn-green {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff; box-shadow: 0 4px 16px rgba(16,185,129,.3);
+        }
+        .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16,185,129,.4); }
+        .btn-trans {
+            background: rgba(255,255,255,.08);
+            color: #e2e8f0; border: 1px solid rgba(255,255,255,.15);
+        }
+        .btn-trans:hover { background: rgba(255,255,255,.14); transform: translateY(-1px); }
+
+        /* ── FAQ ─────────────────────────────────────────────── */
+        .faq-bg {
+            background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+            border-top: 1px solid var(--border); padding: 80px 24px;
+        }
+        .faq-inner { max-width: 820px; margin: 0 auto; }
+        .faq-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 34px; font-weight: 800; color: var(--primary);
+            text-align: center; margin-bottom: 8px; letter-spacing: -0.02em;
+        }
+        .faq-sub { text-align: center; color: var(--muted); font-size: 16px; margin-bottom: 48px; }
+
+        .faq-accordion { display: flex; flex-direction: column; gap: 10px; }
+        .faq-item {
+            background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .faq-item:hover { border-color: #93c5fd; }
+        .faq-item.active { border-color: var(--blue); box-shadow: 0 4px 20px rgba(59,130,246,.1); }
+        .faq-question {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 24px; font-weight: 600; font-size: 15px;
+            color: var(--primary); cursor: pointer; user-select: none; gap: 16px;
+        }
+        .faq-icon {
+            flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+            background: var(--bg-light); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: var(--muted); transition: all .25s;
+            line-height: 1;
+        }
+        .faq-item.active .faq-icon {
+            background: var(--blue); border-color: var(--blue); color: #fff; transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height .3s ease, padding .3s ease;
+            background: #f8fafc; padding: 0 24px;
+            font-size: 14.5px; color: #475569; line-height: 1.7;
+            border-top: 0 solid var(--border);
+        }
+        .faq-item.active .faq-answer { padding: 18px 24px; border-top-width: 1px; }
+
+        /* ── CTA banner ──────────────────────────────────────── */
+        .cta-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #0f4c75 50%, #0d7377 100%);
+            padding: 100px 24px; text-align: center; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        .cta-banner h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 44px; font-weight: 800; margin-bottom: 16px;
+            letter-spacing: -0.02em; position: relative;
+        }
+        .cta-banner p { font-size: 18px; opacity: .88; max-width: 600px; margin: 0 auto 12px; line-height: 1.7; position: relative; }
+        .cta-banner p.sub { font-size: 15px; opacity: .65; margin-bottom: 44px; }
+        .cta-btn {
+            display: inline-block; background: #fff; color: #7c3aed;
+            padding: 18px 52px; border-radius: 12px;
+            font-size: 17px; font-weight: 800;
+            text-decoration: none; position: relative;
+            box-shadow: 0 12px 36px rgba(0,0,0,.2); transition: all .25s;
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,.25); }
+
+        /* ── Footer ──────────────────────────────────────────── */
+
+        @media(max-width:768px){
+            .navbar { padding: 0 20px; }
+            .nav-links { display: none; }
+            .hero-wrapper h1 { font-size: 30px; }
+            .hero-btn-primary, .hero-btn-secondary { padding: 14px 24px; font-size: 15px; }
+            .article-section ul { flex-direction: column; }
+            .cta-banner h2 { font-size: 28px; }
+
+        }
+    
+
+    
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px 24px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 50px;
+            }
+
+            .hero-content h1 {
+                text-align: center !important;
+            }
+
+            .hero-btns,
+            .hero-pills {
+                justify-content: center;
+            }
+
+            .main-sections {
+                grid-template-columns: 1fr;
+                padding: 40px 24px;
+            }
+        }
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0f172a;
+      color: #fff;
+      padding: 80px 48px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1.2fr 1.1fr 1fr;
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .footer-brand-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .footer-brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .footer-brand-sub {
+      font-weight: 400;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .footer-tagline {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      background: #5F3DC4;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 18px;
+      color: #cbd5e1;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #14B8A6;
+      padding-left: 0;
+    }
+
+    .footer-bottom {
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-bottom-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 1200px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom-container {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+</style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:40px;height:40px;">
+                <rect x="5" y="5" width="28" height="28" fill="#000"/>
+                <rect x="37" y="37" width="28" height="28" fill="#000"/>
+                <rect x="69" y="37" width="28" height="28" fill="#000"/>
+                <rect x="37" y="69" width="28" height="28" fill="#000"/>
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed"/>
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed"/>
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed"/>
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed"/>
+            </svg>
+            <div class="brand-title"><span>Density</span><span>Resume Builder</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="auth.html" id="nav-auth-btn" class="btn-get-started">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-wrapper">
+        <h1>Resume Builder: Create a Professional Resume Online <span>for Free</span></h1>
+        <p class="hero-sub">Finding a job starts with one important document: your resume. Whether you are a student, fresher, experienced professional, or career changer, a well-crafted resume can significantly improve your chances of getting shortlisted for interviews.</p>
+        <div class="hero-cta-row">
+            <a href="templates.html" class="hero-btn-primary">Build My Resume — Free</a>
+            <a href="grader.html" class="hero-btn-secondary">Grade My Resume</a>
+        </div>
+
+    </section>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span> Resume Builder
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="content-container">
+        <div class="article-content">
+
+            <div class="article-section">
+                <p>Density Resume Builder helps job seekers create professional, ATS-friendly resumes quickly and easily. Instead of spending hours formatting a resume in Word, you can use our intuitive resume builder to create a polished, recruiter-approved resume in minutes.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>What Is a Resume Builder?</h2>
+                <p>A resume builder is an online tool designed to help job seekers create professional resumes without requiring advanced design or formatting skills.</p>
+                <p>Using a resume builder allows you to:</p>
+                <ul>
+                    <li>Create a resume faster</li>
+                    <li>Use professionally designed templates</li>
+                    <li>Follow industry best practices</li>
+                    <li>Improve ATS compatibility</li>
+                    <li>Reduce formatting mistakes</li>
+                    <li>Customize resumes for different jobs</li>
+                </ul>
+                <p>Density Resume Builder simplifies the entire process by providing modern templates, easy customization options, and ATS-friendly formatting.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Why Is a Professional Resume Important?</h2>
+                <p>Recruiters receive hundreds of applications for a single job opening. Most spend only a few seconds reviewing each resume before deciding whether to continue reading.</p>
+                <p>A professional resume helps you:</p>
+                <ul>
+                    <li>Make a strong first impression</li>
+                    <li>Highlight your qualifications effectively</li>
+                    <li>Showcase relevant skills and experience</li>
+                    <li>Demonstrate professionalism</li>
+                    <li>Increase interview opportunities</li>
+                </ul>
+                <p>Your resume is often the first interaction employers have with you. A well-structured resume can make the difference between getting an interview and being overlooked.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Why Choose Density Resume Builder?</h2>
+                <h3>ATS-Friendly Resume Templates</h3>
+                <p>Many companies use Applicant Tracking Systems (ATS) to filter resumes before recruiters review them.</p>
+                <p>Density Resume Builder creates resumes optimized for ATS software, helping your application pass initial screening processes.</p>
+                <h3>Professional Resume Designs</h3>
+                <p>Our templates are designed to balance visual appeal with recruiter expectations.</p>
+                <p>Features include:</p>
+                <ul><li>Clean layouts</li><li>Professional typography</li><li>Logical section organization</li><li>Easy readability</li></ul>
+                <h3>Easy Customization</h3>
+                <p>You can quickly customize:</p>
+                <ul><li>Personal details</li><li>Professional summary</li><li>Work experience</li><li>Skills</li><li>Education</li><li>Certifications</li><li>Projects</li></ul>
+                <h3>Fast Resume Creation</h3>
+                <p>Create a complete resume in minutes instead of spending hours adjusting formatting and layouts manually.</p>
+                <h3>Suitable for All Career Levels</h3>
+                <p>Density Resume Builder works for:</p>
+                <ul><li>Freshers</li><li>Students</li><li>Internship applicants</li><li>Mid-level professionals</li><li>Senior professionals</li><li>Career changers</li></ul>
+            </div>
+
+            <div class="article-section">
+                <h2>Key Sections of a Resume</h2>
+                <h3>Contact Information</h3>
+                <p>The top section should include:</p>
+                <ul><li>Full name</li><li>Phone number</li><li>Professional email address</li><li>LinkedIn profile</li><li>Portfolio website (if applicable)</li></ul>
+                <p>Avoid including unnecessary personal information such as marital status, religion, or age.</p>
+                <h3>Professional Summary</h3>
+                <p>A professional summary is a short introduction that highlights your experience, skills, and career goals.</p>
+                <div class="example-block right-example">
+                    <p><strong>Example:</strong></p>
+                    <p>Results-driven software engineer with 4+ years of experience developing scalable web applications using React, JavaScript, and cloud technologies. Proven ability to improve system performance and deliver high-quality solutions.</p>
+                </div>
+                <p>A strong summary immediately communicates your value to employers.</p>
+                <h3>Work Experience</h3>
+                <p>Your work experience section should focus on achievements rather than responsibilities.</p>
+                <p>Instead of:</p>
+                <div class="example-block wrong-example"><p>❌ Responsible for managing projects.</p></div>
+                <p>Write:</p>
+                <div class="example-block right-example"><p>✅ Managed 15+ client projects, achieving 98% on-time delivery.</p></div>
+                <p>Include:</p>
+                <ul><li>Job title</li><li>Company name</li><li>Employment dates</li><li>Key achievements</li><li>Measurable results</li></ul>
+                <h3>Education</h3>
+                <p>Include:</p>
+                <ul><li>Degree</li><li>Institution name</li><li>Graduation year</li><li>Academic achievements</li></ul>
+                <div class="example-block">
+                    <p><strong>Example:</strong></p>
+                    <p>Bachelor of Technology in Computer Science</p>
+                    <p>ABC University &nbsp;|&nbsp; 2024 &nbsp;|&nbsp; CGPA: 8.5/10</p>
+                </div>
+                <h3>Skills</h3>
+                <p>Skills help recruiters quickly identify your qualifications.</p>
+                <p>Examples of technical skills:</p>
+                <ul><li>Python</li><li>Java</li><li>SQL</li><li>React</li><li>Excel</li><li>Power BI</li></ul>
+                <p>Examples of soft skills:</p>
+                <ul><li>Leadership</li><li>Communication</li><li>Teamwork</li><li>Problem-solving</li><li>Time management</li></ul>
+                <h3>Certifications</h3>
+                <p>Professional certifications strengthen your profile. Examples:</p>
+                <ul><li>Google Data Analytics Certificate</li><li>AWS Certified Cloud Practitioner</li><li>PMP Certification</li><li>Microsoft Azure Fundamentals</li></ul>
+                <h3>Projects</h3>
+                <p>Projects are especially important for students and freshers. Include:</p>
+                <ul><li>Project title</li><li>Technologies used</li><li>Problem solved</li><li>Key outcomes</li></ul>
+                <p>Projects demonstrate practical skills even when professional experience is limited.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>How to Create a Resume Using Density Resume Builder</h2>
+                <div class="steps-list">
+                    <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Choose a Template</h4><p>Select a professional template that matches your industry and career level.</p></div></div>
+                    <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Add Personal Information</h4><p>Enter your name, contact information, LinkedIn profile, and portfolio links.</p></div></div>
+                    <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Write a Strong Summary</h4><p>Create a concise professional summary that highlights your strengths.</p></div></div>
+                    <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>Add Experience</h4><p>Include relevant work experience, internships, freelance work, and achievements.</p></div></div>
+                    <div class="step-item"><div class="step-num">5</div><div class="step-body"><h4>Include Skills</h4><p>Add technical and soft skills relevant to your target role.</p></div></div>
+                    <div class="step-item"><div class="step-num">6</div><div class="step-body"><h4>Review and Download</h4><p>Check for errors and download your resume in a professional format.</p></div></div>
+                </div>
+            </div>
+
+            <div class="article-section">
+                <h2>What Makes a Resume ATS-Friendly?</h2>
+                <p>An Applicant Tracking System scans resumes before they reach recruiters. ATS-friendly resumes typically:</p>
+                <ul><li>Use standard section headings</li><li>Include relevant keywords</li><li>Avoid complex graphics</li><li>Use simple formatting</li><li>Maintain consistent structure</li></ul>
+                <p>Density Resume Builder automatically follows ATS best practices.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Resume Writing Tips</h2>
+                <h3>Tailor Your Resume</h3>
+                <p>Customize your resume for each job application.</p>
+                <h3>Use Action Verbs</h3>
+                <p>Examples:</p>
+                <ul><li>Developed</li><li>Implemented</li><li>Managed</li><li>Designed</li><li>Led</li><li>Increased</li></ul>
+                <h3>Quantify Achievements</h3>
+                <p>Numbers make achievements more impactful.</p>
+                <div class="example-block right-example"><p><strong>Example:</strong> "Increased website traffic by 45% in six months."</p></div>
+                <h3>Keep It Concise</h3>
+                <p>Most resumes should be one page for freshers and two pages for experienced professionals.</p>
+                <h3>Proofread Carefully</h3>
+                <p>Grammar and spelling mistakes can hurt your credibility.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Common Resume Mistakes to Avoid</h2>
+                <h3>Using Generic Objectives</h3><p>Avoid vague statements that do not communicate value.</p>
+                <h3>Including Irrelevant Information</h3><p>Focus only on information related to the target role.</p>
+                <h3>Poor Formatting</h3><p>Maintain consistency throughout your resume.</p>
+                <h3>Keyword Stuffing</h3><p>Use relevant keywords naturally instead of overloading the resume.</p>
+                <h3>Ignoring ATS Requirements</h3><p>Complex designs can sometimes cause ATS parsing issues.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Who Can Use Density Resume Builder?</h2>
+                <h3>Students</h3><p>Create internship and entry-level resumes.</p>
+                <h3>Freshers</h3><p>Build professional resumes even without work experience.</p>
+                <h3>Experienced Professionals</h3><p>Showcase achievements and career growth.</p>
+                <h3>Freelancers</h3><p>Highlight projects, clients, and specialized expertise.</p>
+                <h3>Career Changers</h3><p>Emphasize transferable skills and relevant experience.</p>
+            </div>
+
+            <div class="article-section">
+                <h2>Benefits of Using an Online Resume Builder</h2>
+                <ul><li>Saves time</li><li>Improves formatting</li><li>Enhances ATS compatibility</li><li>Reduces mistakes</li><li>Increases professionalism</li><li>Simplifies customization</li></ul>
+                <p>An online resume builder allows you to focus on your qualifications rather than formatting challenges.</p>
+            </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar-side">
+            <div class="cta-panel">
+                <h3>Build Your Resume Now</h3>
+                <p>Create a professional, ATS-friendly resume in minutes — completely free.</p>
+                <ul class="panel-features">
+                    <li>15+ ATS-optimised templates</li>
+                    <li>Instant PDF download</li>
+                    <li>No sign-up required</li>
+                    <li>Recruiter-approved formats</li>
+                </ul>
+                <a href="templates.html" class="panel-btn btn-green">Start Building — Free</a>
+                <a href="grader.html" class="panel-btn btn-trans">Grade My Resume</a>
+            </div>
+        </aside>
+    </main>
+
+    <!-- FAQ -->
+    <section class="faq-bg">
+        <div class="faq-inner">
+            <h2 class="faq-heading">Frequently Asked Questions</h2>
+            <p class="faq-sub">Everything you need to know about building a resume with Density.</p>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">What is the best resume format?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">The reverse chronological format is generally considered the most effective and recruiter-friendly format.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is Density Resume Builder suitable for freshers?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Yes. Our resume builder includes templates specifically designed for freshers and recent graduates.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is an ATS-friendly resume?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">An ATS-friendly resume is structured to be easily scanned and understood by applicant tracking systems.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How long should a resume be?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Freshers should typically use one page. Experienced professionals may use up to two pages if necessary.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I customize my resume for different jobs?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Yes. Density Resume Builder allows easy customization for different roles and industries.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What sections should every resume include?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Most resumes should include: contact information, professional summary, work experience, education, and skills.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do recruiters prefer PDF resumes?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">In most cases, PDF format is preferred because formatting remains consistent across devices.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How often should I update my resume?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer">You should update your resume whenever you gain new skills, certifications, projects, or work experience.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <h2>Build Your Resume Today</h2>
+        <p>A strong resume can open doors to better opportunities, interviews, and career growth. Density Resume Builder helps you create professional, ATS-friendly resumes quickly and confidently.</p>
+        <p class="sub">Start building your resume today and take the next step toward your career goals.</p>
+        <a href="templates.html" class="cta-btn">Build My Resume — Free</a>
+    </section>
+
+      <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="index.html" class="footer-logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+            <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.2)" />
+            <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+            <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+            <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+            <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+          </svg>
+          <div class="footer-brand-title">
+            <span class="footer-brand-name">Density</span>
+            <span class="footer-brand-sub">Resume Builder</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="resume-builder.html">Resume Builder</a></li>
+          <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
+          <li><a href="ats-resume-optimizer.html">ATS Resume Optimizer</a></li>
+          <li><a href="cv-builder.html">CV Builder</a></li>
+          <li><a href="templates.html">Resume Templates</a></li>
+          <li><a href="resume-examples.html">Resume Examples</a></li>
+          <li><a href="cover-letter-builder.html">Cover Letter Builder</a></li>
+          <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Resume Examples</h4>
+        <ul>
+          <li><a href="software-engineer-resume.html">Software Engineer Resume</a></li>
+          <li><a href="data-analyst.html">Data Analyst Resume</a></li>
+          <li><a href="executive-assistant-resume.html">Executive Assistant Resume</a></li>
+          <li><a href="ui-ux-developer-resume.html">UI/UX Designer Resume</a></li>
+          <li><a href="project-manager-resume.html">Project Manager Resume</a></li>
+          <li><a href="teacher-resume.html">Teacher Resume</a></li>
+          <li><a href="hr-resume.html">HR Resume</a></li>
+          <li><a href="financial-analyst-resume.html">Financial Analyst Resume</a></li>
+          <li><a href="digital-marketing-resume.html">Digital Marketing Resume</a></li>
+          <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resume Resources</h4>
+        <ul>
+          <li><a href="resume-help.html">Resume Help</a></li>
+          <li><a href="resume-format.html">Resume Format</a></li>
+          <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
+          <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
+          <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
+          <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
+          <li><a href="career-advice.html">Career Advice</a></li>
+          <li><a href="interview-questions.html">Interview Questions</a></li>
+          <li><a href="salary-guide.html">Salary Guide</a></li>
+          <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="privacy-policy.html">Cookie Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p>&#169; 2026 Density Resume Builder &#8226; Crafted for Career Excellence</p>
+        <div class="footer-bottom-links">
+          <a href="sitemap.xml">Sitemap</a>
+          <a href="robots.txt">Robots</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- FAQ Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    const open = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    if (!open) {
+                        item.classList.add('active');
+                        const a = item.querySelector('.faq-answer');
+                        a.style.maxHeight = a.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="module">
+        import { auth, onAuthStateChanged } from "./js/firebase-config.js";
+        const btn = document.getElementById('nav-auth-btn');
+        onAuthStateChanged(auth, u => { if(u){ btn.textContent='Dashboard'; btn.href='dashboard.html'; } });
+    </script>
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the best resume format?","acceptedAnswer":{"@type":"Answer","text":"The reverse chronological format is generally considered the most effective and recruiter-friendly format."}},{"@type":"Question","name":"Is Density Resume Builder suitable for freshers?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our resume builder includes templates specifically designed for freshers and recent graduates."}},{"@type":"Question","name":"What is an ATS-friendly resume?","acceptedAnswer":{"@type":"Answer","text":"An ATS-friendly resume is structured to be easily scanned and understood by applicant tracking systems."}},{"@type":"Question","name":"How long should a resume be?","acceptedAnswer":{"@type":"Answer","text":"Freshers should typically use one page. Experienced professionals may use up to two pages if necessary."}},{"@type":"Question","name":"Can I customize my resume for different jobs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Density Resume Builder allows easy customization for different roles and industries."}},{"@type":"Question","name":"What sections should every resume include?","acceptedAnswer":{"@type":"Answer","text":"Most resumes should include: contact information, professional summary, work experience, education, and skills."}},{"@type":"Question","name":"Do recruiters prefer PDF resumes?","acceptedAnswer":{"@type":"Answer","text":"In most cases, PDF format is preferred because formatting remains consistent across devices."}},{"@type":"Question","name":"How often should I update my resume?","acceptedAnswer":{"@type":"Answer","text":"You should update your resume whenever you gain new skills, certifications, projects, or work experience."}}]}
+    </script>
+</body>
+</html>
