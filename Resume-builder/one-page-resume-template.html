@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="img/logo.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Page Resume Template — Density Resume Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+    <script src="js/loader.js"></script>
+    <style>
+        :root {
+            --primary: #0F172A;
+            --primary-hover: #1e293b;
+            --accent: #14B8A6;
+            --accent-hover: #0d9488;
+            --text-main: #1E293B;
+            --bg-light: #F8FAFC;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 48px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #0F172A;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-title span:first-child {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title span:last-child {
+            font-weight: 400;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Main Content Styling */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(20, 184, 166, 0.05), transparent 400px),
+                        radial-gradient(circle at bottom left, rgba(95, 61, 196, 0.05), transparent 400px);
+        }
+
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0F172A;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #64748B;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Premium Footer Injected Styles */
+        .footer {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 100px 48px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer {
+                padding: 40px 24px;
+            }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 40px;
+            }
+
+        .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+        .footer-brand-col {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #fff;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.9;
+        }
+
+        .footer-logo .brand-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .footer-logo .brand-title span {
+            color: #ffffff;
+            transition: color 0.2s ease;
+        }
+
+        .footer-logo .brand-title span:first-child {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 0.03em;
+        }
+
+        .footer-logo .brand-title span:last-child {
+            font-weight: 400;
+            font-size: 15px;
+            letter-spacing: 0.03em;
+        }
+
+        .footer-tagline {
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .social-links a:hover {
+            background: #5F3DC4;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            color: #cbd5e1;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col h4:hover,
+        .footer-col h4:active {
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                <rect x="5" y="5" width="28" height="28" fill="#000" />
+                <rect x="37" y="37" width="28" height="28" fill="#000" />
+                <rect x="69" y="37" width="28" height="28" fill="#000" />
+                <rect x="37" y="69" width="28" height="28" fill="#000" />
+                <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+            </svg>
+            <div class="brand-title">
+                <span>Density</span>
+                <span>Resume Builder</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="templates.html">Templates</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+<footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
+                        <rect x="5" y="5" width="28" height="28" fill="#000" />
+                        <rect x="37" y="37" width="28" height="28" fill="#000" />
+                        <rect x="69" y="37" width="28" height="28" fill="#000" />
+                        <rect x="37" y="69" width="28" height="28" fill="#000" />
+                        <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
+                        <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
+                        <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
+                        <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+                    </svg>
+                    <div class="brand-title">
+                        <span>Density</span>
+                        <span>Resume Builder</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume
+                    that gets you hired in 2026.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg></a>
+                    <a href="#" aria-label="Twitter"><svg width="20" height="20" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                        </svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="20" height="20" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="builder.html">Resume Builder</a></li>
+                    <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
+                    <li><a href="ats-resume-builder.html">ATS Resume Builder</a></li>
+                    <li><a href="cv-builder.html">CV Builder</a></li>
+                    <li><a href="templates.html">Resume Templates</a></li>
+                    <li><a href="resume-examples.html">Resume Examples</a></li>
+                    <li><a href="cover-letter-builder.html">Cover Letter Builder</a></li>
+                    <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Popular Resume Examples</h4>
+                <ul>
+                    <li><a href="resume-for-software-engineer.html">Software Engineer Resume</a></li>
+                    <li><a href="resume-for-data-analyst.html">Data Analyst Resume</a></li>
+                    <li><a href="resume-for-business-analyst.html">Business Analyst Resume</a></li>
+                    <li><a href="resume-for-ui-ux-designer.html">UI/UX Designer Resume</a></li>
+                    <li><a href="resume-for-graphic-designer.html">Graphic Designer Resume</a></li>
+                    <li><a href="resume-for-teacher.html">Teacher Resume</a></li>
+                    <li><a href="resume-for-hr.html">HR Resume</a></li>
+                    <li><a href="resume-for-accountant.html">Accountant Resume</a></li>
+                    <li><a href="resume-for-digital-marketing.html">Digital Marketing Resume</a></li>
+                    <li><a href="resume-for-project-manager.html">Project Manager Resume</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resume Resources</h4>
+                <ul>
+                    <li><a href="resume-for-freshers.html">Resume for Freshers</a></li>
+                    <li><a href="resume-format.html">Resume Format</a></li>
+                    <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
+                    <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
+                    <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
+                    <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
+                    <li><a href="career-guides.html">Career Guides</a></li>
+                    <li><a href="interview-questions.html">Interview Questions</a></li>
+                    <li><a href="salary-guides.html">Salary Guides</a></li>
+                    <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Popular Templates</h4>
+                <ul>
+                    <li><a href="ats-resume-template.html">ATS Resume Template</a></li>
+                    <li><a href="professional-resume-template.html">Professional Resume Template</a></li>
+                    <li><a href="modern-resume-template.html">Modern Resume Template</a></li>
+                    <li><a href="simple-resume-template.html">Simple Resume Template</a></li>
+                    <li><a href="creative-resume-template.html">Creative Resume Template</a></li>
+                    <li><a href="one-page-resume-template.html">One Page Resume Template</a></li>
+                    <li><a href="two-page-resume-template.html">Two Page Resume Template</a></li>
+                    <li><a href="fresher-resume-template.html">Fresher Resume Template</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                    <li><a href="disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>© 2026 Density Resume Builder • Crafted for Career Excellence</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
