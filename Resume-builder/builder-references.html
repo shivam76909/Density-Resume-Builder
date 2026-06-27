@@ -440,164 +440,6 @@
                 padding: 40px 24px;
             }
         }
-    /* ===== FOOTER ===== */
-    .footer {
-      background: #0f172a;
-      color: #fff;
-      padding: 80px 48px 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2.2fr 1fr 1.2fr 1.1fr 1fr;
-      gap: 24px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .footer-brand-col {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .footer-brand-title {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .footer-brand-name {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: -0.02em;
-      color: #fff;
-    }
-
-    .footer-brand-sub {
-      font-weight: 400;
-      font-size: 15px;
-      color: #fff;
-    }
-
-    .footer-tagline {
-      color: #fff;
-      font-size: 14px;
-      line-height: 1.6;
-      max-width: 280px;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 16px;
-    }
-
-    .social-links a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      transition: color 0.2s;
-    }
-
-    .social-links a:hover {
-      background: #5F3DC4;
-      color: #fff;
-      transform: translateY(-3px);
-    }
-
-    .footer-col h4 {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 18px;
-      color: #cbd5e1;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-col ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 13px;
-      transition: color 0.2s;
-    }
-
-    .footer-col ul li a:hover {
-      color: #14B8A6;
-      padding-left: 0;
-    }
-
-    .footer-bottom {
-      margin-top: 60px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .footer-bottom-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #fff;
-      font-size: 12px;
-    }
-
-    .footer-bottom-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-bottom-links a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-bottom-links a:hover {
-      color: #fff;
-    }
-
-    @media (max-width: 1200px) {
-      .footer-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 40px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom-container {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
-    }
 </style>
 </head>
 
@@ -730,99 +572,20 @@
         Add another reference
       </button>
 
-            <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand-col">
-        <a href="index.html" class="footer-logo">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 40px; height: 40px;">
-            <rect x="5" y="5" width="28" height="28" fill="rgba(255,255,255,0.2)" />
-            <rect x="37" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
-            <rect x="69" y="37" width="28" height="28" fill="rgba(255,255,255,0.2)" />
-            <rect x="37" y="69" width="28" height="28" fill="rgba(255,255,255,0.2)" />
-            <rect x="0" y="0" width="30" height="30" fill="#7c3aed" />
-            <rect x="32" y="32" width="30" height="30" fill="#7c3aed" />
-            <rect x="64" y="32" width="30" height="30" fill="#7c3aed" />
-            <rect x="32" y="64" width="30" height="30" fill="#7c3aed" />
+      <!-- Continue Button -->
+      <div style="display: flex; justify-content: flex-end; margin-top: 40px; padding-bottom: 40px;">
+        <button
+          type="button"
+          onclick="validateAndContinue()"
+          class="btn-footer-next"
+          id="btn-continue-next"
+          style="background: #2563EB; color: white; padding: 16px 36px; border-radius: 12px; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(37,99,235,0.3);">
+          Continue to Summary
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
-          <div class="footer-brand-title">
-            <span class="footer-brand-name">Density</span>
-            <span class="footer-brand-sub">Resume Builder</span>
-          </div>
-        </a>
-        <p class="footer-tagline">Engineered for recruiters, optimized for ATS. Build a high-performance resume that gets you hired in 2026.</p>
-        <div class="social-links">
-          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg></a>
-        </div>
+        </button>
       </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="resume-builder.html">Resume Builder</a></li>
-          <li><a href="ai-resume-builder.html">AI Resume Builder</a></li>
-          <li><a href="ats-resume-optimizer.html">ATS Resume Optimizer</a></li>
-          <li><a href="cv-builder.html">CV Builder</a></li>
-          <li><a href="templates.html">Resume Templates</a></li>
-          <li><a href="resume-examples.html">Resume Examples</a></li>
-          <li><a href="cover-letter-builder.html">Cover Letter Builder</a></li>
-          <li><a href="ats-resume-checker.html">ATS Resume Checker</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Popular Resume Examples</h4>
-        <ul>
-          <li><a href="software-engineer-resume.html">Software Engineer Resume</a></li>
-          <li><a href="data-analyst.html">Data Analyst Resume</a></li>
-          <li><a href="executive-assistant-resume.html">Executive Assistant Resume</a></li>
-          <li><a href="ui-ux-developer-resume.html">UI/UX Designer Resume</a></li>
-          <li><a href="project-manager-resume.html">Project Manager Resume</a></li>
-          <li><a href="teacher-resume.html">Teacher Resume</a></li>
-          <li><a href="hr-resume.html">HR Resume</a></li>
-          <li><a href="financial-analyst-resume.html">Financial Analyst Resume</a></li>
-          <li><a href="digital-marketing-resume.html">Digital Marketing Resume</a></li>
-          <li><a href="product-manager-resume.html">Product Manager Resume</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Resume Resources</h4>
-        <ul>
-          <li><a href="resume-help.html">Resume Help</a></li>
-          <li><a href="resume-format.html">Resume Format</a></li>
-          <li><a href="ats-resume-format.html">ATS Resume Format</a></li>
-          <li><a href="resume-summary-examples.html">Resume Summary Examples</a></li>
-          <li><a href="resume-objective-examples.html">Resume Objective Examples</a></li>
-          <li><a href="resume-skills-examples.html">Resume Skills Examples</a></li>
-          <li><a href="career-advice.html">Career Advice</a></li>
-          <li><a href="interview-questions.html">Interview Questions</a></li>
-          <li><a href="salary-guide.html">Salary Guide</a></li>
-          <li><a href="cover-letter-examples.html">Cover Letter Examples</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="sitemap.xml">Sitemap</a></li>
-          <li><a href="privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms & Conditions</a></li>
-          <li><a href="privacy-policy.html">Cookie Policy</a></li>
-          <li><a href="disclaimer.html">Disclaimer</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-bottom-container">
-        <p>&#169; 2026 Density Resume Builder &#8226; Crafted for Career Excellence</p>
-        <div class="footer-bottom-links">
-          <a href="sitemap.xml">Sitemap</a>
-          <a href="robots.txt">Robots</a>
-        </div>
-      </div>
-    </div>
-  </footer>
     </main>
 
     <aside class="preview-panel">
